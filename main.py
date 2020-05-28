@@ -1,8 +1,9 @@
-from tablero_diego import Tablero
+from src.Tablero import Tablero
+from ui.juego import *
+# clase principal que llama a juego.py
 
-tablero = Tablero()
 while True:
-    event,values = tablero.window().read()
+    event,values = window.read()
     if event in (None, 'Exit'):
         break
-tablero.window.close()
+window.close()
