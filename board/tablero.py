@@ -1,7 +1,8 @@
 import PySimpleGUI as sg
 import random
 sg.ChangeLookAndFeel('Dark purple')
-
+## disculpen la demora por subir el codigo , en la  semana voy a estar modificanco este tablero agregando modulos y objetos para que el codigo sea mas organizado
+## hoy voy a tratar de implementar el patron de colores 
 blank = {'letra':'', 'imagen': r'blank.png'}
 a={'letra':'A','imagen': r'a.png'} #(r'img.png')
 b={'letra':'B','imagen': r'b.png'}
