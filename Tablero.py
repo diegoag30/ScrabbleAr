@@ -2,24 +2,33 @@ import PySimpleGUI as sg
 # Clase que define el tablero y sus propiedades
 
 class Cuadrado:
-    def __init__(self, fila, columna,valor=0):
+    def __init__(self, fila, columna,letra='',valor = 0):
         self.fila = fila
         self.columna = columna
-        self.valor = valor
-        self.letra = None
+        self._letra = letra
+        self.__valor = valor
 
-    def set_letra(self,valor):
-        self.letra = valor
 
-    def get_letra(self):
-        return self.letra
+    @property
+    def letra(self):
+        return self._letra
+
+    @letra.setter
+    def letra(self,letra):
+        self._letra = letra
+
+
+    @property
+    def valor(self):
+        return self._valor 
+          
+    @valor.setter
+    def valor(self,valor):
+        self._valor = valor
+
+
     
-    def set_valor(self,valor):
-        self.valor = valor
 
-    def get_valor(self):
-        return self.valor
-    
 
 class Tablero():
 
@@ -33,14 +42,14 @@ class Tablero():
         for fila in range(self.filas):
             row = []
             for columna in range(self.columnas):
-                cuadrado = Cuadrado(fila,columna)
-                row.append(cuadrado)
-            self.tablero.append(cuadrado)
+                row.append(Cuadrado(fila,columna))
+            self.tablero.append(row)
 
 
                 
-    def change_letra(self,fila,columna):
-        self.tablero[fila][columna].get_valor() #causa error
+    def change_letra(self,fila,columna,letra):
+        self.tablero[fila][columna].letra = letra
+        print (self.tablero[fila][columna].letra)
 
 
     
