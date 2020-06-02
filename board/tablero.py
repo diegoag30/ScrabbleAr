@@ -1,37 +1,38 @@
 import PySimpleGUI as sg
 import random
+import os
 sg.ChangeLookAndFeel('Dark purple')
 ## disculpen la demora por subir el codigo , en la  semana voy a estar modificanco este tablero agregando modulos y objetos para que el codigo sea mas organizado
 ## hoy voy a tratar de implementar el patron de colores 
-blank = {'letra':'', 'imagen': r'blank.png'}
-a={'letra':'A','imagen': r'a.png'} #(r'img.png')
-b={'letra':'B','imagen': r'b.png'}
-c={'letra':'C','imagen': r'c.png'}
-d={'letra':'D','imagen': r'd.png'}
-e={'letra':'E','imagen': r'e.png'}
-f={'letra':'F','imagen': r'f.png'}
-g={'letra':'G','imagen': r'g.png'}
-h={'letra':'H','imagen': r'h.png'}
-i={'letra':'I','imagen': r'i.png'}
-j={'letra':'J','imagen': r'j.png'}
-k={'letra':'K','imagen': r'k.png'}
-l={'letra':'L','imagen': r'l.png'}
-m={'letra':'M','imagen': r'm.png'}
-n={'letra':'N','imagen': r'n.png'}
-o={'letra':'O','imagen': r'o.png'}
-p={'letra':'P','imagen': r'p.png'}
-q={'letra':'Q','imagen': r'q.png'}
-r={'letra':'R','imagen': r'r.png'}
-s={'letra':'S','imagen': r's.png'}
-t={'letra':'T','imagen': r't.png'}
-u={'letra':'U','imagen': r'u.png'}
-v={'letra':'V','imagen': r'v.png'}
-w={'letra':'W','imagen': r'w.png'}
-x={'letra':'X','imagen': r'x.png'}
-y={'letra':'Y','imagen': r'y.png'}
-z={'letra':'Z','imagen': r'z.png'}
-im=r'g.png'
-img=r'blank2.png'####
+blank = {'letra':'', 'imagen': os.path.join('board', 'blank.png')}
+a={'letra':'A','imagen': os.path.join('board', 'a.png')} #(r'img.png')
+b={'letra':'B','imagen': os.path.join('board', 'b.png')}
+c={'letra':'C','imagen': os.path.join('board', 'c.png')}
+d={'letra':'D','imagen': os.path.join('board', 'd.png')}
+e={'letra':'E','imagen': os.path.join('board', 'e.png')}
+f={'letra':'F','imagen': os.path.join('board', 'f.png')}
+g={'letra':'G','imagen': os.path.join('board', 'g.png')}
+h={'letra':'H','imagen': os.path.join('board', 'h.png')}
+i={'letra':'I','imagen': os.path.join('board', 'i.png')}
+j={'letra':'J','imagen': os.path.join('board', 'j.png')}
+k={'letra':'K','imagen': os.path.join('board', 'k.png')}
+l={'letra':'L','imagen': os.path.join('board', 'l.png')}
+m={'letra':'M','imagen': os.path.join('board', 'm.png')}
+n={'letra':'N','imagen': os.path.join('board', 'n.png')}
+o={'letra':'O','imagen': os.path.join('board', 'o.png')}
+p={'letra':'P','imagen': os.path.join('board', 'p.png')}
+q={'letra':'Q','imagen': os.path.join('board', 'q.png')}
+r={'letra':'R','imagen': os.path.join('board', 'r.png')}
+s={'letra':'S','imagen': os.path.join('board', 's.png')}
+t={'letra':'T','imagen': os.path.join('board', 't.png')}
+u={'letra':'U','imagen': os.path.join('board', 'u.png')}
+v={'letra':'V','imagen': os.path.join('board', 'v.png')}
+w={'letra':'W','imagen': os.path.join('board', 'w.png')}
+x={'letra':'X','imagen': os.path.join('board', 'x.png')}
+y={'letra':'Y','imagen': os.path.join('board', 'y.png')}
+z={'letra':'Z','imagen': os.path.join('board', 'z.png')}
+im= os.path.join('board', 'g.png')
+img= os.path.join('board', 'blank2.png')####
 #b={'letra': 'B', 'imagen' : os.path_join(PATH, 'a.png')}
 # b={'letra':'A','imagen': os.path.join(PATH,'a.png')}
 # b={'letra':'B','imagen': os.path.join(PATH,'a.png')}
@@ -92,7 +93,6 @@ while True:
 	if button in (None , 'EXIT'):
 		exit()		
 	if type(button) is int:
-		
 		if initial_atril[button] !='':
 			letra= initial_atril[button]
 			palabra += letra

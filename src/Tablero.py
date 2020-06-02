@@ -7,17 +7,40 @@ class Cuadrado:
         self.columna = columna
         self.valor = valor
         self.letra = None
+
+    def set_letra(self,valor):
+        self.letra = valor
+
+    def get_letra(self):
+        return self.letra
+    
+    def set_valor(self,valor):
+        self.valor = valor
+
+    def get_valor(self):
+        return self.valor
     
 
 class Tablero():
 
     def __init__(self):
-        self.filas = 15
-        self.columnas = 15
+        self.filas = 10
+        self.columnas = 10
         self.tablero = []
+
+
+    def iniciar_tablero(self):
         for fila in range(self.filas):
-            self.tablero.append([])
+            row = []
             for columna in range(self.columnas):
-                self.tablero[fila].append(Cuadrado(fila,columna))
+                cuadrado = Cuadrado(fila,columna)
+                row.append(cuadrado)
+            self.tablero.append(cuadrado)
+
+
+                
+    def change_letra(self,fila,columna):
+        self.tablero[fila][columna].get_valor() #causa error
+
 
     
