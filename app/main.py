@@ -2,38 +2,42 @@ import PySimpleGUI as sg
 import random
 import os
 from images import *
+from Tablero import Tablero
 sg.ChangeLookAndFeel('Dark purple')
 ## disculpen la demora por subir el codigo , en la  semana voy a estar modificanco este tablero agregando modulos y objetos para que el codigo sea mas organizado
 ## hoy voy a tratar de implementar el patron de colores 
-blank = {'letra':'', 'imagen': os.path.join('ui/images', 'blank.png')}
-a={'letra':'A','imagen': os.path.join('ui/images', 'a.png')} #(r'img.png')
-b={'letra':'B','imagen': os.path.join('ui/images', 'b.png')}
-c={'letra':'C','imagen': os.path.join('ui/images', 'c.png')}
-d={'letra':'D','imagen': os.path.join('ui/images', 'd.png')}
-e={'letra':'E','imagen': os.path.join('ui/images', 'e.png')}
-f={'letra':'F','imagen': os.path.join('ui/images', 'f.png')}
-g={'letra':'G','imagen': os.path.join('ui/images', 'g.png')}
-h={'letra':'H','imagen': os.path.join('ui/images', 'h.png')}
-i={'letra':'I','imagen': os.path.join('ui/images', 'i.png')}
-j={'letra':'J','imagen': os.path.join('ui/images', 'j.png')}
-k={'letra':'K','imagen': os.path.join('ui/images', 'k.png')}
-l={'letra':'L','imagen': os.path.join('ui/images', 'l.png')}
-m={'letra':'M','imagen': os.path.join('ui/images', 'm.png')}
-n={'letra':'N','imagen': os.path.join('ui/images', 'n.png')}
-o={'letra':'O','imagen': os.path.join('ui/images', 'o.png')}
-p={'letra':'P','imagen': os.path.join('ui/images', 'p.png')}
-q={'letra':'Q','imagen': os.path.join('ui/images', 'q.png')}
-r={'letra':'R','imagen': os.path.join('ui/images', 'r.png')}
-s={'letra':'S','imagen': os.path.join('ui/images', 's.png')}
-t={'letra':'T','imagen': os.path.join('ui/images', 't.png')}
-u={'letra':'U','imagen': os.path.join('ui/images', 'u.png')}
-v={'letra':'V','imagen': os.path.join('ui/images', 'v.png')}
-w={'letra':'W','imagen': os.path.join('ui/images', 'w.png')}
-x={'letra':'X','imagen': os.path.join('ui/images', 'x.png')}
-y={'letra':'Y','imagen': os.path.join('ui/images', 'y.png')}
-z={'letra':'Z','imagen': os.path.join('ui/images', 'z.png')}
-im= os.path.join('ui/images', 'g.png')
-img= os.path.join('ui/images', 'blank2.png')####
+obj_tablero = Tablero()
+obj_tablero.iniciar_tablero()
+
+blank = {'letra':'', 'imagen': os.path.join('app/images', 'blank.png')}
+a={'letra':'A','imagen': os.path.join('app/images', 'a.png')} #(r'img.png')
+b={'letra':'B','imagen': os.path.join('app/images', 'b.png')}
+c={'letra':'C','imagen': os.path.join('app/images', 'c.png')}
+d={'letra':'D','imagen': os.path.join('app/images', 'd.png')}
+e={'letra':'E','imagen': os.path.join('app/images', 'e.png')}
+f={'letra':'F','imagen': os.path.join('app/images', 'f.png')}
+g={'letra':'G','imagen': os.path.join('app/images', 'g.png')}
+h={'letra':'H','imagen': os.path.join('app/images', 'h.png')}
+i={'letra':'I','imagen': os.path.join('app/images', 'i.png')}
+j={'letra':'J','imagen': os.path.join('app/images', 'j.png')}
+k={'letra':'K','imagen': os.path.join('app/images', 'k.png')}
+l={'letra':'L','imagen': os.path.join('app/images', 'l.png')}
+m={'letra':'M','imagen': os.path.join('app/images', 'm.png')}
+n={'letra':'N','imagen': os.path.join('app/images', 'n.png')}
+o={'letra':'O','imagen': os.path.join('app/images', 'o.png')}
+p={'letra':'P','imagen': os.path.join('app/images', 'p.png')}
+q={'letra':'Q','imagen': os.path.join('app/images', 'q.png')}
+r={'letra':'R','imagen': os.path.join('app/images', 'r.png')}
+s={'letra':'S','imagen': os.path.join('app/images', 's.png')}
+t={'letra':'T','imagen': os.path.join('app/images', 't.png')}
+u={'letra':'U','imagen': os.path.join('app/images', 'u.png')}
+v={'letra':'V','imagen': os.path.join('app/images', 'v.png')}
+w={'letra':'W','imagen': os.path.join('app/images', 'w.png')}
+x={'letra':'X','imagen': os.path.join('app/images', 'x.png')}
+y={'letra':'Y','imagen': os.path.join('app/images', 'y.png')}
+z={'letra':'Z','imagen': os.path.join('app/images', 'z.png')}
+im= os.path.join('app/images', 'g.png')
+img= os.path.join('app/images', 'blank2.png')####
 #b={'letra': 'B', 'imagen' : os.path_join(PATH, 'a.png')}
 # b={'letra':'A','imagen': os.path.join(PATH,'a.png')}
 # b={'letra':'B','imagen': os.path.join(PATH,'a.png')}
@@ -86,6 +90,7 @@ while True:
 	l=-1
 	button , value = window.Read()
 	if button == 'CHECK':
+		obj_tablero.get_word()
 		if palabra == '':
 			sg.Popup('todavia no formo una palabra')
 		else:
@@ -102,16 +107,20 @@ while True:
 			window[button].update(image_filename=img, button_color=('',''))##
 			button , value = window.Read()
 			if type(button) is tuple:
-	
+				
 				image1= images[letra]
 				image1=image1['imagen']
-		
+				
 				#render_square(image1['imagen'],key=(0,0))
 				window[button].update(image_filename=image1, button_color=('white','grey'))
+
+				# se modifica la letra en el tablero
+				obj_tablero.change_letra(button[0],button[1],letra)
+				
 				l=0
 			# piece_image = images['BLANK']
 		# row.append(render_square(piece_image['imagen'],key = (i,j)))	
-		
+	
 		
 		
 	if type(button) is tuple:
