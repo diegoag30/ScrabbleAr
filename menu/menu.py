@@ -48,7 +48,7 @@ while True:
         event, values = window.read()
         print(event, values)
         if event == 'SIGUIENTE':
-            sg.Popup('¡EN PROCESO!')
+            sg.Popup('¡EN PROCESO!', icon='ScrabbleGO.ico')
             event, values = window.read()
             print(event, values)
         

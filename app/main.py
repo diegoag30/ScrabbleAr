@@ -81,7 +81,7 @@ for i in range(7):
 #print(atril)	
 	
 board_tab=[[sg.Button('CHECK')],[sg.Column(atril), sg.Column(tablero)],[sg.Button('COMENZAR'),sg.Button('PASAR'),sg.Button('EXIT')]]
-window = sg.Window('ScrabbleAr',default_button_element_size=(10,2), auto_size_buttons=False).Layout(board_tab)
+window = sg.Window('ScrabbleAr',default_button_element_size=(10,2), auto_size_buttons=False, icon='ScrabbleGO.ico').Layout(board_tab)
 #indow = sg.Window('tablero', layout, default_button_element_size=(5,2), auto_size_buttons=False)
 #event, value = window.Read()
 palabra=''
