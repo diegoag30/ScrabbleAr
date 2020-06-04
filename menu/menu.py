@@ -35,7 +35,7 @@ menu = [
     [sg.Button('AVANZADA')]
 ]
 
-window = sg.Window("Scrabble GO", layout)
+window = sg.Window("Scrabble GO", layout, icon='ScrabbleGO.ico')
 
 while True:
     event, values = window.read()
@@ -44,6 +44,6 @@ while True:
         break
     if event == 'CONFIGURACION':
         window.close(); del window
-        window = sg.Window('Scrabble GO - Configuracion', menu)
+        window = sg.Window('Scrabble GO - Configuracion', menu, icon='ScrabbleGO.ico')
         event, values = window.read()
         
