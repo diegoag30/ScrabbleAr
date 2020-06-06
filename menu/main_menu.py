@@ -44,7 +44,7 @@ while True:
         break
     if event == 'CONFIGURACION':
         window.close(); del window
-        window = sg.Window('Scrabble GO - Configuracion', menu, icon='ScrabbleGO.ico')
+        window = sg.Window('Scrabble GO - Configuracion', menu, icon='ScrabbleGO.ico', size=(1302,800))
         event, values = window.read()
         print(event, values)
         if event == 'SIGUIENTE':
