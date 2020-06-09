@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 from Configuracion import Configuracion
+from main import main_game
 
 #funcion para cambiar el background del programa a un color personalizado
 sg.theme_background_color(color='#00796B')
@@ -13,6 +14,8 @@ while True:
     print(event, values)
     if event == sg.WIN_CLOSED:
         break
+    if event == 'LOGO':
+        main_game()
     if event == 'CONFIGURACION':
         window.close(); del window
         # window = sg.Window('Scrabble GO - Configuracion', menu, icon='ScrabbleGO.ico', size=(1302,800))
