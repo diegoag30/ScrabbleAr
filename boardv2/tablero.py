@@ -4,35 +4,35 @@ import coloresTablero
 tab=coloresTablero.tablero
 sg.ChangeLookAndFeel('Dark purple')
 
-blank = {'letra':'', 'imagen': r'blank.png'}
-a={'letra':'A','imagen': r'a.png'} #(r'img.png')
-b={'letra':'B','imagen': r'b.png'}
-c={'letra':'C','imagen': r'c.png'}
-d={'letra':'D','imagen': r'd.png'}
-e={'letra':'E','imagen': r'e.png'}
-f={'letra':'F','imagen': r'f.png'}
-g={'letra':'G','imagen': r'g.png'}
-h={'letra':'H','imagen': r'h.png'}
-i={'letra':'I','imagen': r'i.png'}
-j={'letra':'J','imagen': r'j.png'}
-k={'letra':'K','imagen': r'k.png'}
-l={'letra':'L','imagen': r'l.png'}
-m={'letra':'M','imagen': r'm.png'}
-n={'letra':'N','imagen': r'n.png'}
-o={'letra':'O','imagen': r'o.png'}
-p={'letra':'P','imagen': r'p.png'}
-q={'letra':'Q','imagen': r'q.png'}
-r={'letra':'R','imagen': r'r.png'}
-s={'letra':'S','imagen': r's.png'}
-t={'letra':'T','imagen': r't.png'}
-u={'letra':'U','imagen': r'u.png'}
-v={'letra':'V','imagen': r'v.png'}
-w={'letra':'W','imagen': r'w.png'}
-x={'letra':'X','imagen': r'x.png'}
-y={'letra':'Y','imagen': r'y.png'}
-z={'letra':'Z','imagen': r'z.png'}
-im=r'g.png'
-img=r'blank2.png'####
+blank = {'letra':'', 'imagen': r'boardv2/blank.png'}
+a={'letra':'A','imagen': r'boardv2/a.png'} #(r'img.png')
+b={'letra':'B','imagen': r'boardv2/b.png'}
+c={'letra':'C','imagen': r'boardv2/c.png'}
+d={'letra':'D','imagen': r'boardv2/d.png'}
+e={'letra':'E','imagen': r'boardv2/e.png'}
+f={'letra':'F','imagen': r'boardv2/f.png'}
+g={'letra':'G','imagen': r'boardv2/g.png'}
+h={'letra':'H','imagen': r'boardv2/h.png'}
+i={'letra':'I','imagen': r'boardv2/i.png'}
+j={'letra':'J','imagen': r'boardv2/j.png'}
+k={'letra':'K','imagen': r'boardv2/k.png'}
+l={'letra':'L','imagen': r'boardv2/l.png'}
+m={'letra':'M','imagen': r'boardv2/m.png'}
+n={'letra':'N','imagen': r'boardv2/n.png'}
+o={'letra':'O','imagen': r'boardv2/o.png'}
+p={'letra':'P','imagen': r'boardv2/p.png'}
+q={'letra':'Q','imagen': r'boardv2/q.png'}
+r={'letra':'R','imagen': r'boardv2/r.png'}
+s={'letra':'S','imagen': r'boardv2/s.png'}
+t={'letra':'T','imagen': r'boardv2/t.png'}
+u={'letra':'U','imagen': r'boardv2/u.png'}
+v={'letra':'V','imagen': r'boardv2/v.png'}
+w={'letra':'W','imagen': r'boardv2/w.png'}
+x={'letra':'X','imagen': r'boardv2/x.png'}
+y={'letra':'Y','imagen': r'boardv2/y.png'}
+z={'letra':'Z','imagen': r'boardv2/z.png'}
+im=r'boardv2/g.png'
+img=r'boardv2/blank2.png'####
 #b={'letra': 'B', 'imagen' : os.path_join(PATH, 'a.png')}
 # b={'letra':'A','imagen': os.path.join(PATH,'a.png')}
 # b={'letra':'B','imagen': os.path.join(PATH,'a.png')}
@@ -73,7 +73,7 @@ for i in range(15):  ### tablero botones
 		elif dd['color']=='violet':
 			    #corona=r'corona.png'
 				color_button=('white','violet')
-				corona=r'corona.png'
+				corona=r'boardv2/corona.png'
 				row.append(render_square(corona,key = (i,j)))			
 		elif dd['color']=='orange':
 				color_button=('white',dd['color'])
@@ -97,7 +97,7 @@ for i in range(7):
 	atril.append(row)###	
 	
 #print(atril)
-inte=r'interrogacion.png'
+inte=r'boardv2/interrogacion.png'
 for i in range(7):
 	row = []
 	#piece_image = images[initial_atril[i]]
