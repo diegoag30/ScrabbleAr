@@ -143,7 +143,7 @@ while True:
 				#render_square(image1['imagen'],key=(0,0))
 				window[button].update(image_filename=image1, button_color=('white','grey'))
 					# se modifica la letra en el tablero
-					obj_tablero.change_letra(button[0],button[1],letra)				
+				obj_tablero.change_letra(button[0],button[1],letra)				
 				l=0
 			# piece_image = images['BLANK']
 		# row.append(render_square(piece_image['imagen'],key = (i,j)))	

@@ -1,17 +1,20 @@
 import PySimpleGUI as sg
 import random
 import os
-import coloresTablero
+from coloresTablero import tablero_inicial
 from images import *
 from Tablero import Tablero
 
 
 def main_game():
-	tab=coloresTablero.tablero
-	sg.ChangeLookAndFeel('Dark purple')
 
 	obj_tablero = Tablero()
 	obj_tablero.iniciar_tablero()
+	
+	tab=tablero_inicial(obj_tablero)
+	sg.ChangeLookAndFeel('Dark purple')
+
+
 
 	blank = {'letra':'', 'imagen': r'app/images/blank.png'}
 	a={'letra':'A','imagen': r'app/images/a.png'} #(r'img.png')
