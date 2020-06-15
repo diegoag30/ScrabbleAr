@@ -1,4 +1,7 @@
 class EstadBoton:
+	# creo una matriz compuesta por objetos EstadBoton
+	# valor= es el valor que tiene la palabra o letra, estado me informa si la casilla esta ocupada por una letra
+	# tipo informa si la casilla multiplica por palabra o letra
 	def __init__(self,valor=1,color='',estado=False,tipo='L'):
 		self._estado = estado
 		self._valor = valor
