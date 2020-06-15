@@ -272,9 +272,13 @@ def main_game():
 	obj = Tablero1()
 
 	tabla=obj.TableroFacil(images) 
+	
+	columna_3 = [ [sg.Text('PUNTOS MAQUINA')],[sg.Listbox(values =[], key='datosj', size=(30,10))]]
+	columna_1 = [ [sg.Text('PUNTOS JUGADOR')],[sg.Listbox(values =[], key='datosm', size=(30,10))]]		
+	
 
 
-	board_tab=[[sg.Column(atr1),sg.Column(tabla),sg.Column(atr2)],[sg.Button('COMENZAR'),sg.Button('PASAR'),sg.Button('GUARDAR'),sg.Button('EXIT')]]
+	board_tab=[[sg.Button('CHECK')],[sg.Column(columna_1),sg.Column(atr1),sg.Column(tabla),sg.Column(atr2),sg.Column(columna_3)],[sg.Button('COMENZAR'),sg.Button('PASAR'),sg.Button('GUARDAR'),sg.Button('EXIT')]]
 	window = sg.Window('ScrabbleAr',default_button_element_size=(10,1), auto_size_buttons=False).Layout(board_tab)
 	#button , value = window.Read()
 	#obj2 = Tablero2()
