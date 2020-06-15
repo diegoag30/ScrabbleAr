@@ -1,6 +1,9 @@
 import PySimpleGUI as sg
 import random
 import os.path
+### todavia me faltan agregar cosas
+# lo dejo para que le peguen una miradita
+# si les convence lo implemento en el proyecto
 
 import ConfigColorPunt
 #from images import *
