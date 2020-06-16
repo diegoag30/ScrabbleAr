@@ -1,6 +1,9 @@
 import PySimpleGUI as sg
 from main import main_game
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0563bdb6ae36181591a146dfca48aaa5c468c313
 """
     IMPORTANTE: ESTO LO VOY A BORRAR A FUTURO CUANDO NO LO NECESITE MAS, DE MOMENTO LO USO DE PRUEBA Y RESPALDO
 """
