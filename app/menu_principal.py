@@ -10,11 +10,11 @@ sg.theme_background_color(color='#00796B')
 conf = Configuracion()
 window = conf.ventanaPrincipal()
 
-_configuraciones_seleccionadas = {
-            'tiempo':'',
-            'dificultad':'',
-            'tablero':1
-            }      
+# _configuraciones_seleccionadas = {
+#             'tiempo':'',
+#             'dificultad':'',
+#             'tablero':1
+#             }      
 
 
 while True:
