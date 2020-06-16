@@ -35,16 +35,31 @@ menu = [
     [sg.Button('SIGUIENTE')]
 ]
 
+
+#para el diseño de los tableros uso imagenes por defecto hasta que se pueda visualizar los 3 tableros para realizar una miniatura
 configuracion = [
-    [sg.Text('Tiempo de juego', background_color=color_de_fondo, text_color='white', font=('Helvetica', 15, 'bold'))],
-    [sg.Radio('Rapido', "RADIO1", default=True, background_color=color_de_fondo, text_color='white', font=('Helvetica', 12, 'bold'), key='rapido'),sg.Radio('Medio', "RADIO1", background_color=color_de_fondo, text_color='white', font=('Helvetica', 12, 'bold'), key='normal'),sg.Radio('Lento', "RADIO1", background_color=color_de_fondo, text_color='white', font=('Helvetica', 12, 'bold'), key='lento')],
-    [sg.Text('Nivel de dificultad', background_color=color_de_fondo, text_color='white', font=('Helvetica', 15, 'bold'))],
-    [sg.Radio('Facil', "RADIO2", default=True, background_color=color_de_fondo, text_color='white', font=('Helvetica', 12, 'bold'),key='facil'),sg.Radio('Medio', "RADIO2", background_color=color_de_fondo, text_color='white', font=('Helvetica', 12, 'bold'), key='medio'),sg.Radio('Dificil', "RADIO2", background_color=color_de_fondo, text_color='white', font=('Helvetica', 12, 'bold'), key='dificil')],
-    [sg.Text('Puntaje de cada letra', background_color=color_de_fondo, text_color='white', font=('Helvetica', 15, 'bold'))],
+    [sg.Text('Tiempo de juego', background_color=color_de_fondo, text_color='white', font=('Helvetica', 15, 'bold'), tooltip=('Elije el tiempo que durara la partida'))],
+    [sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/minimo_375x138.png', image_size=(170, 64), key='minimo', image_subsample=2, border_width=0,pad=((0,0),(0,0)), tooltip=('Elija esta opción si quiere jugar una partida rapida'))],
+    [sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/medio_375x138.png', image_size=(170, 64), key='medio', image_subsample=2, border_width=0,pad=((0,0),(0,0)), tooltip=('Elija esta opción si quiere jugar una partida normal'))],
+    [sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/maximo_375x138.png', image_size=(170, 64), key='maximo', image_subsample=2, border_width=0,pad=((0,0),(0,0)), tooltip=('Elija esta opción si quiere jugar una partida con mucho tiempo'))],
+    [sg.Text('Nivel de dificultad', background_color=color_de_fondo, text_color='white', font=('Helvetica', 15, 'bold'), tooltip=('En esta opción, se configurará el nivel del juego.'))],
+    [sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/facil_375x138.png', image_size=(170, 64), key='facil', image_subsample=2, border_width=0,pad=((0,0),(0,0)), tooltip=('Se jugara con cualquier tipo de palabra (adjetivos, sustantivos y verbos).'))],
+    [sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/normal_375x138.png', image_size=(170, 64), key='normal', image_subsample=2, border_width=0,pad=((0,0),(0,0)), tooltip=('Se jugara sólo con verbos y adjetivos.'))],
+    [sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/dificil_375x138.png', image_size=(170, 64), key='dificil', image_subsample=2, border_width=0,pad=((0,0),(0,0)), tooltip=('Se jugara con una categoría elegida al azar entre verbos y adjetivos.'))],
+    [sg.Text('Seleccionar Tablero', tooltip=('Elija entre uno de los tres tableros disponibles para jugar, por defecto se elije el tablero 1'), background_color=color_de_fondo, text_color='white', font=('Helvetica', 15, 'bold'))],
+    [sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/tablero_1.png', image_size=(171,171), key='tablero_1', image_subsample=3, border_width=0,pad=((50,0),(0,0))),
+    sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/tablero_2.png', image_size=(171,171), key='tablero_2', image_subsample=3, border_width=0,pad=((50,0),(0,0))),
+    sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/tablero_3.png', image_size=(171,171), key='tablero_3', image_subsample=3, border_width=0,pad=((50,0),(0,0)))],
     [sg.Button('SIGUIENTE')]
 ]
 
 window = sg.Window("Scrabble GO", layout, icon='ScrabbleGO.ico')
+
+configuraciones_seleccionadas = {
+    'tiempo':'medio',
+    'dificultad':'normal',
+    'tablero':1
+}
 
 while True:
     event, values = window.read()
@@ -56,8 +71,20 @@ while True:
         window = sg.Window('Scrabble GO - Configuracion', configuracion, icon='ScrabbleGO.ico', size=(1050,800))
         event, values = window.read()
         print(event, values)
+        if event == 'facil':
+            configuraciones_seleccionadas['dificultad'] = 'facil'
+        elif event == 'normal':
+            configuraciones_seleccionadas['dificultad'] = 'normal'
+        elif event == 'dificil':
+            configuraciones_seleccionadas['dificultad'] = 'dificil'
+        elif event == 'minimo':
+            configuraciones_seleccionadas['tiempo'] = 'minimo'
+        elif event == 'medio':
+            configuraciones_seleccionadas['tiempo'] = 'medio'
+        else:
+            configuraciones_seleccionadas['tiempo'] = 'maximo'
         if event == 'SIGUIENTE':
-            sg.Popup('¡EN PROCESO!', icon='ScrabbleGO.ico')
+            print('hola')
             event, values = window.read()
             print(event, values)
         

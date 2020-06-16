@@ -2,6 +2,8 @@ import PySimpleGUI as sg
 from Configuracion import Configuracion
 from main import main_game
 
+
+#IMPORTANTE: ESTO LO VOY A BORRAR A FUTURO CUANDO NO LO NECESITE MAS
 #funcion para cambiar el background del programa a un color personalizado
 sg.theme_background_color(color='#00796B')
 
