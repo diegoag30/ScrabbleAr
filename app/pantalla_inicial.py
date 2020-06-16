@@ -1,5 +1,7 @@
 import PySimpleGUI as sg
 
+#IMPORTANTE: ESTO LO VOY A BORRAR A FUTURO CUANDO NO LO NECESITE MAS
+
 color_de_fondo = '#00796B'
 
 sg.theme_background_color(color='#00796B')
@@ -68,25 +70,25 @@ configuraciones_seleccionadas = {
 while True:
     event, values = window.read()
     print(event, values)
+    print("eventos: ",event,"valores: ", values)
     if event == sg.WIN_CLOSED:
         break
     if event == 'CONFIGURACION':
         window.close(); del window
         window = sg.Window('Scrabble GO - Configuracion', configuracion, icon='ScrabbleGO.ico', size=(1050,850))
-        event, values = window.read()
-        print(event, values)
-        if event == 'facil':
-            configuraciones_seleccionadas['dificultad'] = 'facil'
-        elif event == 'normal':
-            configuraciones_seleccionadas['dificultad'] = 'normal'
-        elif event == 'dificil':
-            configuraciones_seleccionadas['dificultad'] = 'dificil'
-        elif event == 'minimo':
-            configuraciones_seleccionadas['tiempo'] = 'minimo'
-        elif event == 'medio':
-            configuraciones_seleccionadas['tiempo'] = 'medio'
-        else:
-            configuraciones_seleccionadas['tiempo'] = 'maximo'
+        # event, values = window.read()
+        # if event == 'facil':
+        #     configuraciones_seleccionadas['dificultad'] = 'facil'
+        # elif event == 'normal':
+        #     configuraciones_seleccionadas['dificultad'] = 'normal'
+        # elif event == 'dificil':
+        #     configuraciones_seleccionadas['dificultad'] = 'dificil'
+        # elif event == 'minimo':
+        #     configuraciones_seleccionadas['tiempo'] = 'minimo'
+        # elif event == 'medio':
+        #     configuraciones_seleccionadas['tiempo'] = 'medio'
+        # else:
+        #     configuraciones_seleccionadas['tiempo'] = 'maximo'
         if event == 'SIGUIENTE':
             print('hola')
             event, values = window.read()
