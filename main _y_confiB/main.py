@@ -229,11 +229,12 @@ def main_game():
 
 	board_tab=[[sg.Button('CHECK')],[sg.Column(columna_1),sg.Column(atr1),sg.Column(tablero),sg.Column(atr2),sg.Column(columna_3)],[sg.Button('COMENZAR'),sg.Button('PASAR'),sg.Button('GUARDAR'),sg.Button('EXIT')]]
 	window = sg.Window('ScrabbleAr',default_button_element_size=(10,1), auto_size_buttons=False).Layout(board_tab)
-	
+	fila = -1
 	palabra=''	
 	while True:
 		letra=''
 		l=-1
+
 		button , value = window.Read()
 		if button == 'CHECK':
 			#obj_tablero.get_word()
@@ -260,16 +261,24 @@ def main_game():
 				window[button].update(image_filename=img,image_size=(50, 50), button_color=('',''))
 				button , value = window.Read()
 				if type(button) is tuple:
-		
-					image1= images[letra]
-					image1=image1['imagen']
-					#imgT=(50,50)
-			
-					#render_square(image1['imagen'],key=(0,0))
-					window[button].update(image_filename=image1, image_size= tamaño_img ,button_color=('white','grey')) ###  si no agreggo el tamaño el boton toma el tamaño de la imagen
-					# se modifica la letra en el tablero
-					# obj_tablero.change_letra(button[0],button[1],letra)				
-					l=0
+					prueba = button[0]
+					print('fila botton: ', button[0], 'valor de fila: ',fila)
+					if button[0] == fila:						
+						image1= images[letra]
+						image1=image1['imagen']
+						window[button].update(image_filename=image1, image_size= tamaño_img ,button_color=('white','grey')) ###  si no agreggo el tamaño el boton toma el tamaño de la imagen
+
+						fila = button[0]				
+						l=0
+					else:
+						if fila == -1:
+							image1= images[letra]
+							image1=image1['imagen']
+							window[button].update(image_filename=image1, image_size= tamaño_img ,button_color=('white','grey')) ###  si no agreggo el tamaño el boton toma el tamaño de la imagen
+							fila = prueba				
+							l=0
+						else:
+							#DEVOLVER LA IMAGEN A SU LUGAR
 				# piece_image = images['BLANK']
 			# row.append(render_square(piece_image['imagen'],key = (i,j)))	
 			
