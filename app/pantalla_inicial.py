@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+from main import main_game
 
 """
     IMPORTANTE: ESTO LO VOY A BORRAR A FUTURO CUANDO NO LO NECESITE MAS, DE MOMENTO LO USO DE PRUEBA Y RESPALDO
@@ -75,6 +76,9 @@ while True:
     print("eventos: ",event,"valores: ", values)
     if event == sg.WIN_CLOSED:
         break
+    if event == 'LOGO':
+        window.close(); del window
+        main_game()
     if event == 'CONFIGURACION':
         window.close(); del window
         window = sg.Window('Scrabble GO - Configuracion', configuracion, icon='ScrabbleGO.ico', size=(1050,850))
