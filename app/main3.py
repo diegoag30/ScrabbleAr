@@ -1,10 +1,10 @@
 import PySimpleGUI as sg
 import random
 import os.path
-import configuracion
+import config_tablero
 base_path=os.path.dirname(os.path.abspath(__file__))
 
-def main_game():
+def main_game(num_tablero):
 	
 
 
@@ -562,13 +562,20 @@ def main_game():
 			
 ####################
 	atr1=atril1(True).crearAtril()
-	atr2=atril1(False).crearAtril()				
-	obj = Tablero1()
+	atr2=atril1(False).crearAtril()
+	if num_tablero ==1:
+		obj = Tablero1()
+	elif num_tablero == 2:
+		obj = Tablero2()		
+	elif num_tablero ==3:
+		obj = Tablero3()
+			
+
 	opc=1 # 2 para borrar el tablero 2 , 3 para el tablero 3 se tiene que elegir cuando se elige el tablero
 	print('*')
-	boardConfig=configuracion.Config1() ## para enganchar con el menu existen 3 configuraciones
-	#boardConfig=configuracion.Config2() casillas naranjas descuentan puntos por palabra x-2
-	##boardConfig=configuracion.Config3 () verde y azul quitan puntos
+	boardConfig=config_tablero.Config1() ## para enganchar con el menu existen 3 configuraciones
+	#boardConfig=config_tablero.Config2() casillas naranjas descuentan puntos por palabra x-2
+	##boardConfig=config_tablero.Config3 () verde y azul quitan puntos
 
 	elementos=obj.Tab(images) ##### estaria para conectarlo con una opcion para elegir el tablero
 	tablero= elementos[0] 
@@ -736,4 +743,4 @@ def main_game():
 			
 			
 
-main_game()
+

@@ -103,7 +103,8 @@ class Configuracion():
             'tablero':1
             }      
 
-
+    def get_tablero_elegido(self):
+        return self._configuraciones_seleccionadas["tablero"]
 
     def getLayout(self):
         return self._layout
