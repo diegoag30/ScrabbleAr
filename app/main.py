@@ -6,6 +6,7 @@ from images import *
 from Tablero import Tablero
 
 
+
 def main_game():
 
 	obj_tablero = Tablero()

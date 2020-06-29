@@ -2,10 +2,13 @@ import PySimpleGUI as sg
 import random
 import os.path
 import config_tablero
+from Bolsa import Bolsa
 base_path=os.path.dirname(os.path.abspath(__file__))
 
 def main_game(num_tablero):
 	
+	#Bolsa instanciada, 
+	bolsa = Bolsa(50)
 
 
 	blank = {'letra':'', 'imagen': os.path.join(base_path,'images/fondo.png')}
@@ -569,7 +572,7 @@ def main_game(num_tablero):
 		obj = Tablero2()		
 	elif num_tablero ==3:
 		obj = Tablero3()
-			
+	bolsa.repartir(14)		
 
 	opc=1 # 2 para borrar el tablero 2 , 3 para el tablero 3 se tiene que elegir cuando se elige el tablero
 	print('*')
@@ -581,7 +584,7 @@ def main_game(num_tablero):
 	tablero= elementos[0] 
 	tamaño_img = elementos[1]
 
-	columna_2 = [ [sg.Text('PUNTOS MAQUINA')],[sg.Listbox(values =[], key='datosm', font='Courier 18' ,size=(20,10))],[sg.Text('TOTAL PUNTOS')]]
+	columna_2 = [ [sg.Text('PUNTOS MAQUINA')],[sg.Listbox(values =[], key='datosm', font='Courier 18' ,size=(20,10))],[sg.Text('TOTAL PUNTOS')],[sg.Text('FICHAS RESTANTES', size=(20, 2), justification='center')],[sg.Text(str(bolsa.get_fichas_restantes()) , size=(20, 2), justification='center')],]
 	columna_1 = [ [sg.Text('PUNTOS JUGADOR')],[sg.Listbox(values =[], key='datosj', font='Courier 18',size=(20,10))],[sg.Text('TOTAL PUNTOS')]]
 	columna_3 = [ [sg.Text('Total Puntos')]]				
 	
