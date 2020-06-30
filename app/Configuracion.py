@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+import random
 
 class Configuracion():
     """
@@ -102,6 +103,9 @@ class Configuracion():
             'dificultad':'normal',
             'tablero':1
             }      
+        
+        self._lista_random_clasificacion = ['JJ', 'VB']
+        self._clasificacion_seleccionada = ''
 
     def get_tablero_elegido(self):
         return self._configuraciones_seleccionadas["tablero"]
@@ -128,6 +132,8 @@ class Configuracion():
             self._configuraciones_seleccionadas['dificultad'] = 'normal'
         if evento == 'dificil':
             self._configuraciones_seleccionadas['dificultad'] = 'dificil'
+            #hago una seleccion random del tipo de palabra a usar en caso que se selecciono la dificultad en dificil
+            self._clasificacion_seleccionada = random.choice(self._lista_random_clasificacion)
         if evento == 'minimo':
             self._configuraciones_seleccionadas['tiempo'] = 'minimo'
         if evento == 'medio':
@@ -141,6 +147,8 @@ class Configuracion():
         if evento == 'tablero_3':
             self._configuraciones_seleccionadas['tablero'] = 3
 
+    def getClasificacionSeleccionada(self):
+        return self._clasificacion_seleccionada
 
     def getConfiguracionesSeleccionadas(self):
         """Metodo que devuelve las opciones que se eligieron en el menu de configuracion"""
