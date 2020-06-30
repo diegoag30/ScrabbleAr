@@ -57,12 +57,12 @@ def clasificacionPattern(p):
 
 conf = Configuracion()
 
-nivel = conf.getConfiguracionesSeleccionadas()['dificultad']
 
-def comprobarPalabraEnBaseAlNivel(nivel,palabra='perro'):
+def comprobarPalabraEnBaseAlNivel(palabra='perro'):
     """
         devuelve True o False en base a la dificulad elegida en el menu de configuracion
     """
+    nivel = conf.getConfiguracionesSeleccionadas()['dificultad']
     if nivel == 'facil':
         if clasificarPalabraPattern(palabra) == 'NN' or clasificarPalabraPattern(palabra) == 'JJ' or clasificarPalabraPattern(palabra) == 'VB':
             return True
@@ -90,7 +90,7 @@ if __name__ == "__main__":
     # nivel = 'dificil'
     nivel = 'normal'
     palabra = 'correr'
-    print(comprobarPalabraEnBaseAlNivel(nivel,palabra))
+    print(comprobarPalabraEnBaseAlNivel(palabra))
     
 
 
