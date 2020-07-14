@@ -52,6 +52,35 @@ import PySimpleGUI as sg
 
 sg.theme_background_color(color='#00796B')
 
+configuracion_letras = {
+    'A':{'cant':11,'val':1},
+    'B':{'cant':3,'val':3},
+    'C':{'cant':4,'val':2},
+    'D':{'cant':4,'val':2},
+    'E':{'cant':11,'val':1},
+    'F':{'cant':2,'val':4},
+    'G':{'cant':2,'val':2},
+    'H':{'cant':2,'val':4},
+    'I':{'cant':6,'val':1},
+    'J':{'cant':2,'val':6},
+    'K':{'cant':1,'val':8},
+    'L':{'cant':4,'val':1},
+    'M':{'cant':3,'val':3},
+    'N':{'cant':5,'val':1},
+    'O':{'cant':8,'val':1},
+    'P':{'cant':2,'val':3},
+    'Q':{'cant':1,'val':8},
+    'R':{'cant':4,'val':1},
+    'S':{'cant':7,'val':1},
+    'T':{'cant':4,'val':1},
+    'U':{'cant':6,'val':1},
+    'V':{'cant':2,'val':4},
+    'W':{'cant':1,'val':8},
+    'X':{'cant':1,'val':8},
+    'Y':{'cant':1,'val':4},
+    'Z':{'cant':1,'val':10}
+}
+
 #COLUMNA DE LETRAS
 colLet1 = [
             [sg.Text('', background_color='#00796B')],
@@ -170,7 +199,8 @@ window = sg.Window('Configuracion de letras', layout)
 
 while True:
     event, values = window.read()
-    print(event, values)
+    print(event)
+    print(configuracion_letras)
     if event == 'Salir':
         break
     if event == 'Aplicar':
