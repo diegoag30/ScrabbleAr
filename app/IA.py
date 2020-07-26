@@ -9,8 +9,6 @@ from pattern.es import singularize , pluralize, conjugate , INFINITIVE , PRESENT
 import os.path
 base_path=os.path.dirname(os.path.abspath(__file__))
 
-def saludo():
-	print('hola fer')
 	
 def inteligencia(controlAt,window,boardConfig,images):
 		
