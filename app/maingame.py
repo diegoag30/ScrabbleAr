@@ -1062,8 +1062,8 @@ def main_game(num_tablero):
 					sg.Popup('todavia no formo una palabra')
 				elif len(palabra[0])>1:
 					
-					if chequearPalabra.comprobarPalabraEnBaseAlNivel(palabra[0]):
-						print('palabraValida')
+					# if chequearPalabra.comprobarPalabraEnBaseAlNivel(palabra[0]):
+						# print('palabraValida')
 					print(palabra[0])
 					sg.Popup('PALABRA FORMADA : ' ,palabra)
 					
