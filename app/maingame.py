@@ -534,7 +534,7 @@ def main_game(num_tablero):
 	
 
 
-	board_tab=[[sg.Button('CHECK')],[sg.Column(columna_1),sg.Column(atr1),sg.Column(tablero),sg.Column(atr2),sg.Column(columna_2)],[sg.Button('COMENZAR'),sg.Button('PASAR'),sg.Button('GUARDAR'),sg.Button('EXIT'),sg.Button('PASAR TURNO')]]
+	board_tab=[[sg.Button('CHECK',disabled=True)],[sg.Column(columna_1),sg.Column(atr1),sg.Column(tablero),sg.Column(atr2),sg.Column(columna_2)],[sg.Button('COMENZAR'),sg.Button('PASAR',disabled=True),sg.Button('GUARDAR',disabled=True),sg.Button('EXIT'),sg.Button('PASAR TURNO')]]
 	window = sg.Window('ScrabbleAr',default_button_element_size=(12,1), auto_size_buttons=False).Layout(board_tab)
 	cantPasadas=0
 	#palabra=''	
@@ -550,126 +550,121 @@ def main_game(num_tablero):
 	F=0
 	C=0
 	#x=0
+	opc2=random.randint(0,1)
+	
 	puntosCasilla=[]
 	putosL=0
 
 	listado=[]
 	inicio=time.time()
-	while True:
-		
-		
+	#window.Finalize()
+	button , value = window.Read()
+
+	if button in (None , 'EXIT'):
+		exit()		
+	
+	if button=='COMENZAR':
+		window.FindElement('PASAR').update(disabled=False)
+		window.FindElement('GUARDAR').update(disabled=False)
+		window.FindElement('CHECK').update(disabled=False)
+
 		while True:
-			puntosP=0
-			puntosL=0
-			letra=''
-			l=-1
-			button , value = window.Read()
-			if button == 'PASAR TURNO':
-				break
-			if button == 'CHECK':
-				#obj_tablero.get_word()
-				if palabra == '':
-					sg.Popup('todavia no formo una palabra')
-				elif len(palabra[0])>1:
-					print(palabra[0])
-					sg.Popup('PALABRA FORMADA : ' ,palabra)
-					
-					palabra[0]=''
-					T2= True
-					T1=True
-					#T3= True
-					F=0
-					C=0
-					cant=cant+1
-					#x=0
-					T4=True
+			if opc2==1:
+				window.Finalize()
+				PC.inteligencia(controlAt,window,boardConfig,images)
+				
+			while True:
+				puntosP=0
+				puntosL=0
+				letra=''
+				l=-1
+				button , value = window.Read()
+				if button == 'PASAR TURNO':
 					break
-					##window[]
-				# if len(word)>= 2 and len(word) <=7:
-				elif len(palabra[0])<2:
-					sg.Popup('la palabra es menor de 2')
-					break			
-			if button in (None , 'EXIT'):
-				exit()
-	
-				
-				
-				
-			if button =='PASAR':
-				cantPasadas=cantPasadas+1
-				if cantPasadas<4:
-			
-					initial_atril=[]
-					for i in range(0,7): ##cambiar i
-						initial_atril.append(random.choice(images_keys))
-					for i in range(7):
-						#window[i].update(initial_atril[i])
-						piece_image = images[initial_atril[i]]
-										
-						img=piece_image['imagen']
-	
-						window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
-			##### blanquear tablero
-			
-			
-					actulizarTablero(opc)
-					# for i in range(15):
-						# for j in range(15):
-							# window[(i,j)].update('')
-							# boardConfig[i][j].set_estado(False)
-							# color=boardConfig[i][j].get_color()
-							# BorrarTablero1(color)
-				else:
-					sg.Popup('se supero la cantidad de pasadas')
-				cant=4
-				T1=True
-				T2=True
-				T3=True
-				palabra=['']
-				listado=[]
-				actualizar_listado(window.FindElement('datosj'))
-	
-				
-					
-			if type(button) is int:
-				print(button)
-				
-				if initial_atril[button] !='':
-					i=button
-					letra= initial_atril[button]
-					#####hoy palabra += letra
-	
-					button , value = window.Read()
-					if type(button) is tuple:
-						if (button[0]==7 and button[1]==7)and T3 :
-							print(button)
-							modificarBoton()
-							T3=False
-							F=button[0]
-							C=button[1]
-							cant=0
-						#print(type(lista[1]))
-						if not(T3):
-							if(button[0]==F)and T1:
-								if C<button[1]:
-									T2=False
-									modificarBoton()
-									C=button[1]
-							if(button[1]==C)and T2:
-								if F<button[0]:
-									print(button)
-									T1=False
-									modificarBoton()
-									F=button[0]	
-						if cant<4: ## la cantidad de palabras formadas con 7 letras
+				if button == 'CHECK':
+					#obj_tablero.get_word()
+					if palabra == '':
+						sg.Popup('todavia no formo una palabra')
+					elif len(palabra[0])>1:
+						print(palabra[0])
+						sg.Popup('PALABRA FORMADA : ' ,palabra)
+						
+						palabra[0]=''
+						T2= True
+						T1=True
+						#T3= True
+						F=0
+						C=0
+						cant=cant+1
+						#x=0
+						T4=True
+						break
+						##window[]
+					# if len(word)>= 2 and len(word) <=7:
+					elif len(palabra[0])<2:
+						sg.Popup('la palabra es menor de 2')
+						break			
+				if button in (None , 'EXIT'):
+					exit()
 		
-							if T4:
-								#x=x+1
+					
+					
+					
+				if button =='PASAR':
+					cantPasadas=cantPasadas+1
+					if cantPasadas<4:
+				
+						initial_atril=[]
+						for i in range(0,7): ##cambiar i
+							initial_atril.append(random.choice(images_keys))
+						for i in range(7):
+							#window[i].update(initial_atril[i])
+							piece_image = images[initial_atril[i]]
+											
+							img=piece_image['imagen']
+		
+							window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
+				##### blanquear tablero
+				
+				
+						actulizarTablero(opc)
+						# for i in range(15):
+							# for j in range(15):
+								# window[(i,j)].update('')
+								# boardConfig[i][j].set_estado(False)
+								# color=boardConfig[i][j].get_color()
+								# BorrarTablero1(color)
+					else:
+						sg.Popup('se supero la cantidad de pasadas')
+					cant=4
+					T1=True
+					T2=True
+					T3=True
+					palabra=['']
+					listado=[]
+					actualizar_listado(window.FindElement('datosj'))
+		
+					
+						
+				if type(button) is int:
+					print(button)
+					
+					if initial_atril[button] !='':
+						i=button
+						letra= initial_atril[button]
+						#####hoy palabra += letra
+		
+						button , value = window.Read()
+						if type(button) is tuple:
+							if (button[0]==7 and button[1]==7)and T3 :
+								print(button)
 								modificarBoton()
+								T3=False
 								F=button[0]
 								C=button[1]
-								T4=False
-							else:
+								cant=0
+							#print(type(lista[1]))
+							if not(T3):
 								if(button[0]==F)and T1:
 									if C<button[1]:
 										T2=False
@@ -677,33 +672,67 @@ def main_game(num_tablero):
 										C=button[1]
 								if(button[1]==C)and T2:
 									if F<button[0]:
+										print(button)
 										T1=False
 										modificarBoton()
-										F=button[0]				
-									
-						## puntos mostrar por letra o palabra solo voy a mostar los puntos por las casillas
-						
-						actualizar_listado(window.FindElement('datosj')) ## habria que multiplicar el valor de cada letra o palabra
+										F=button[0]	
+							if cant<4: ## la cantidad de palabras formadas con 7 letras
+			
+								if T4:
+									#x=x+1
+									modificarBoton()
+									F=button[0]
+									C=button[1]
+									T4=False
+								else:
+									if(button[0]==F)and T1:
+										if C<button[1]:
+											T2=False
+											modificarBoton()
+											C=button[1]
+									if(button[1]==C)and T2:
+										if F<button[0]:
+											T1=False
+											modificarBoton()
+											F=button[0]				
+										
+							## puntos mostrar por letra o palabra solo voy a mostar los puntos por las casillas
+							
+							actualizar_listado(window.FindElement('datosj')) ## habria que multiplicar el valor de cada letra o palabra
+		
+							## modifiquenlo para que muestres los puntos que se van acumulando por casillas 
+							##
+																		
+							l=0
+		
 	
-						## modifiquenlo para que muestres los puntos que se van acumulando por casillas 
-						##
-																	
-						l=0
+				
+				
+			if type(button) is tuple:
+				if l ==-1:
+					
+					sg.Popup('movimiento incorrecto')
+			
+								
+			#PC.inteligencia(controlAt,window,boardConfig,images)
+			if opc2==0:
+				window.Finalize()
+				PC.inteligencia(controlAt,window,boardConfig,images)			
+			
+			
+			final=time.time()
+			if final-inicio>60:
+				break		
+		sg.Popup('FIN Juego')
 	
 
-			
-			
-		if type(button) is tuple:
-			if l ==-1:
-				
-				sg.Popup('movimiento incorrecto')
-		
-							
-		PC.inteligencia(controlAt,window,boardConfig,images)
-		final=time.time()
-		if final-inicio>60:
-			break		
-	sg.Popup('FIN Juego')					
+	# if button in (None , 'EXIT'):
+		# exit()
+
+		while True:
+			button , value = window.Read()
+			if button in (None , 'EXIT'):
+				exit()					
 if __name__ == "__main__":
 
     main_game(1)			
