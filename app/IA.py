@@ -21,7 +21,7 @@ def inteligencia(controlAt,window,boardConfig,images):
 		tamaño_img=(50,50)
 		def horizontal():
 			T=True;
-			while T and controlAt[0]<15 :
+			while T and controlAt[0]<=14 :
 				if controlAt[1]+len(initial_atril2)-1<=14: ## 
 					L=True
 					cont=0
@@ -153,7 +153,7 @@ def inteligencia(controlAt,window,boardConfig,images):
 	
 		def vertical():
 			T=True;
-			while T and controlAt[1]<15  :
+			while T and controlAt[1]<=14  :
 				if controlAt[0]+len(initial_atril2)-1<=14: ## 
 					L=True
 					cont=0
