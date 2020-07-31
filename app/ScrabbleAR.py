@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 from Configuracion import Configuracion
 from main3 import main_game
+import configuracion_letras
 
 
 
@@ -47,3 +48,11 @@ while True:
                 ventana_configuracion.close()
                 window.reappear()
                 break
+            if event == 'Configurar letras':
+                menu_configuracion_de_letras = configuracion_letras.GUI_configuracion_de_letras()
+                event, values = menu_configuracion_de_letras.read()
+            if event == 'Aplicar':
+                print('cambios realizados')
+                menu_configuracion_de_letras.close()
+            if event == 'Salir':
+                menu_configuracion_de_letras.close()

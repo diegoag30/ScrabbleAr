@@ -188,21 +188,24 @@ colVal2 = [
 ]
 
 #LAYOUT DONDE JUNTO TODAS LAS COLUMNAS DIVIDIENDOLA EN DOS GRUPOS
-layout = [
+menu_letras = [
             [sg.Column(colLet1), sg.Column(colCant1),sg.Column(colVal1),sg.Column(colLet2), sg.Column(colCant2),sg.Column(colVal2)],
             [sg.Button('Aplicar'), sg.Button('Salir')]
         ]
 
 
+def GUI_configuracion_de_letras():
+    return (sg.Window('Configuracion de letras', menu_letras))
 
-window = sg.Window('Configuracion de letras', layout)
 
-while True:
-    event, values = window.read()
-    print(event)
-    print(configuracion_letras)
-    if event == 'Salir':
-        break
-    if event == 'Aplicar':
-        print('Valores aplicados')
+# window = sg.Window('Configuracion de letras', menu_letras)
+
+# while True:
+#     event, values = window.read()
+#     print(event)
+#     print(configuracion_letras)
+#     if event == 'Salir':
+#         break
+#     if event == 'Aplicar':
+#         print('Valores aplicados')
 

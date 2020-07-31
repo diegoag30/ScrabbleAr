@@ -95,7 +95,7 @@ class Configuracion():
             [sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/tablero_1.png', image_size=(171,171), key='tablero_1', image_subsample=3, border_width=0,pad=((218,0),(0,0)), tooltip=('Tablero dieñado por Cristian')),
             sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/tablero_2.png', image_size=(171,171), key='tablero_2', image_subsample=3, border_width=0,pad=((50,0),(0,0)), tooltip=('Tablero dieñado por Diego')),
             sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/tablero_3.png', image_size=(171,171), key='tablero_3', image_subsample=3, border_width=0,pad=((50,0),(0,0)), tooltip=('Tablero de ejemplo'))],
-            [sg.Button('SIGUIENTE')]
+            [sg.Button('SIGUIENTE'), sg.Button('Configurar letras')]
             ]
 
         self._configuraciones_seleccionadas = {
