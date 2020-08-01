@@ -1,7 +1,7 @@
 import PySimpleGUI as sg
 from itertools import combinations
 import random
-
+import clasificarPalabra
 ##import configuracion
 from pattern.es import verbs, tag, spelling, lexicon
 import string
@@ -10,9 +10,10 @@ import os.path
 base_path=os.path.dirname(os.path.abspath(__file__))
 
 	
-def inteligencia(controlAt,window,boardConfig,images,listadoPc):
+def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar):
 		
 	def IA(initial_atril2):
+		#clasificar=clasificarPalabra
 
 		def actualizar_listado(listbox):
 			
@@ -500,25 +501,29 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc):
 					# print(listaPalabras[cont2])
 					# print(parse(listaPalabras[cont2]).split())
 					# T=False
-			if nivel==3:
-				nivel=random.randint(1,2)
-				print('nivel',nivel)
-			if nivel==1:
-				if(comprobarPalabra(listaPalabras[cont2])):
-					print(listaPalabras[cont2],'EXISTE')
-					T=False
-					IA(listaPalabras[cont2])
+			if clasificar.comprobarPalabraEnBaseAlNivel(listaPalabras[cont2]):
+				T=False
+				IA(listaPalabras[cont2])
+#############################				
+			# if nivel==3:
+				# nivel=random.randint(1,2)
+				# print('nivel',nivel)
+			# if nivel==1:
+				# if(comprobarPalabra(listaPalabras[cont2])):
+					# print(listaPalabras[cont2],'EXISTE')
+					# T=False
+					# IA(listaPalabras[cont2])
 					
-			if nivel==2:
-				if(comprobarPalabra(listaPalabras[cont2])):
-					L=parse(listaPalabras[cont2]).split()
-					if L[0][0][1]=='VB' or L[0][0][1] =='JJ':
-						print(listaPalabras[cont2])
-						print(parse(listaPalabras[cont2]).split())
-						T=False
-						IA(listaPalabras[cont2])
+			# if nivel==2:
+				# if(comprobarPalabra(listaPalabras[cont2])):
+					# L=parse(listaPalabras[cont2]).split()
+					# if L[0][0][1]=='VB' or L[0][0][1] =='JJ':
+						# print(listaPalabras[cont2])
+						# print(parse(listaPalabras[cont2]).split())
+						# T=False
+						# IA(listaPalabras[cont2])
 	
-				
+##################################				
 					
 					
 				#T=False
