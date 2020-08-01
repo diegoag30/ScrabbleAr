@@ -336,29 +336,22 @@ def main_game(num_tablero):
 			piece_image = images[p[cont]]
 			img=piece_image['imagen']
 			window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
-			initial_atril[i]=p[cont]
 			piece_image = images['BLANK']
 			img=piece_image['imagen']
 			boardConfig[listadoPosicionLetrasTablero[cont][0]][listadoPosicionLetrasTablero[cont][1]].set_estado(False)
 			#color=boardConfig[listadoPosicionLetrasTablero[cont][0][listadoPosicionLetrasTablero[cont][1]].get_color()
 			color=boardConfig[listadoPosicionLetrasTablero[cont][0]][listadoPosicionLetrasTablero[cont][1]].get_color()
 			if color == 'violet':
-				piece_image=os.path.join(base_path,'images/corona.png')
+				piece_image=os.path.join(base_path,'images/centro.png')
 				window[listadoPosicionLetrasTablero[cont]].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','white'))
 			else:
 				window[listadoPosicionLetrasTablero[cont]].update(image_filename=img, image_size= tamaño_img ,button_color=('white','white'))
 			cont=cont+1
 
-		print(initial_atril)					
+								
 
-	def actualizarAtrilJugador():
-		for i in range(0,7):
-			if initial_atril[i]=='':
-				initial_atril[i]=random.choice(images_keys)
-				piece_image = images[initial_atril[i]]
-				img=piece_image['imagen']
-				window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
-		print(initial_atril)
+
+
 
 
 
@@ -636,130 +629,31 @@ def main_game(num_tablero):
 					if button == 'PASAR TURNO':
 						break
 					if button == 'CHECK':
-						
-						if palabra[0] == '':
+						j
+						if palabra == '':
 							sg.Popup('todavia no formo una palabra')
-							
-							
-				
-							
 						elif len(palabra[0])>1:
-							if clasificar.comprobarPalabraEnBaseAlNivel(palabra[0]):
-								
-								print(palabra[0])
-								sg.Popup('PALABRA FORMADA : ' ,palabra)
-								
-								palabra[0]=''
-								T2= True
-								T1=True
-								#T3= True
-								F=0 ## palabra invalida quitar para el else
-								C=0## palabra invalida quitar
-								##cant=cant+1
-								#x=0
-								listadoPosicionLetrasAtril=[]
-								listadoPosicionLetrasTablero=[]
-								palabra[0]=''							
-								palabra=['']
-								actualizarAtrilJugador()							
-								T4=True ### para elegir la orientacion
-								break
+							print(palabra[0])
+							sg.Popup('PALABRA FORMADA : ' ,palabra)
+							
+							palabra[0]=''
+							T2= True
+							T1=True
+							#T3= True
+							F=0
+							C=0
+							cant=cant+1
+							#x=0
+							T4=True
+							break
 							##window[]
 						# if len(word)>= 2 and len(word) <=7:
-							else:
-														
-						#elif len(palabra[0])>3:
-							#sg.Popup('la palabra es menor de 2')
-							#print('palabra menor a 5')
-								devolverLetras()
-								T1=True
-								T2=True
-								##T3=True
-								T4=True
-								listadoPosicionLetrasAtril=[]
-								listadoPosicionLetrasTablero=[]
-								palabra[0]=''							
-								palabra=['']
-	#########################################################							
-						# if palabra[0] == '':
-							# sg.Popup('todavia no formo una palabra')
-							
-							
-				
-							
-						# elif len(palabra[0])<3:
-							# print(palabra[0])
-							# sg.Popup('PALABRA FORMADA : ' ,palabra)
-							
-							# palabra[0]=''
-							# T2= True
-							# T1=True
-							# #T3= True
-							# F=0 ## palabra invalida quitar para el else
-							# C=0## palabra invalida quitar
-							# ##cant=cant+1
-							# #x=0
-							# listadoPosicionLetrasAtril=[]
-							# listadoPosicionLetrasTablero=[]
-							# palabra[0]=''							
-							# palabra=['']
-							# actualizarAtrilJugador()							
-							# T4=True ### para elegir la orientacion
-							# break
-							# ##window[]
-						# # if len(word)>= 2 and len(word) <=7:
-						# elif len(palabra[0])>3:
-							# #sg.Popup('la palabra es menor de 2')
-							# print('palabra menor a 5')
-							# devolverLetras()
-							# T1=True
-							# T2=True
-							# ##T3=True
-							# T4=True
-							# listadoPosicionLetrasAtril=[]
-							# listadoPosicionLetrasTablero=[]
-							# palabra[0]=''							
-							# palabra=['']							
-###########################################################							
-						# if palabra == '':
-							# sg.Popup('todavia no formo una palabra')
-							# break
-						# elif len(palabra[0])<3:
-							# print(palabra[0])
-							# sg.Popup('PALABRA FORMADA : ' ,palabra)
-							
-							# palabra[0]=''
-							# T2= True
-							# T1=True
-							# #T3= True
-							# F=0 ## palabra invalida quitar para el else
-							# C=0## palabra invalida quitar
-							# ##cant=cant+1
-							# #x=0
-							# listadoPosicionLetrasAtril=[]
-							# listadoPosicionLetrasTablero=[]
-							# palabra[0]=''							
-							# palabra=['']
-							# actualizarAtrilJugador()							
-							# T4=True ### para elegir la orientacion
-							# break
-							# ##window[]
-						# # if len(word)>= 2 and len(word) <=7:
-						# elif len(palabra[0])>3:
-							# #sg.Popup('la palabra es menor de 2')
-							# print('palabra menor a 5')
-							# devolverLetras()
-							# T1=True
-							# T2=True
-							# ##T3=True
-							# T4=True
-							# listadoPosicionLetrasAtril=[]
-							# listadoPosicionLetrasTablero=[]
-							# palabra[0]=''							
-							# palabra=['']											
+						elif len(palabra[0])<2:
+							sg.Popup('la palabra es menor de 2')
+							#break							
 
 
-######################################################										
+										
 					if button in (None , 'EXIT'):
 						exit()
 			
@@ -801,8 +695,7 @@ def main_game(num_tablero):
 						palabra=['']
 						listado=[]
 						actualizar_listado(window.FindElement('datosj'))
-						controlAt=[7,7,0,0]
-						break		
+			
 						
 							
 					if type(button) is int:
@@ -823,26 +716,26 @@ def main_game(num_tablero):
 									print('posicion central no  ocupada')
 														
 								
-									if (button[0]==7 and button[1]==7) :
-										#print(button)
+									if (button[0]==7 and button[1]==7)and T3 :
+										print(button)
 										modificarBoton()
-										#T3=False
-										# F=button[0]
-										# C=button[1]
-										# cant=0
+										T3=False
+										F=button[0]
+										C=button[1]
+										cant=0
 									#print(type(lista[1]))
-									# if not(T3):
-										# if(button[0]==F)and T1:
-											# if C<button[1]:
-												# T2=False
-												# modificarBoton()
-												# C=button[1]
-										# if(button[1]==C)and T2:
-											# if F<button[0]:
-												# print(button)
-												# T1=False
-												# modificarBoton()
-												# F=button[0]
+									if not(T3):
+										if(button[0]==F)and T1:
+											if C<button[1]:
+												T2=False
+												modificarBoton()
+												C=button[1]
+										if(button[1]==C)and T2:
+											if F<button[0]:
+												print(button)
+												T1=False
+												modificarBoton()
+												F=button[0]
 									#cant=4	
 								else:
 																
@@ -887,7 +780,7 @@ def main_game(num_tablero):
 					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar)
 					controlAt=[8,7,0,0]
 			final=time.time()
-			if final-inicio>120:
+			if final-inicio>60:
 			
 				break		
 		sg.Popup('FIN Juego')
@@ -922,7 +815,6 @@ def main_game(num_tablero):
 			T1=True
 			T2=True
 			T3=True
-			T4=True
 			palabra=['']
 			listado=[]
 			listadoPc=[]
