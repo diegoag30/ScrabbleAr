@@ -10,18 +10,26 @@ import os.path
 base_path=os.path.dirname(os.path.abspath(__file__))
 
 	
-def inteligencia(controlAt,window,boardConfig,images):
+def inteligencia(controlAt,window,boardConfig,images,listadoPc):
 		
 	def IA(initial_atril2):
+
+		def actualizar_listado(listbox):
+			
+	
+			listbox.Update(listadoPc)		
+		
+		
             # piece_image = images[initial_atril[i]]
 			# img=piece_image['imagen']
-			# window[button].update(image_filename=img, image_size= tamaño_img ,button_color=('white','grey'))		
-		controlAt[0]=random.randint(0,14)
-		controlAt[1]=random.randint(0,14)
+			# window[button].update(image_filename=img, image_size= tamaño_img ,button_color=('white','grey'))
+		if controlAt[0]>7 or controlAt[1]>7:
+			controlAt[0]=random.randint(0,13)
+			controlAt[1]=random.randint(0,13)
 		tamaño_img=(50,50)
 		def horizontal():
 			T=True;
-			while T and controlAt[0]<=14 :
+			while T and controlAt[0]<15 :
 				if controlAt[1]+len(initial_atril2)-1<=14: ## 
 					L=True
 					cont=0
@@ -40,12 +48,27 @@ def inteligencia(controlAt,window,boardConfig,images):
 						for i in range (len(initial_atril2)): 
 							controlAt[1]=controlAt[1]+cont
 							cont=1
+							if boardConfig[controlAt[0]][controlAt[1]].get_tipo() =='L':
+								
+								#puntosL=boardConfig1[button[0]][button[1]].get_valor()
+								#puntosl='puntos PxP'+str(puntosL)
+								listadoPc.append('LetraX'+str(boardConfig[controlAt[0]][controlAt[1]].get_valor()))
+								### crear una lista que para los puntos por letra que despues los multiplicamos lor el valor de las letra
+								
+							
+							elif boardConfig[controlAt[0]][controlAt[1]].get_tipo() =='P':
+								#puntosP=boardConfig1[button[0]][button[1]].get_valor()
+								listadoPc.append('PalabraX'+str(boardConfig[controlAt[0]][controlAt[1]].get_valor()))							
+							
+							
+							
 							B=(controlAt[0],controlAt[1])
 							piece_image=images[initial_atril2[i]]
 							img=piece_image['imagen']
 							window[B].update(image_filename=img, image_size= tamaño_img ,button_color=('white','red'))
 							#window[B].update(initial_atril2[i])
-							boardConfig[controlAt[0]][controlAt[1]].set_estado(True) 
+							boardConfig[controlAt[0]][controlAt[1]].set_estado(True)
+							actualizar_listado(window.FindElement('datosm')) 
 	
 						if controlAt[1]==14:
 							controlAt[1]=0
@@ -71,6 +94,20 @@ def inteligencia(controlAt,window,boardConfig,images):
 								for i in range(len(initial_atril2)):
 									x=x+cont
 									cont=1
+									if boardConfig[controlAt[0]][controlAt[1]].get_tipo() =='L':
+										
+										#puntosL=boardConfig1[button[0]][button[1]].get_valor()
+										#puntosl='puntos PxP'+str(puntosL)
+										listadoPc.append('LetraX'+str(boardConfig[controlAt[0]][controlAt[1]].get_valor()))
+										### crear una lista que para los puntos por letra que despues los multiplicamos lor el valor de las letra
+										
+									
+									elif boardConfig[controlAt[0]][controlAt[1]].get_tipo() =='P':
+										#puntosP=boardConfig1[button[0]][button[1]].get_valor()
+										listadoPc.append('PalabraX'+str(boardConfig[controlAt[0]][controlAt[1]].get_valor()))										
+													
+									
+									
 									B=(x,controlAt[1])
 									piece_image=images[initial_atril2[i]]
 									img=piece_image['imagen']
@@ -78,6 +115,7 @@ def inteligencia(controlAt,window,boardConfig,images):
 									
 									#window[B].update(initial_atril2[i])
 									boardConfig[x][controlAt[1]].set_estado(True)
+									actualizar_listado(window.FindElement('datosm'))
 								if controlAt[1]==14:
 									controlAt[1]=0
 									controlAt[0]=controlAt[0]+1
@@ -118,13 +156,28 @@ def inteligencia(controlAt,window,boardConfig,images):
 							for i in range(len(initial_atril2)):
 								x=x+cont
 								cont=1
+								if boardConfig[controlAt[0]][controlAt[1]].get_tipo() =='L':
+									
+									#puntosL=boardConfig1[button[0]][button[1]].get_valor()
+									#puntosl='puntos PxP'+str(puntosL)
+									listadoPc.append('LetraX'+str(boardConfig[controlAt[0]][controlAt[1]].get_valor()))
+									### crear una lista que para los puntos por letra que despues los multiplicamos lor el valor de las letra
+									
+								
+								elif boardConfig[controlAt[0]][controlAt[1]].get_tipo() =='P':
+									#puntosP=boardConfig1[button[0]][button[1]].get_valor()
+									listadoPc.append('PalabraX'+str(boardConfig[controlAt[0]][controlAt[1]].get_valor()))									
+											
+								
+								
 								B=(x,controlAt[1])
 								piece_image=images[initial_atril2[i]]
 								img=piece_image['imagen']
 								window[B].update(image_filename=img, image_size= tamaño_img ,button_color=('white','red'))								
 								
 								#window[B].update(initial_atril2[i])
-								boardConfig[x][controlAt[1]].set_estado(True) 
+								boardConfig[x][controlAt[1]].set_estado(True)
+								actualizar_listado(window.FindElement('datosm')) 
 							if controlAt[1]==14:
 								controlAt[1]=0
 								controlAt[0]=controlAt[0]+1
@@ -153,7 +206,7 @@ def inteligencia(controlAt,window,boardConfig,images):
 	
 		def vertical():
 			T=True;
-			while T and controlAt[1]<=14  :
+			while T and controlAt[1]<15  :
 				if controlAt[0]+len(initial_atril2)-1<=14: ## 
 					L=True
 					cont=0
@@ -172,12 +225,28 @@ def inteligencia(controlAt,window,boardConfig,images):
 						for i in range (len(initial_atril2)): 
 							controlAt[0]=controlAt[0]+cont
 							cont=1
+							
+							if boardConfig[controlAt[0]][controlAt[1]].get_tipo() =='L':
+								
+								#puntosL=boardConfig1[button[0]][button[1]].get_valor()
+								#puntosl='puntos PxP'+str(puntosL)
+								listadoPc.append('LetraX'+str(boardConfig[controlAt[0]][controlAt[1]].get_valor()))
+								### crear una lista que para los puntos por letra que despues los multiplicamos lor el valor de las letra
+								
+							
+							elif boardConfig[controlAt[0]][controlAt[1]].get_tipo() =='P':
+								#puntosP=boardConfig1[button[0]][button[1]].get_valor()
+								listadoPc.append('PalabraX'+str(boardConfig[controlAt[0]][controlAt[1]].get_valor()))								
+							
+							
+							
 							B=(controlAt[0],controlAt[1])
 							piece_image=images[initial_atril2[i]]
 							img=piece_image['imagen']
 							window[B].update(image_filename=img, image_size= tamaño_img ,button_color=('white','red'))							
 							#window[B].update(initial_atril2[i])
-							boardConfig[controlAt[0]][controlAt[1]].set_estado(True) 
+							boardConfig[controlAt[0]][controlAt[1]].set_estado(True)
+							actualizar_listado(window.FindElement('datosm'))
 	
 						if controlAt[0]==14:
 							controlAt[0]=0
@@ -203,12 +272,28 @@ def inteligencia(controlAt,window,boardConfig,images):
 								for i in range(len(initial_atril2)):
 									y=y+cont
 									cont=1
+									if boardConfig[controlAt[0]][controlAt[1]].get_tipo() =='L':
+										
+										#puntosL=boardConfig1[button[0]][button[1]].get_valor()
+										#puntosl='puntos PxP'+str(puntosL)
+										listadoPc.append('LetraX'+str(boardConfig[controlAt[0]][controlAt[1]].get_valor()))
+										### crear una lista que para los puntos por letra que despues los multiplicamos lor el valor de las letra
+										
+									
+									elif boardConfig[controlAt[0]][controlAt[1]].get_tipo() =='P':
+										#puntosP=boardConfig1[button[0]][button[1]].get_valor()
+										listadoPc.append('PalabraX'+str(boardConfig[controlAt[0]][controlAt[1]].get_valor()))										
+									
+									
+									
+									
 									B=(controlAt[0],y)
 									piece_image=images[initial_atril2[i]]
 									img=piece_image['imagen']
 									window[B].update(image_filename=img, image_size= tamaño_img ,button_color=('white','red'))									
 									#window[B].update(initial_atril2[i])
 									boardConfig[controlAt[0]][y].set_estado(True)
+									actualizar_listado(window.FindElement('datosm'))
 								if controlAt[0]==14:
 									controlAt[0]=0
 									controlAt[1]=controlAt[1]+1
@@ -249,12 +334,29 @@ def inteligencia(controlAt,window,boardConfig,images):
 							for i in range(len(initial_atril2)):
 								y=y+cont
 								cont=1
+								
+								if boardConfig[controlAt[0]][controlAt[1]].get_tipo() =='L':
+									
+									#puntosL=boardConfig1[button[0]][button[1]].get_valor()
+									#puntosl='puntos PxP'+str(puntosL)
+									listadoPc.append('LetraX'+str(boardConfig[controlAt[0]][controlAt[1]].get_valor()))
+									### crear una lista que para los puntos por letra que despues los multiplicamos lor el valor de las letra
+									
+								
+								elif boardConfig[controlAt[0]][controlAt[1]].get_tipo() =='P':
+									#puntosP=boardConfig1[button[0]][button[1]].get_valor()
+									listadoPc.append('PalabraX'+str(boardConfig[controlAt[0]][controlAt[1]].get_valor()))									
+											
+								
+								
+								
 								B=(controlAt[0],y)
 								piece_image=images[initial_atril2[i]]
 								img=piece_image['imagen']
 								window[B].update(image_filename=img, image_size= tamaño_img ,button_color=('white','red'))								
 								#window[B].update(initial_atril2[i])
 								boardConfig[controlAt[0]][y].set_estado(True) ##aqui
+								actualizar_listado(window.FindElement('datosm'))
 							if controlAt[0]==14:
 								controlAt[0]=0
 								controlAt[1]=controlAt[1]+1
