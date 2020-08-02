@@ -540,7 +540,7 @@ def main_game(num_tablero):
 	elif num_tablero ==3:
 		obj = Tablero3()
 		opc=3
-	bolsa.repartir(14)		
+	#bolsa.sacar_fichas(14)		
 
 	#opc=1 # 2 para borrar el tablero 2 , 3 para el tablero 3 se tiene que elegir cuando se elige el tablero
 	print('*')
@@ -552,7 +552,7 @@ def main_game(num_tablero):
 	tablero= elementos[0] 
 	tamaño_img = elementos[1]
 
-	columna_2 = [ [sg.Text('PUNTOS MAQUINA')],[sg.Listbox(values =[], key='datosm', font='Courier 18' ,size=(20,10))],[sg.Text('TOTAL PUNTOS')],[sg.Text('FICHAS RESTANTES', size=(20, 2), justification='center')],[sg.Text(str(bolsa.get_fichas_restantes()) , size=(20, 2), justification='center')],]
+	columna_2 = [ [sg.Text('PUNTOS MAQUINA')],[sg.Listbox(values =[], key='datosm', font='Courier 18' ,size=(20,10))],[sg.Text('TOTAL PUNTOS')],[sg.Text('FICHAS RESTANTES', size=(20, 2), justification='center')],[sg.Text(str(bolsa.get_fichas_restantes()) , size=(20, 2), justification='center',key='bolsa_fichas')],]
 	columna_1 = [ [sg.Text('PUNTOS JUGADOR')],[sg.Listbox(values =[], key='datosj', font='Courier 18',size=(20,10))],[sg.Text('TOTAL PUNTOS')]]
 	columna_3 = [ [sg.Text('Total Puntos')]]				
 	
@@ -596,6 +596,10 @@ def main_game(num_tablero):
 				exit()		
 			
 			if button=='COMENZAR' and wait:
+				#Actualizacion bolsa
+				bolsa.sacar_fichas(14)
+				window.FindElement('bolsa_fichas').update(str(bolsa.get_fichas_restantes()))
+				###		
 				inicio=time.time()
 				window.FindElement('PASAR').update(disabled=False)
 				window.FindElement('GUARDAR').update(disabled=False)
@@ -686,6 +690,10 @@ def main_game(num_tablero):
 									# boardConfig[i][j].set_estado(False)
 									# color=boardConfig[i][j].get_color()
 									# BorrarTablero1(color)
+							#Actualizacion bolsa
+							bolsa.sacar_fichas(7)
+							window.FindElement('bolsa_fichas').update(str(bolsa.get_fichas_restantes()))
+							###								
 						else:
 							sg.Popup('se supero la cantidad de pasadas')
 						cant=4
