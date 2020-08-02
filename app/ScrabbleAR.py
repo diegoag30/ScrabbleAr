@@ -2,9 +2,10 @@ import PySimpleGUI as sg
 from Configuracion import Configuracion
 from main3 import main_game
 import configuracion_letras
+from puntajes import Puntaje
 
-
-
+#Puntaje instanciado
+mejores_puntajes = Puntaje()
 #funcion para cambiar el background del programa a un color personalizado
 sg.theme_background_color(color='#00796B')
 
@@ -19,14 +20,14 @@ window = conf.ventanaPrincipal()
 
 
 while True:
-    print("pase por aqui")
     event, values = window.read()
     print(event, values)
     if event == sg.WIN_CLOSED:
         break
+    if event == 'RANKING':
+        mejores_puntajes.create_ui()
     if event == 'LOGO':
         window.close(); del window
-
         main_game(conf.get_tablero_elegido())
     if event == 'CONFIGURACION':
         window.Disappear()
