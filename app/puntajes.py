@@ -1,7 +1,7 @@
 import json
 import os.path
 import PySimpleGUI as sg
-
+import time
 
 
 class Puntaje():
@@ -44,16 +44,18 @@ class Puntaje():
             return self._top10
 
 
-    def agregar_nuevo_puntaje(self,jugador,cant_puntos,fecha,nivel):
+    def agregar_nuevo_puntaje(self,jugador,cant_puntos,nivel):
         """Agrega al archivo el jugador con sus datos correspondientes """
         # Se crea el archivo, o se leen los datos anteriores
         puntajes = self.create_file()
+        horario_Actual = time.localtime()
+        fecha_actual = time.strftime("%m/%d/%Y")
         if(len(puntajes) < 10):
             try:
                 file = open(self._filepath,"w")
                 puntaje = {
                     "jugador": jugador,
-                    "fecha": fecha,
+                    "fecha": fecha_actual,
                     "puntaje": cant_puntos,
                     "nivel": nivel,
                 }
@@ -68,7 +70,7 @@ class Puntaje():
                 file = open(self._filepath,"w")
                 puntaje = {
                     "jugador":jugador,
-                    "fecha":fecha,
+                    "fecha":fecha_actual,
                     "puntaje": cant_puntos,
                     "nivel": nivel,
                 }
@@ -119,7 +121,7 @@ class Puntaje():
 
 p = Puntaje()
 #p.create_file()
-#p.agregar_nuevo_puntaje("diego",20,"14/07/2020","dificil")
+p.agregar_nuevo_puntaje("diego",10000,"dificil")
 
 
 
