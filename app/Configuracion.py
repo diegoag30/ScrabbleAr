@@ -95,7 +95,8 @@ class Configuracion():
             [sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/tablero_1.png', image_size=(171,171), key='tablero_1', image_subsample=3, border_width=0,pad=((218,0),(0,0)), tooltip=('Tablero dieñado por Cristian')),
             sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/tablero_2.png', image_size=(171,171), key='tablero_2', image_subsample=3, border_width=0,pad=((50,0),(0,0)), tooltip=('Tablero dieñado por Diego')),
             sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/tablero_3.png', image_size=(171,171), key='tablero_3', image_subsample=3, border_width=0,pad=((50,0),(0,0)), tooltip=('Tablero de ejemplo'))],
-            [sg.Button('SIGUIENTE'), sg.Button('Configurar letras')]
+            [sg.Button('Configurar letras')],
+            [sg.Button('SIGUIENTE')]
             ]
 
         self._configuraciones_seleccionadas = {
@@ -106,6 +107,35 @@ class Configuracion():
         
         self._lista_random_clasificacion = ['JJ', 'VB']
         self._clasificacion_seleccionada = ''
+
+        self._configuracion_letras = {
+            'A':{'cant':11,'val':1},
+            'B':{'cant':3,'val':3},
+            'C':{'cant':4,'val':2},
+            'D':{'cant':4,'val':2},
+            'E':{'cant':11,'val':1},
+            'F':{'cant':2,'val':4},
+            'G':{'cant':2,'val':2},
+            'H':{'cant':2,'val':4},
+            'I':{'cant':6,'val':1},
+            'J':{'cant':2,'val':6},
+            'K':{'cant':1,'val':8},
+            'L':{'cant':4,'val':1},
+            'M':{'cant':3,'val':3},
+            'N':{'cant':5,'val':1},
+            'O':{'cant':8,'val':1},
+            'P':{'cant':2,'val':3},
+            'Q':{'cant':1,'val':8},
+            'R':{'cant':4,'val':1},
+            'S':{'cant':7,'val':1},
+            'T':{'cant':4,'val':1},
+            'U':{'cant':6,'val':1},
+            'V':{'cant':2,'val':4},
+            'W':{'cant':1,'val':8},
+            'X':{'cant':1,'val':8},
+            'Y':{'cant':1,'val':4},
+            'Z':{'cant':1,'val':10}
+        }
 
     def get_tablero_elegido(self):
         return self._configuraciones_seleccionadas["tablero"]
@@ -153,3 +183,6 @@ class Configuracion():
     def getConfiguracionesSeleccionadas(self):
         """Metodo que devuelve las opciones que se eligieron en el menu de configuracion"""
         return self._configuraciones_seleccionadas
+
+    def getConfiguracionLetras(self):
+        return self._configuracion_letras

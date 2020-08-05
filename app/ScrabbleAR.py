@@ -17,6 +17,7 @@ window = conf.ventanaPrincipal()
 #             'tablero':1
 #             }      
 
+letras = {}
 
 while True:
     print("pase por aqui")
@@ -51,8 +52,10 @@ while True:
             if event == 'Configurar letras':
                 menu_configuracion_de_letras = configuracion_letras.GUI_configuracion_de_letras()
                 event, values = menu_configuracion_de_letras.read()
-            if event == 'Aplicar':
-                print('cambios realizados')
-                menu_configuracion_de_letras.close()
-            if event == 'Salir':
-                menu_configuracion_de_letras.close()
+                letras = conf.getConfiguracionLetras()
+                print(letras)
+                if event == 'Aplicar':
+                    print('cambios realizados')
+                    menu_configuracion_de_letras.close()
+                if event == 'Salir':
+                    menu_configuracion_de_letras.close()
