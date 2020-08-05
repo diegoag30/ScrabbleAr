@@ -8,9 +8,68 @@ import string
 from pattern.es import singularize , pluralize, conjugate , INFINITIVE , PRESENT , PAST , SG , PERFECTIVE , SUBJUNCTIVE ,PL ,parse
 import os.path
 base_path=os.path.dirname(os.path.abspath(__file__))
+clasificar=clasificarPalabra
+def atrilPalabrasValidas(images_keys,initial_atril2):
+	
+
+	#random.shuffle(images_keys2,random.random)
+	# for i in range(0,len(images_keys)):
+		# images_keys2[i]=random.choice(images_keys)
+		# # images_keys2[i].append(random.choice(images_keys))
+		
+		
+	atril2=''
+	listaPalabras=[]
+	cont3=3
+	
+	for c in combinations(images_keys,cont3):
+		lp="".join(c)
+		#print(lp)
+		listaPalabras.append(lp)
+	
+	cont=len(listaPalabras)
+	cont2=0
+	while (cont!=cont2) and True:
+		
+		if clasificar.comprobarPalabraEnBaseAlNivel(listaPalabras[cont2]):
+			
+			print('*'*30)
+			print('PALABRA VALIDA PARA JUGADOR',listaPalabras[cont2])
+			atril2=atril2+listaPalabras[cont2][0]
+			atril2=atril2+listaPalabras[cont2][1]
+			atril2=atril2+listaPalabras[cont2][2]
+		
+		
+	
+			#T=False
+			#IA(listaPalabras[cont2])
+			if len(atril2)==6:
+				atril2=atril2+(random.choice(images_keys))
+				
+				break
+		
+				
+				
+			#T=False
+		cont2=cont2+1
+		
+		
+		if cont==cont2:
+			
+			break
+	if len(atril2)<7:
+		while True:
+			atril2=atril2+(random.choice(images_keys))
+			if len(atril2)==7:
+				break
+
+	for i in atril2:
+		initial_atril2.append(i)		
 
 	
-def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar):
+	#random.shuffle(initial_atril2,random.random)
+
+def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys):
 		
 	def IA(initial_atril2):
 		#clasificar=clasificarPalabra
@@ -451,7 +510,8 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar):
 
 	# StrA = "".join(A)
 	# print(StrA)
-	cadena =['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','Z','X']
+	# cadena =['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','Z','X']
+	# random.shuffle(images_keys,random.random)
 	
 	# for c in combinations(cadena,4):
 		# print(c)
@@ -460,7 +520,7 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar):
 		
 	initial_atril=[]
 	for i in range(0,7):
-		initial_atril.append(random.choice(cadena))	
+		initial_atril.append(random.choice(images_keys))	
 	
 	#print(initial_atril)
 	
@@ -491,39 +551,11 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar):
 		# T=True
 		while cont!=cont2 and T:
 			
-			
-			# if(comprobarPalabra(listaPalabras[cont2])):
-				# #print('existe')
-				# #print(listaPalabras[cont2])
-				# L=parse(listaPalabras[cont2]).split()
-				# #print(L[0][0][1])
-				# if L[0][0][1]=='VB':
-					# print(listaPalabras[cont2])
-					# print(parse(listaPalabras[cont2]).split())
-					# T=False
 			if clasificar.comprobarPalabraEnBaseAlNivel(listaPalabras[cont2]):
+				print(listaPalabras[cont2])
 				T=False
 				IA(listaPalabras[cont2])
-#############################				
-			# if nivel==3:
-				# nivel=random.randint(1,2)
-				# print('nivel',nivel)
-			# if nivel==1:
-				# if(comprobarPalabra(listaPalabras[cont2])):
-					# print(listaPalabras[cont2],'EXISTE')
-					# T=False
-					# IA(listaPalabras[cont2])
-					
-			# if nivel==2:
-				# if(comprobarPalabra(listaPalabras[cont2])):
-					# L=parse(listaPalabras[cont2]).split()
-					# if L[0][0][1]=='VB' or L[0][0][1] =='JJ':
-						# print(listaPalabras[cont2])
-						# print(parse(listaPalabras[cont2]).split())
-						# T=False
-						# IA(listaPalabras[cont2])
-	
-##################################				
+			
 					
 					
 				#T=False
