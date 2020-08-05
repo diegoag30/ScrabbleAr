@@ -1,6 +1,12 @@
 [
     {
         "jugador": "diego",
+        "fecha": "08/04/2020",
+        "puntaje": 10000,
+        "nivel": "dificil"
+    },
+    {
+        "jugador": "diego",
         "fecha": "14/07/2020",
         "puntaje": 5000,
         "nivel": "dificil"
@@ -51,12 +57,6 @@
         "jugador": "diego",
         "fecha": "14/07/2020",
         "puntaje": 20,
-        "nivel": "dificil"
-    },
-    {
-        "jugador": "diego",
-        "fecha": "14/07/2020",
-        "puntaje": 10,
         "nivel": "dificil"
     }
 ]

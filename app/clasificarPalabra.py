@@ -62,7 +62,9 @@ def comprobarPalabraEnBaseAlNivel(palabra='perro'):
     """
         devuelve True o False en base a la dificulad elegida en el menu de configuracion
     """
-    nivel = conf.getConfiguracionesSeleccionadas()['dificultad']
+    #nivel = conf.getConfiguracionesSeleccionadas()['dificultad'] habilitar
+    nivel='normal'  ## lo defini aca para usarlo directamente desde el maingame , hay que sacar esta linea 
+    
     if nivel == 'facil':
         if clasificarPalabraPattern(palabra) == 'NN' or clasificarPalabraPattern(palabra) == 'JJ' or clasificarPalabraPattern(palabra) == 'VB':
             return True
@@ -89,7 +91,7 @@ if __name__ == "__main__":
     #======================PRUEBAS======================
     # nivel = 'dificil'
     nivel = 'normal'
-    palabra = 'correr'
+    palabra = 'los'
     print(comprobarPalabraEnBaseAlNivel(palabra))
     
 
