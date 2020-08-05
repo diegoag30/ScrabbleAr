@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 import random
+from itertools import combinations
 import time
 import clasificarPalabra
 import IA
@@ -52,13 +53,68 @@ def main_game(num_tablero):
 	color_button=('white','white')
 	images = {'BLANK':blank,'A': a, 'B': b, 'C': c, 'D': d, 'E': e, 'F': f, 'G': g, 'H': h, 'I': i, 'J': j, 'K': k, 'L': l, 'M': m, 'N': n, 'O': o, 'P': p, 'Q': q, 'R': r, 'S': s, 'T': t, 'U': u, 'V': v, 'W': w, 'X': x, 'Y': y, 'Z': z}
 	initial_atril=[]
-	images_keys= list(images.keys())
+	images_keys= list(images.keys()) ### seria la lista de palabras
 	images_keys.remove('BLANK')
+	random.shuffle(images_keys,random.random)
+	initial_atril=[]
+	initial_atril2=[]
+	PC.atrilPalabrasValidas(images_keys,initial_atril2)
+	initial_atril=initial_atril2[:]
+	
 
 
-	for i in range(0,7):
-		initial_atril.append(random.choice(images_keys))	
+
+	# for i in range(0,7):
+		# initial_atril.append(random.choice(images_keys))	
+	#########################################################
+	# atril2=''
+	# listaPalabras=[]
+	# cont3=3
+	
+	# for c in combinations(images_keys,cont3):
+		# lp="".join(c)
+		# #print(lp)
+		# listaPalabras.append(lp)
+	
+	# cont=len(listaPalabras)
+	# cont2=0
+	# while (cont!=cont2) and True:
 		
+		# if clasificar.comprobarPalabraEnBaseAlNivel(listaPalabras[cont2]):
+			# print(listaPalabras[cont2])
+			# print('*'*30)
+			# atril2=atril2+listaPalabras[cont2][0]
+			# atril2=atril2+listaPalabras[cont2][1]
+			# atril2=atril2+listaPalabras[cont2][2]
+		
+		
+	
+			# #T=False
+			# #IA(listaPalabras[cont2])
+			# if len(atril2)==6:
+				# atril2=atril2+(random.choice(images_keys))
+				# break
+		
+				
+				
+			# #T=False
+		# cont2=cont2+1
+		
+		
+		# if cont==cont2:
+			
+			# break
+	# if len(atril2)<7:
+		# while True:
+			# atril2=atril2+(random.choice(images_keys))
+			# if len(atril2)==7:
+				# break
+
+	# for i in atril2:
+		# initial_atril.append(i)			
+	# # for i in range(0,7):
+		# initial_atril.append(random.choice(images_keys))								
+#########################
 	class Tablero():
 		
 	
@@ -328,6 +384,26 @@ def main_game(num_tablero):
 		
 
 
+	# def devolverLetras():
+		# p=palabra[0]
+		# print(p)
+		# cont=0
+		# for i in listadoPosicionLetrasAtril:
+			# piece_image = images[p[cont]]
+			# img=piece_image['imagen']
+			# window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
+			# piece_image = images['BLANK']
+			# img=piece_image['imagen']
+			# boardConfig[listadoPosicionLetrasTablero[cont][0]][listadoPosicionLetrasTablero[cont][1]].set_estado(False)
+			# #color=boardConfig[listadoPosicionLetrasTablero[cont][0][listadoPosicionLetrasTablero[cont][1]].get_color()
+			# color=boardConfig[listadoPosicionLetrasTablero[cont][0]][listadoPosicionLetrasTablero[cont][1]].get_color()
+			# if color == 'violet':
+				# piece_image=os.path.join(base_path,'images/centro.png')
+				# window[listadoPosicionLetrasTablero[cont]].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','white'))
+			# else:
+				# window[listadoPosicionLetrasTablero[cont]].update(image_filename=img, image_size= tamaño_img ,button_color=('white','white'))
+			# cont=cont+1
+
 	def devolverLetras():
 		p=palabra[0]
 		print(p)
@@ -336,19 +412,35 @@ def main_game(num_tablero):
 			piece_image = images[p[cont]]
 			img=piece_image['imagen']
 			window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
+			initial_atril[i]=p[cont]
 			piece_image = images['BLANK']
 			img=piece_image['imagen']
 			boardConfig[listadoPosicionLetrasTablero[cont][0]][listadoPosicionLetrasTablero[cont][1]].set_estado(False)
 			#color=boardConfig[listadoPosicionLetrasTablero[cont][0][listadoPosicionLetrasTablero[cont][1]].get_color()
 			color=boardConfig[listadoPosicionLetrasTablero[cont][0]][listadoPosicionLetrasTablero[cont][1]].get_color()
 			if color == 'violet':
-				piece_image=os.path.join(base_path,'images/centro.png')
+				piece_image=os.path.join(base_path,'images/corona.png')
 				window[listadoPosicionLetrasTablero[cont]].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','white'))
 			else:
 				window[listadoPosicionLetrasTablero[cont]].update(image_filename=img, image_size= tamaño_img ,button_color=('white','white'))
 			cont=cont+1
 
-								
+		print(initial_atril)					
+
+	def actualizarAtrilJugador():
+		initial_atril2=[]
+		random.shuffle(images_keys,random.random)
+		PC.atrilPalabrasValidas(images_keys,initial_atril2)
+			
+		for i in range(0,7):
+			if initial_atril[i]=='':
+				# initial_atril[i]=random.choice(initial_atril2)
+				initial_atril[i]=initial_atril2[i]
+				piece_image = images[initial_atril[i]]
+				img=piece_image['imagen']
+				window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
+		print(initial_atril)
+							
 
 
 
@@ -582,10 +674,15 @@ def main_game(num_tablero):
 	listado=[]
 	#inicio=time.time()
 	wait=True
+	wait2=True
 	window.Finalize()
 	inicio=time.time()
 	iniciar=True
+	
 	while True and iniciar:
+		# random.shuffle(images_keys,random.random)
+		# PC.atrilPalabrasValidas(images_keys,initial_atril2)
+		# initial_atril=initial_atril2[:]		
 	
 		while True :
 			########################
@@ -622,34 +719,61 @@ def main_game(num_tablero):
 				# window.FindElement('COMENZAR').update(disabled=True)				
 						
 			#########################
-				if opc2==0:
-					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar)
+				if (opc2==0)and wait2:
+					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys)
+					print('IA INICIAL')
+					wait2=False
 				while True:
 					puntosP=0
 					puntosL=0
 					#letra=''
 					l=-1
 					button , value = window.Read()
+					#type(button) is tuple
+					
 					if button == 'PASAR TURNO':
+						wait2=True
 						break
 					if button == 'CHECK':
 						j
 						if palabra == '':
 							sg.Popup('todavia no formo una palabra')
 						elif len(palabra[0])>1:
-							print(palabra[0])
-							sg.Popup('PALABRA FORMADA : ' ,palabra)
-							
-							palabra[0]=''
-							T2= True
-							T1=True
-							#T3= True
-							F=0
-							C=0
-							cant=cant+1
-							#x=0
-							T4=True
-							break
+							if (clasificar.comprobarPalabraEnBaseAlNivel(palabra[0])):
+								
+								
+								print(palabra[0])
+								sg.Popup('PALABRA FORMADA : ' ,palabra)
+								print(clasificar.comprobarPalabraEnBaseAlNivel(palabra[0]))
+								#palabra[0]=''
+								T2= True
+								T1=True
+								T3= True
+								F=0
+								C=0
+								#cant=cant+1
+								#x=0
+								T4=True
+								
+								if (clasificar.comprobarPalabraEnBaseAlNivel(palabra[0])):
+									
+									palabra[0]=''
+									actualizarAtrilJugador()
+									wait2=True
+								listadoPosicionLetrasAtril=[]
+								listadoPosicionLetrasTablero=[]								
+								break
+							else:
+								sg.Popup('PALABRA INVALIDA')
+								
+								devolverLetras()
+								T2=True
+								T3=True
+								T1=True
+								T4=True
+								palabra[0]=''
+								listadoPosicionLetrasAtril=[]
+								listadoPosicionLetrasTablero=[]								
 							##window[]
 						# if len(word)>= 2 and len(word) <=7:
 						elif len(palabra[0])<2:
@@ -693,7 +817,8 @@ def main_game(num_tablero):
 							#Actualizacion bolsa
 							bolsa.sacar_fichas(7)
 							window.FindElement('bolsa_fichas').update(str(bolsa.get_fichas_restantes()))
-							###								
+							###	
+							PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys)							
 						else:
 							sg.Popup('se supero la cantidad de pasadas')
 						cant=4
@@ -702,22 +827,23 @@ def main_game(num_tablero):
 						T3=True
 						palabra=['']
 						listado=[]
+						listadoPosicionLetrasAtril=[]
+						listadoPosicionLetrasTablero=[]						
 						actualizar_listado(window.FindElement('datosj'))
 			
 						
 							
 					if type(button) is int:
 						print(button)
-						final=time.time()
-						if final-inicio>60:
-						
-							break						
+					
 						if initial_atril[button] !='':
 							i=button
 							letra= initial_atril[button]
 							#####hoy palabra += letra
-			
 							button , value = window.Read()
+							while(type(button)is not(tuple)):
+								button , value = window.Read()			
+							#button , value = window.Read()
 							if type(button) is tuple:
 								
 								if not(boardConfig[7][7].get_estado()):
@@ -784,11 +910,12 @@ def main_game(num_tablero):
 						
 						sg.Popup('movimiento incorrecto')
 			
-				if opc2==1:
-					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar)
+				if (opc2==1)and wait2:
+					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys)
+					print('IA FINAL')
 					controlAt=[8,7,0,0]
 			final=time.time()
-			if final-inicio>60:
+			if final-inicio>120:
 			
 				break		
 		sg.Popup('FIN Juego')
@@ -804,10 +931,19 @@ def main_game(num_tablero):
 			button , value = window.Read()
 	
 		if button=='COMENZAR':
-			
 			initial_atril=[]
-			for i in range(0,7): ##cambiar i
-				initial_atril.append(random.choice(images_keys))
+			images_keys= list(images.keys()) ### seria la lista de palabras
+			images_keys.remove('BLANK')
+			random.shuffle(images_keys,random.random)
+			initial_atril=[]
+			initial_atril2=[]
+			PC.atrilPalabrasValidas(images_keys,initial_atril2)
+			initial_atril=initial_atril2[:]			
+			
+			
+			# initial_atril=[]
+			# for i in range(0,7): ##cambiar i
+				# initial_atril.append(random.choice(images_keys))
 			for i in range(7):
 				#window[i].update(initial_atril[i])
 				piece_image = images[initial_atril[i]]
@@ -827,7 +963,8 @@ def main_game(num_tablero):
 			listado=[]
 			listadoPc=[]
 			listadoPosicionLetrasAtril=[]
-			listadoPosicionLetrasTablero=[]			
+			listadoPosicionLetrasTablero=[]
+			initial_atril2=[]			
 			
 			actualizar_listado(window.FindElement('datosj'))
 			actualizar_listado(window.FindElement('datosm'))
