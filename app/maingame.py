@@ -707,7 +707,7 @@ def main_game(num_tablero):
 	
 
 
-	board_tab=[[sg.Button('CHECK',disabled=True)],[sg.Column(columna_1), sg.Column(atr1),sg.Column(tablero),sg.Column(atr2),sg.Column(columna_2)],[sg.Button('COMENZAR',button_color=('white','green')),sg.Button('PASAR',disabled=True),sg.Button('GUARDAR',disabled=True),sg.Button('PASAR TURNO',disabled=True),sg.Button('EXIT')]]
+	board_tab=[[sg.Button('CHECK',disabled=True)],[sg.Column(columna_1), sg.Column(atr1),sg.Column(tablero),sg.Column(atr2),sg.Column(columna_2)],[sg.Button('COMENZAR',button_color=('white','green')),sg.Button('PASAR',disabled=True),sg.Button('GUARDAR',disabled=True),sg.Button('EXIT')]]
 	window = sg.Window('ScrabbleAr',default_button_element_size=(12,1), auto_size_buttons=False).Layout(board_tab)
 	cantPasadas=0
 	#palabra=''	
@@ -761,7 +761,7 @@ def main_game(num_tablero):
 				window.FindElement('PASAR').update(disabled=False)
 				window.FindElement('GUARDAR').update(disabled=False)
 				window.FindElement('CHECK').update(disabled=False)
-				window.FindElement('PASAR TURNO').update(disabled=False)
+				#window.FindElement('PASAR TURNO').update(disabled=False)
 				window.FindElement('COMENZAR').update(disabled=True)
 				window['COMENZAR'].update( button_color=('white','red'))
 				wait=False
@@ -799,9 +799,9 @@ def main_game(num_tablero):
 					button , value = window.Read(timeout=10)
 					#type(button) is tuple
 					
-					if button == 'PASAR TURNO':
-						wait2=True
-						break
+					# if button == 'PASAR TURNO':
+						# wait2=True
+						# break
 					if button == 'CHECK':
 						j
 						if palabra == '':
@@ -1010,7 +1010,7 @@ def main_game(num_tablero):
 		window.FindElement('PASAR').update(disabled=True)
 		window.FindElement('GUARDAR').update(disabled=True)
 		window.FindElement('CHECK').update(disabled=True)
-		window.FindElement('PASAR TURNO').update(disabled=True)		
+		#window.FindElement('PASAR TURNO').update(disabled=True)		
 		
 		window.FindElement('COMENZAR').update(disabled=False)
 		window['COMENZAR'].update( button_color=('white','green'))	
