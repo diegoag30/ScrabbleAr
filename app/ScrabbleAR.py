@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
 from Configuracion import Configuracion
-from main3 import main_game
+from maingame import main_game
 import configuracion_letras
 from puntajes import Puntaje
 
