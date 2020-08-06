@@ -901,8 +901,7 @@ def main_game(num_tablero):
 									# color=boardConfig[i][j].get_color()
 									# BorrarTablero1(color)
 							#Actualizacion bolsa
-							bolsa.sacar_fichas(7)
-							window.FindElement('bolsa_fichas').update(str(bolsa.get_fichas_restantes()))
+
 							###	
 							PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys)
 														
