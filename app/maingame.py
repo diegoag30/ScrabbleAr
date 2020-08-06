@@ -7,12 +7,14 @@ import IA
 import os.path
 import config_tablero
 from Bolsa import Bolsa
+from Configuracion import Configuracion
 base_path=os.path.dirname(os.path.abspath(__file__))
 ##anda genial
 def main_game(num_tablero):
 	
-	#Bolsa instanciada, 
-	bolsa = Bolsa(50)
+	#Bolsa y configuracion instanciada, 
+	conf = Configuracion()
+	bolsa = Bolsa(conf.getConfiguracionLetras())
 	PC=IA
 	clasificar=clasificarPalabra
 
@@ -53,14 +55,20 @@ def main_game(num_tablero):
 	color_button=('white','white')
 	images = {'BLANK':blank,'A': a, 'B': b, 'C': c, 'D': d, 'E': e, 'F': f, 'G': g, 'H': h, 'I': i, 'J': j, 'K': k, 'L': l, 'M': m, 'N': n, 'O': o, 'P': p, 'Q': q, 'R': r, 'S': s, 'T': t, 'U': u, 'V': v, 'W': w, 'X': x, 'Y': y, 'Z': z}
 	initial_atril=[]
-	images_keys= list(images.keys()) ### seria la lista de palabras
-	images_keys.remove('BLANK')
+	bolsa.eliminar_fichas()
+	images_keys= list(bolsa.get_fichas().keys()) ### seria la lista de palabras
+	print(images_keys)
+
 	random.shuffle(images_keys,random.random)
 	initial_atril=[]
 	initial_atril2=[]
 	PC.atrilPalabrasValidas(images_keys,initial_atril2)
 	initial_atril=initial_atril2[:]
-	
+
+	## SE Restan las fichas cuando se crea el atril del jugador
+	for ficha in initial_atril:
+		if ficha in bolsa.get_fichas():
+			bolsa.quitar_fichas(ficha,1)
 
 
 
@@ -643,14 +651,16 @@ def main_game(num_tablero):
 	elementos=obj.Tab(images) ##### estaria para conectarlo con una opcion para elegir el tablero
 	tablero= elementos[0] 
 	tamaño_img = elementos[1]
-
-	columna_2 = [ [sg.Text('PUNTOS MAQUINA')],[sg.Listbox(values =[], key='datosm', font='Courier 18' ,size=(20,10))],[sg.Text('TOTAL PUNTOS')],[sg.Text('FICHAS RESTANTES', size=(20, 2), justification='center')],[sg.Text(str(bolsa.get_fichas_restantes()) , size=(20, 2), justification='center',key='bolsa_fichas')],]
+	columna_2 = [ [sg.Text('PUNTOS MAQUINA')],[sg.Listbox(values =[], key='datosm', font='Courier 18' ,size=(20,10))],[sg.Text('TOTAL PUNTOS')],[sg.Column(bolsa.get_layout(),key="BOLSA")]]
 	columna_1 = [ [sg.Text('PUNTOS JUGADOR')],[sg.Listbox(values =[], key='datosj', font='Courier 18',size=(20,10))],[sg.Text('TOTAL PUNTOS')]]
-	columna_3 = [ [sg.Text('Total Puntos')]]				
+
+	columna_3 = [ [sg.Text('Total Puntos')]]
+
+					
 	
 
 
-	board_tab=[[sg.Button('CHECK',disabled=True)],[sg.Column(columna_1),sg.Column(atr1),sg.Column(tablero),sg.Column(atr2),sg.Column(columna_2)],[sg.Button('COMENZAR',button_color=('white','green')),sg.Button('PASAR',disabled=True),sg.Button('GUARDAR',disabled=True),sg.Button('PASAR TURNO',disabled=True),sg.Button('EXIT')]]
+	board_tab=[[sg.Button('CHECK',disabled=True)],[sg.Column(columna_1), sg.Column(atr1),sg.Column(tablero),sg.Column(atr2),sg.Column(columna_2)],[sg.Button('COMENZAR',button_color=('white','green')),sg.Button('PASAR',disabled=True),sg.Button('GUARDAR',disabled=True),sg.Button('PASAR TURNO',disabled=True),sg.Button('EXIT')]]
 	window = sg.Window('ScrabbleAr',default_button_element_size=(12,1), auto_size_buttons=False).Layout(board_tab)
 	cantPasadas=0
 	#palabra=''	
@@ -693,9 +703,6 @@ def main_game(num_tablero):
 				exit()		
 			
 			if button=='COMENZAR' and wait:
-				#Actualizacion bolsa
-				bolsa.sacar_fichas(14)
-				window.FindElement('bolsa_fichas').update(str(bolsa.get_fichas_restantes()))
 				###		
 				inicio=time.time()
 				window.FindElement('PASAR').update(disabled=False)
@@ -815,8 +822,7 @@ def main_game(num_tablero):
 									# color=boardConfig[i][j].get_color()
 									# BorrarTablero1(color)
 							#Actualizacion bolsa
-							bolsa.sacar_fichas(7)
-							window.FindElement('bolsa_fichas').update(str(bolsa.get_fichas_restantes()))
+							
 							###	
 							PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys)							
 						else:
@@ -933,6 +939,7 @@ def main_game(num_tablero):
 		if button=='COMENZAR':
 			initial_atril=[]
 			images_keys= list(images.keys()) ### seria la lista de palabras
+			print(images_keys)
 			images_keys.remove('BLANK')
 			random.shuffle(images_keys,random.random)
 			initial_atril=[]
