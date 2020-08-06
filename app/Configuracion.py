@@ -100,13 +100,14 @@ class Configuracion():
             ]
 
         self._configuraciones_seleccionadas = {
-            'tiempo':'medio',
-            'dificultad':'normal',
+            'tiempo':'dificil',
+            'dificultad':'facil',
             'tablero':1
             }      
         
         self._lista_random_clasificacion = ['JJ', 'VB']
-        self._clasificacion_seleccionada = ''
+        self._clasificacion_seleccionada = random.choice(self._lista_random_clasificacion)
+        # self._clasificacion_seleccionada = ''
 
         self._configuracion_letras = {
             'A':{'cant':11,'val':1},
