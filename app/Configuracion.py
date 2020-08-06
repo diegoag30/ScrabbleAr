@@ -186,3 +186,6 @@ class Configuracion():
 
     def getConfiguracionLetras(self):
         return self._configuracion_letras
+
+    def setConfiguracionLetras(self, diccionario):
+        self._configuracion_letras = diccionario
