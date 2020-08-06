@@ -119,9 +119,5 @@ class Puntaje():
         window.close()
 
 
-p = Puntaje()
-#p.create_file()
-p.agregar_nuevo_puntaje("diego",10000,"dificil")
-
 
 
