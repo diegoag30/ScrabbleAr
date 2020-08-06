@@ -190,3 +190,6 @@ class Configuracion():
 
     def setConfiguracionLetras(self, diccionario):
         self._configuracion_letras = diccionario
+
+    def layoutVentanaInicial(self):
+        return self._layout

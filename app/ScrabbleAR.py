@@ -4,6 +4,8 @@ from maingame import main_game
 import configuracion_letras
 from puntajes import Puntaje
 
+
+
 #Puntaje instanciado
 mejores_puntajes = Puntaje()
 #funcion para cambiar el background del programa a un color personalizado
@@ -28,8 +30,8 @@ while True:
     if event == 'RANKING':
         mejores_puntajes.create_ui()
     if event == 'LOGO':
-        # window.close(); del window
-        window.Disappear()
+        window.close(); del window
+        # window.Disappear()
         main_game(conf.get_tablero_elegido())
     if event == 'CONFIGURACION':
         window.Disappear()
@@ -49,10 +51,9 @@ while True:
                 # event, values = window.read()
                 # print(event, values)
 
-                # ventana_configuracion.close()
-                ventana_configuracion.Disappear()
+                ventana_configuracion.close()
+                # ventana_configuracion.Disappear()
                 window.reappear()
-                break
             if event == 'Configurar letras':
                 menu_configuracion_de_letras = configuracion_letras.GUI_configuracion_de_letras()
                 event, values = menu_configuracion_de_letras.read()

@@ -64,7 +64,7 @@ def comprobarPalabraEnBaseAlNivel(palabra='perro'):
         devuelve True o False en base a la dificulad elegida en el menu de configuracion
     """
     nivel = conf.getConfiguracionesSeleccionadas()['dificultad']
-    print(nivel)
+    print(nivel, 'desde modulo clasificar')
     # nivel='dificil'  ## lo defini aca para usarlo directamente desde el maingame , hay que sacar esta linea 
     
     if nivel == 'facil':
