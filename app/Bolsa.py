@@ -14,11 +14,13 @@ class Bolsa():
     def get_fichas(self):
         return self._fichas
 
+    def bolsa_vacia(self):
+        return self._bolsa_vacia
+
     def quitar_fichas(self,ficha,cantidad):
         cant_fichas = self._fichas[ficha]["cant"] - cantidad 
         if cant_fichas >=0:
             self._fichas[ficha]["cant"] = cant_fichas
-        self._layout = self.crear_ui()
         self.check_bolsa_vacia()
 
     def check_bolsa_vacia(self):
@@ -38,15 +40,15 @@ class Bolsa():
         col_2 = []
         for i,(letra,datos) in enumerate(self._fichas.items()):
             if (i % 2 == 0):
-                col_1.append([sg.Text(letra + ":"),sg.Text(datos["cant"],key=letra + letra)])
+                col_1.append([sg.Text(letra + ":"),sg.Text(datos["cant"],key=letra)])
             else:
-                col_2.append([sg.Text(letra+ ":"),sg.Text(datos["cant"])])
+                col_2.append([sg.Text(letra+ ":"),sg.Text(datos["cant"],key=letra)])
         layout = [
             [sg.Text("Bolsa",justification='center')],[sg.Column(col_1, element_justification='center'),sg.Column(col_2, element_justification='center')]
         ]
         return layout
 
-    def eliminar_fichas(self):
+    def letras_validas(self):
         """Elimina las fichas que tengan como cantidad 0 """
         nuevas_fichas = dict(self._fichas)
         for key,value in self._fichas.items():
@@ -55,5 +57,17 @@ class Bolsa():
                     del nuevas_fichas[key]
                 except KeyError:
                     print("No existe ese elemento en este diccionario")
-        self._fichas = nuevas_fichas
+        return nuevas_fichas
 
+    def cant_letras(self,letra):
+        if letra in self._fichas.keys():
+            return self._fichas[letra]["cant"]
+
+"""
+conf = Configuracion()
+bolsa = Bolsa(conf.getConfiguracionLetras())
+bolsa.quitar_fichas("A",15)
+print(bolsa.cant_letras("A"))
+bolsa.check_bolsa_vacia()
+print(bolsa.bolsa_vacia())
+"""
