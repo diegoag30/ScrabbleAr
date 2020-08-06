@@ -936,6 +936,10 @@ def main_game(num_tablero):
 									print('posicion central no  ocupada')
 														
 								
+								if not(boardConfig[7][7].get_estado()):
+									print('posicion central no  ocupada')
+														
+								
 									if (button[0]==7 and button[1]==7)and T3 :
 										print(button)
 										modificarBoton()
@@ -946,35 +950,40 @@ def main_game(num_tablero):
 									#print(type(lista[1]))
 									if not(T3):
 										if(button[0]==F)and T1:
-											if C<button[1]:
+											if C<button[1]and(button[1]==C+1):
 												T2=False
 												modificarBoton()
 												C=button[1]
 										if(button[1]==C)and T2:
-											if F<button[0]:
+											if F<button[0]and(button[0]==F+1):
 												print(button)
 												T1=False
 												modificarBoton()
 												F=button[0]
-									#cant=4	
+									#cant=4
+									
+										
+																			
 								else:
 																
 								#if cant<10: ## la cantidad de palabras formadas con 7 letras
 				
-									if T4:
-										#x=x+1
+									if T4:										
+										
+																
+										
 										modificarBoton()
 										F=button[0]
 										C=button[1]
 										T4=False
 									else:
-										if(button[0]==F)and T1:
-											if C<button[1]:
+										if(button[0]==F)and T1 :
+											if C<button[1]and(button[1]==C+1):
 												T2=False
 												modificarBoton()
 												C=button[1]
 										if(button[1]==C)and T2:
-											if F<button[0]:
+											if F<button[0]and(button[0]==F+1):
 												T1=False
 												modificarBoton()
 												F=button[0]				
@@ -985,6 +994,7 @@ def main_game(num_tablero):
 			
 								## modifiquenlo para que muestres los puntos que se van acumulando por casillas 
 								##
+																			
 																			
 								l=0
 			
