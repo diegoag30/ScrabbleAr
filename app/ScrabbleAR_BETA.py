@@ -31,7 +31,7 @@ while True:
     # ventana_inicial.FindElement('-OUTPUT-').update(vals_ventana_inicial[0])
     if ev_ventana_inicial == 'JUGAR':
         ventana_inicial.close()
-        main_game(conf.get_tablero_elegido())
+        main_game(conf.get_tablero_elegido(), conf)
     if ev_ventana_inicial == 'RANKING':
         mejores_puntajes.create_ui()
     if ev_ventana_inicial == 'CONFIGURACION'  and not ventana_menu_configuracion_active:
@@ -59,8 +59,8 @@ while True:
             [sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/tablero_1.png', image_size=(171,171), key='tablero_1', image_subsample=3, border_width=0,pad=((218,0),(0,0)), tooltip=('Tablero dieñado por Cristian')),
             sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/tablero_2.png', image_size=(171,171), key='tablero_2', image_subsample=3, border_width=0,pad=((50,0),(0,0)), tooltip=('Tablero dieñado por Diego')),
             sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/tablero_3.png', image_size=(171,171), key='tablero_3', image_subsample=3, border_width=0,pad=((50,0),(0,0)), tooltip=('Tablero de ejemplo'))],
-            [sg.Button('Configurar')],
-            [sg.Button('SIGUIENTE')]
+            [sg.Button('Configurar Letras', key='Configurar')],
+            [sg.Button('APLICAR')]
             ]
 
         ventana_menu_configuracion = sg.Window("Scrabble GO", layout_configuracion, icon='ScrabbleGO.ico', size=(1050,850))
@@ -207,7 +207,7 @@ while True:
                         ventana_menu_configuracion.UnHide()
                         break
 
-            if ev_menu_configuracion == sg.WIN_CLOSED or ev_menu_configuracion == 'SIGUIENTE':
+            if ev_menu_configuracion == sg.WIN_CLOSED or ev_menu_configuracion == 'APLICAR':
                 ventana_menu_configuracion.close()
                 ventana_menu_configuracion_active = False
                 ventana_inicial.UnHide()

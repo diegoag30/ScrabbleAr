@@ -11,7 +11,7 @@ import os.path
 base_path=os.path.dirname(os.path.abspath(__file__))
 clasificar=clasificarPalabra
 
-def atrilPalabrasValidas(images_keys,initial_atril2):
+def atrilPalabrasValidas(images_keys,initial_atril2,configuracion):
 	
 
 	#random.shuffle(images_keys2,random.random)
@@ -23,6 +23,7 @@ def atrilPalabrasValidas(images_keys,initial_atril2):
 	atril2=''
 	listaPalabras=[]
 	cont3=3
+	conf = configuracion
 	
 	for c in combinations(images_keys,cont3):
 		lp="".join(c)
@@ -33,7 +34,7 @@ def atrilPalabrasValidas(images_keys,initial_atril2):
 	cont2=0
 	while (cont!=cont2) and True:
 		
-		if clasificar.comprobarPalabraEnBaseAlNivel(listaPalabras[cont2]):
+		if clasificar.comprobarPalabraEnBaseAlNivel(listaPalabras[cont2], conf):
 			
 			print('*'*30)
 			print('PALABRA VALIDA PARA JUGADOR',listaPalabras[cont2])
@@ -71,7 +72,8 @@ def atrilPalabrasValidas(images_keys,initial_atril2):
 	
 	#random.shuffle(initial_atril2,random.random)
 
-def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys):
+def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys,configuracion):
+	conf = configuracion
 		
 	def IA(initial_atril2):
 		#clasificar=clasificarPalabra
@@ -553,7 +555,7 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images
 		# T=True
 		while cont!=cont2 and T:
 			
-			if clasificar.comprobarPalabraEnBaseAlNivel(listaPalabras[cont2]):
+			if clasificar.comprobarPalabraEnBaseAlNivel(listaPalabras[cont2], conf):
 				print(listaPalabras[cont2])
 				T=False
 				IA(listaPalabras[cont2])

@@ -11,10 +11,10 @@ from Configuracion import Configuracion
 
 base_path=os.path.dirname(os.path.abspath(__file__))
 ##anda genial
-def main_game(num_tablero):
+def main_game(num_tablero, configuracion):
 	
 	#Bolsa y configuracion instanciada,
-	conf = Configuracion()
+	conf = configuracion
 	bolsa = Bolsa(conf.getConfiguracionLetras())
 	PC=IA
 	clasificar=clasificarPalabra
@@ -64,7 +64,7 @@ def main_game(num_tablero):
 	random.shuffle(images_keys,random.random)
 	initial_atril=[]
 	initial_atril2=[]
-	PC.atrilPalabrasValidas(images_keys,initial_atril2)
+	PC.atrilPalabrasValidas(images_keys,initial_atril2, conf)
 	initial_atril=initial_atril2[:]
 
 	## SE Restan las fichas cuando se crea el atril del jugador
@@ -440,7 +440,7 @@ def main_game(num_tablero):
 	def actualizarAtrilJugador():
 		initial_atril2=[]
 		random.shuffle(images_keys,random.random)
-		PC.atrilPalabrasValidas(images_keys,initial_atril2)
+		PC.atrilPalabrasValidas(images_keys,initial_atril2, conf)
 			
 		for i in range(0,7):
 			if initial_atril[i]=='':
@@ -476,7 +476,7 @@ def main_game(num_tablero):
 		#initial_atril2=['H','O','L','A','G','I','L']
 		# print(initial_atril2)
 		# initial_atril2=[]
-		PC.atrilPalabrasValidas(images_keys,initial_atril2)
+		PC.atrilPalabrasValidas(images_keys,initial_atril2,conf)
 		initial_atril=[]
 		print(initial_atril2,'xxxx2')
 		print(initial_atril,'xxxx1')
@@ -780,7 +780,7 @@ def main_game(num_tablero):
 						
 			#########################
 				if (opc2==0)and wait2:
-					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys)
+					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys, conf)
 					print('IA INICIAL')
 					wait2=False
 				while True:
@@ -807,12 +807,12 @@ def main_game(num_tablero):
 						if palabra == '':
 							sg.Popup('todavia no formo una palabra')
 						elif len(palabra[0])>1:
-							if (clasificar.comprobarPalabraEnBaseAlNivel(palabra[0])):
+							if (clasificar.comprobarPalabraEnBaseAlNivel(palabra[0], conf)):
 								
 								
 								print(palabra[0])
 								sg.Popup('PALABRA FORMADA : ' ,palabra)
-								print(clasificar.comprobarPalabraEnBaseAlNivel(palabra[0]))
+								print(clasificar.comprobarPalabraEnBaseAlNivel(palabra[0], conf))
 								#palabra[0]=''
 								T2= True
 								T1=True
@@ -823,7 +823,7 @@ def main_game(num_tablero):
 								#x=0
 								T4=True
 								
-								if (clasificar.comprobarPalabraEnBaseAlNivel(palabra[0])):
+								if (clasificar.comprobarPalabraEnBaseAlNivel(palabra[0], conf)):
 									
 									palabra[0]=''
 									actualizarAtrilJugador()
@@ -903,7 +903,7 @@ def main_game(num_tablero):
 							#Actualizacion bolsa
 
 							###	
-							PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys)
+							PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys, conf)
 														
 						else:
 							sg.Popup('se supero la cantidad de pasadas')
@@ -1007,7 +1007,7 @@ def main_game(num_tablero):
 						sg.Popup('movimiento incorrecto')
 			
 				if (opc2==1)and wait2:
-					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys)
+					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys, conf)
 					print('IA FINAL')
 					controlAt=[8,7,0,0]
 			final=time.time()
@@ -1034,7 +1034,7 @@ def main_game(num_tablero):
 			random.shuffle(images_keys,random.random)
 			initial_atril=[]
 			initial_atril2=[]
-			PC.atrilPalabrasValidas(images_keys,initial_atril2)
+			PC.atrilPalabrasValidas(images_keys,initial_atril2, conf)
 			initial_atril=initial_atril2[:]			
 			
 			

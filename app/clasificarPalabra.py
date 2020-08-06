@@ -56,10 +56,10 @@ def clasificacionPattern(p):
 # print(listaAdjetivos)
 #===============================================
 
-conf = Configuracion()
+# conf = Configuracion()
 
 
-def comprobarPalabraEnBaseAlNivel(palabra='perro'):
+def comprobarPalabraEnBaseAlNivel(palabra, conf):
     """
         devuelve True o False en base a la dificulad elegida en el menu de configuracion
     """
