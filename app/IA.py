@@ -2,6 +2,7 @@ import PySimpleGUI as sg
 from itertools import combinations
 import random
 import clasificarPalabra
+from Configuracion import Configuracion
 ##import configuracion
 from pattern.es import verbs, tag, spelling, lexicon
 import string
@@ -9,6 +10,7 @@ from pattern.es import singularize , pluralize, conjugate , INFINITIVE , PRESENT
 import os.path
 base_path=os.path.dirname(os.path.abspath(__file__))
 clasificar=clasificarPalabra
+
 def atrilPalabrasValidas(images_keys,initial_atril2):
 	
 
@@ -17,7 +19,7 @@ def atrilPalabrasValidas(images_keys,initial_atril2):
 		# images_keys2[i]=random.choice(images_keys)
 		# # images_keys2[i].append(random.choice(images_keys))
 		
-		
+	#initial_atril2=[]	
 	atril2=''
 	listaPalabras=[]
 	cont3=3
@@ -65,7 +67,7 @@ def atrilPalabrasValidas(images_keys,initial_atril2):
 
 	for i in atril2:
 		initial_atril2.append(i)		
-
+	print('PALABRA PARA EL JUGADOR',initial_atril2)
 	
 	#random.shuffle(initial_atril2,random.random)
 
