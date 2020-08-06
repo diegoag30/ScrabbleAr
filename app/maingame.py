@@ -767,7 +767,8 @@ def main_game(num_tablero, configuracion):
 				wait=False
 				opc2=random.randint(0,1)
 				if opc2==1:
-					print('empieza el jugador')			
+					print('empieza el jugador')
+
 				
 						
 			if not(wait):
@@ -791,6 +792,29 @@ def main_game(num_tablero, configuracion):
 					window['reloj'].update('{:02d}:{:02d}.{:02d}'.format((current_time // 100) // 60,
                                                                   (current_time // 100) % 60,
                                                                   current_time % 100),background_color=('red'))
+					if conf.getConfiguracionesSeleccionadas()['tiempo'] == 'minimo':
+						if (current_time // 100) // 60 == 5:
+							print('=============================================5 MINUTOS====================================')
+							print('=============================================5 MINUTOS====================================')
+							print('=============================================5 MINUTOS====================================')
+							print('=============================================5 MINUTOS====================================')
+							sg.Popup('SE ACABO EL TIEMPO!!!')
+					
+					if conf.getConfiguracionesSeleccionadas()['tiempo'] == 'medio':
+						if (current_time // 100) // 60 == 15:
+							print('=============================================15 MINUTOS====================================')
+							print('=============================================15 MINUTOS====================================')
+							print('=============================================15 MINUTOS====================================')
+							print('=============================================15 MINUTOS====================================')
+							sg.Popup('SE ACABO EL TIEMPO!!!O')
+
+					if conf.getConfiguracionesSeleccionadas()['tiempo'] == 'maximo':
+						if (current_time // 100) // 60 == 30:
+							print('=============================================30 MINUTOS====================================')
+							print('=============================================30 MINUTOS====================================')
+							print('=============================================30 MINUTOS====================================')
+							print('=============================================30 MINUTOS====================================')
+							sg.Popup('SE ACABO EL TIEMPO!!!')
 
 					puntosP=0
 					puntosL=0
@@ -1013,7 +1037,12 @@ def main_game(num_tablero, configuracion):
 			final=time.time()
 			if final-inicio>120:
 			
-				break		
+				break
+			if (current_time // 100) % 60 == 10:
+				print('=============================================10 SEGUNDOS====================================')
+				print('=============================================10 SEGUNDOS====================================')
+				print('=============================================10 SEGUNDOS====================================')
+				print('=============================================10 SEGUNDOS====================================')
 		sg.Popup('FIN Juego')
 		wait=True
 		window.FindElement('PASAR').update(disabled=True)
