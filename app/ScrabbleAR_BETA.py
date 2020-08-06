@@ -38,7 +38,8 @@ while True:
     if ev_ventana_inicial == 'JUGAR':
         ventana_inicial.close()
         main_game(conf.get_tablero_elegido())
-
+    if ev_ventana_inicial == 'RANKING':
+        mejores_puntajes.create_ui()
     if ev_ventana_inicial == 'CONFIGURACION'  and not ventana_menu_configuracion_active:
         ventana_menu_configuracion_active = True
         ventana_inicial.Hide()
@@ -72,6 +73,10 @@ while True:
         ventana_menu_configuracion = sg.Window("Scrabble GO", layout_configuracion, icon='ScrabbleGO.ico', size=(1050,850))
         while True:
             ev_menu_configuracion, vals_menu_configuracion = ventana_menu_configuracion.read()
+            print('EVENTOS - MENU CONFIGURACION: ', ev_menu_configuracion)
+            print('VALORES - MENU CONFIGURACION: ', vals_menu_configuracion)
+            conf.setConfiguracionesSeleccionadas(ev_menu_configuracion)
+            print(conf.getConfiguracionesSeleccionadas())
             if ev_menu_configuracion == 'Configurar' and not ventana_menu_letras_active:
                 ventana_menu_letras_active = True
                 ventana_menu_configuracion.Hide()
