@@ -57,9 +57,9 @@ def main_game(num_tablero, configuracion):
 	color_button=('white','white')
 	images = {'BLANK':blank,'A': a, 'B': b, 'C': c, 'D': d, 'E': e, 'F': f, 'G': g, 'H': h, 'I': i, 'J': j, 'K': k, 'L': l, 'M': m, 'N': n, 'O': o, 'P': p, 'Q': q, 'R': r, 'S': s, 'T': t, 'U': u, 'V': v, 'W': w, 'X': x, 'Y': y, 'Z': z}
 	initial_atril=[]
-	bolsa.eliminar_fichas()
-	images_keys= list(bolsa.get_fichas().keys()) ### seria la lista de palabras
-	print(images_keys)
+	#print(bolsa.letras_validas().keys())
+	images_keys= list(bolsa.letras_validas().keys()) ### seria la lista de palabras
+
 
 	random.shuffle(images_keys,random.random)
 	initial_atril=[]
@@ -67,11 +67,16 @@ def main_game(num_tablero, configuracion):
 	PC.atrilPalabrasValidas(images_keys,initial_atril2, conf)
 	initial_atril=initial_atril2[:]
 
-	## SE Restan las fichas cuando se crea el atril del jugador
+	## SE Restan las fichas cuando se crea el atril del jugador, ademas se quitan las fichas que quedaron en 0
 	for ficha in initial_atril:
 		if ficha in bolsa.get_fichas():
 			bolsa.quitar_fichas(ficha,1)
+	images_keys = list(bolsa.letras_validas().keys())
+	#print(bolsa.letras_validas().keys())
 
+	def actualizar_layout_bolsa():
+		for ficha in bolsa.get_fichas().keys():
+			window.FindElement(ficha).update(bolsa.cant_letras(ficha))
 
 
 	# for i in range(0,7):
@@ -736,13 +741,16 @@ def main_game(num_tablero, configuracion):
 	inicio=time.time()
 	iniciar=True
 	
-	while True and iniciar:
+
+	while ((True and iniciar)and (not bolsa.bolsa_vacia())):
 		# random.shuffle(images_keys,random.random)
 		# PC.atrilPalabrasValidas(images_keys,initial_atril2)
 		# initial_atril=initial_atril2[:]		
 	
-		while True :
+		while True:
 			########################
+	
+
 			if wait:
 				button , value = window.Read()	
 		
@@ -752,6 +760,12 @@ def main_game(num_tablero, configuracion):
 			if button=='COMENZAR' and wait:
 				###		
 				inicio=time.time()
+				"""
+				bolsa.quitar_fichas("A",8)				
+				window.FindElement("AA").update(bolsa.cant_letras("A"))
+				if bolsa.bolsa_vacia():
+					break
+				"""
 
 				#VARIABLES USADAS PARA MOSTRAR EL CRONOMETRO EN PANTALLA
 				current_time = 0
@@ -834,9 +848,13 @@ def main_game(num_tablero, configuracion):
 							if (clasificar.comprobarPalabraEnBaseAlNivel(palabra[0], conf)):
 								
 								
-								print(palabra[0])
+								#print(palabra[0])
 								sg.Popup('PALABRA FORMADA : ' ,palabra)
+<<<<<<< HEAD
 								print(clasificar.comprobarPalabraEnBaseAlNivel(palabra[0], conf))
+=======
+								#print(clasificar.comprobarPalabraEnBaseAlNivel(palabra[0]))
+>>>>>>> bolsa se actualiza al pasar turno
 								#palabra[0]=''
 								T2= True
 								T1=True
@@ -884,6 +902,7 @@ def main_game(num_tablero, configuracion):
 						cantPasadas=cantPasadas+1
 						controlAt=[7,7,0,0]
 						if cantPasadas<4:
+<<<<<<< HEAD
 							initial_atril=PasarTurno(initial_atril)
 							#####################################
 							# print(initial_atril,'xxx inicio')
@@ -913,6 +932,31 @@ def main_game(num_tablero, configuracion):
 			
 								# window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
 	######################################				
+=======
+					
+							initial_atril=[]
+							for i in range(0,7): ##cambiar i
+								initial_atril.append(random.choice(images_keys))
+
+							## SE Restan las fichas cuando se crea el atril del jugador, ademas se quitan las fichas que quedaron en 0
+							for ficha in initial_atril:
+								if ficha in bolsa.get_fichas():
+									bolsa.quitar_fichas(ficha,1)
+									window.FindElement(ficha).update(bolsa.cant_letras(ficha))
+									#print(bolsa.letras_validas().keys())
+							#####
+						
+							images_keys = list(bolsa.letras_validas().keys())
+							#print(images_keys)
+							######	
+							for i in range(7):
+								#window[i].update(initial_atril[i])
+								piece_image = images[initial_atril[i]]
+												
+								img=piece_image['imagen']
+								window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
+					##### blanquear tablero
+>>>>>>> bolsa se actualiza al pasar turno
 					
 							#actulizarTablero(opc)
 							
@@ -940,7 +984,12 @@ def main_game(num_tablero, configuracion):
 						listado=[]
 						listadoPosicionLetrasAtril=[]
 						listadoPosicionLetrasTablero=[]						
+<<<<<<< HEAD
 			
+=======
+						actualizar_listado(window.FindElement('datosj'))
+
+>>>>>>> bolsa se actualiza al pasar turno
 						
 							
 					if type(button) is int:
@@ -1021,8 +1070,6 @@ def main_game(num_tablero, configuracion):
 																			
 																			
 								l=0
-			
-		
 					
 					
 				if type(button) is tuple:
