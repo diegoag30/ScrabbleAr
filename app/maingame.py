@@ -8,15 +8,17 @@ import os.path
 import config_tablero
 from Bolsa import Bolsa
 from Configuracion import Configuracion
+
 base_path=os.path.dirname(os.path.abspath(__file__))
 ##anda genial
 def main_game(num_tablero):
 	
-	#Bolsa y configuracion instanciada, 
+	#Bolsa y configuracion instanciada,
 	conf = Configuracion()
 	bolsa = Bolsa(conf.getConfiguracionLetras())
 	PC=IA
 	clasificar=clasificarPalabra
+
 
 
 	blank = {'letra':'', 'imagen': os.path.join(base_path,'images/fondo.png')}
@@ -652,7 +654,7 @@ def main_game(num_tablero):
 	tablero= elementos[0] 
 	tamaño_img = elementos[1]
 	columna_2 = [ [sg.Text('PUNTOS MAQUINA')],[sg.Listbox(values =[], key='datosm', font='Courier 18' ,size=(20,10))],[sg.Text('TOTAL PUNTOS')],[sg.Column(bolsa.get_layout(),key="BOLSA")]]
-	columna_1 = [ [sg.Text('PUNTOS JUGADOR')],[sg.Listbox(values =[], key='datosj', font='Courier 18',size=(20,10))],[sg.Text('TOTAL PUNTOS')]]
+	columna_1 = [ [sg.Text('PUNTOS JUGADOR')],[sg.Listbox(values =[], key='datosj', font='Courier 18',size=(20,10))],[sg.Text('TOTAL PUNTOS')],[sg.Text('00:00:00', background_color=('#01a9b4'),key='reloj')]]
 
 	columna_3 = [ [sg.Text('Total Puntos')]]
 
@@ -705,6 +707,12 @@ def main_game(num_tablero):
 			if button=='COMENZAR' and wait:
 				###		
 				inicio=time.time()
+
+				#VARIABLES USADAS PARA MOSTRAR EL CRONOMETRO EN PANTALLA
+				current_time = 0
+				paused = False
+				start_time = int(round(time.time() * 100))
+
 				window.FindElement('PASAR').update(disabled=False)
 				window.FindElement('GUARDAR').update(disabled=False)
 				window.FindElement('CHECK').update(disabled=False)
@@ -731,11 +739,19 @@ def main_game(num_tablero):
 					print('IA INICIAL')
 					wait2=False
 				while True:
+					current_time = int(round(time.time() * 100)) - start_time
+					# minu = current_time // 100 // 60
+					# seg = current_time // 100 % 60
+					# mil = current_time % 100
+					window['reloj'].update('{:02d}:{:02d}.{:02d}'.format((current_time // 100) // 60,
+                                                                  (current_time // 100) % 60,
+                                                                  current_time % 100),background_color=('red'))
+
 					puntosP=0
 					puntosL=0
 					#letra=''
 					l=-1
-					button , value = window.Read()
+					button , value = window.Read(timeout=10)
 					#type(button) is tuple
 					
 					if button == 'PASAR TURNO':

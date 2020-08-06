@@ -12,12 +12,6 @@ conf = Configuracion()
 window = conf.ventanaPrincipal()
 
 
-# Design pattern 1 - First window does not remain active
-
-layout = [[ sg.Text('Window 1'),],
-          [sg.Input(do_not_clear=True)],
-          [sg.Text(size=(15,1),  key='-OUTPUT-')],
-          [sg.Button('Launch 2')]]
 #================================== CREO EL LAYOUT PARA LA VENTANA INICIAL ==========================================================================
 layout_ventana_principal = [
             [sg.Image(r'app/images/scrabble_logo508x214.png', size=(1000, 300), pad=((0,0),(200,0)), background_color='#00796B')],
@@ -43,8 +37,7 @@ while True:
     if ev_ventana_inicial == 'CONFIGURACION'  and not ventana_menu_configuracion_active:
         ventana_menu_configuracion_active = True
         ventana_inicial.Hide()
-        layout2 = [[sg.Text('Window 2')],       # note must create a layout from scratch every time. No reuse
-                   [sg.Button('Exit')]]
+        
 #================================== CREO EL LAYOUT PARA LA VENTANA DE CONFIGURACION ==========================================================================
         layout_configuracion = [
             # [sg.Text('Tiempo de juego', background_color=color_de_fondo, text_color='white', font=('Helvetica', 15, 'bold'), pad=((446,0),(15,15)), tooltip=('Elije el tiempo que durara la partida'))],
