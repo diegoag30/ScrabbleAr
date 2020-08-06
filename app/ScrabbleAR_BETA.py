@@ -197,7 +197,17 @@ while True:
                 ventana_menu_letras = sg.Window('Configuracion de letras', layout_menu_letras)
                 while True:
                     ev_menu_letras, vals_menu_letras = ventana_menu_letras.read()
-
+                    print(conf.getConfiguracionLetras())
+                    # print(letras)
+                    # print(vals_menu_letras)
+                    if ev_menu_letras == sg.WIN_CLOSED  or ev_menu_letras == 'Aplicar':
+                        conf.configurar_letras(vals_menu_letras)
+                        print('cambios realizados')
+                        print(conf.getConfiguracionLetras())
+                        ventana_menu_letras.close()
+                        ventana_menu_letras_active = False
+                        ventana_menu_configuracion.UnHide()
+                        break
                     if ev_menu_letras == sg.WIN_CLOSED  or ev_menu_letras == 'Salir':
                         ventana_menu_letras.close()
                         ventana_menu_letras_active = False
