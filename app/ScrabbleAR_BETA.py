@@ -21,7 +21,7 @@ layout = [[ sg.Text('Window 1'),],
 #================================== CREO EL LAYOUT PARA LA VENTANA INICIAL ==========================================================================
 layout_ventana_principal = [
             [sg.Image(r'app/images/scrabble_logo508x214.png', size=(1000, 300), pad=((0,0),(200,0)), background_color='#00796B')],
-            [sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/play.png', image_size=(256, 256), key='LOGO', image_subsample=2, border_width=0,pad=((110,0),(0,100))), 
+            [sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/play.png', image_size=(256, 256), key='JUGAR', image_subsample=2, border_width=0,pad=((110,0),(0,100))), 
             sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/star.png', image_size=(256, 256), key='RANKING', image_subsample=2, border_width=0,pad=((0,0),(0,100))), 
             sg.Button(button_color=(sg.theme_background_color(), sg.theme_background_color()), image_filename='app/images/configuracion.png', image_size=(256, 256), key='CONFIGURACION', image_subsample=2, border_width=0,pad=((0,0),(0,100)))]
          ]
@@ -35,6 +35,9 @@ while True:
     if ev_ventana_inicial == sg.WIN_CLOSED:
         break
     # ventana_inicial.FindElement('-OUTPUT-').update(vals_ventana_inicial[0])
+    if ev_ventana_inicial == 'JUGAR':
+        ventana_inicial.close()
+        main_game(conf.get_tablero_elegido())
 
     if ev_ventana_inicial == 'CONFIGURACION'  and not ventana_menu_configuracion_active:
         ventana_menu_configuracion_active = True
