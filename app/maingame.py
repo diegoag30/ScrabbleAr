@@ -452,7 +452,52 @@ def main_game(num_tablero):
 		print(initial_atril)
 							
 
+	def PasarTurno(initial_atril):
+		if len(listadoPosicionLetrasTablero)>0:
+			
 
+				
+			for i in range(0,len(listadoPosicionLetrasTablero)):
+				piece_image = images['BLANK']
+				img=piece_image['imagen']
+				boardConfig[listadoPosicionLetrasTablero[i][0]][listadoPosicionLetrasTablero[i][1]].set_estado(False)
+				#color=boardConfig[listadoPosicionLetrasTablero[cont][0][listadoPosicionLetrasTablero[cont][1]].get_color()
+				color=boardConfig[listadoPosicionLetrasTablero[i][0]][listadoPosicionLetrasTablero[i][1]].get_color()
+				if color == 'violet':
+					piece_image=os.path.join(base_path,'images/corona.png')
+					window[listadoPosicionLetrasTablero[i]].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','white'))
+				else:
+					window[listadoPosicionLetrasTablero[i]].update(image_filename=img, image_size= tamaño_img ,button_color=('white','white'))				
+							
+		print(initial_atril,'xxx inicio')
+		initial_atril2=[]
+		random.shuffle(images_keys,random.random)
+		# PC.atrilPalabrasValidas(images_keys,initial_atril2)				
+		#initial_atril2=['H','O','L','A','G','I','L']
+		# print(initial_atril2)
+		# initial_atril2=[]
+		PC.atrilPalabrasValidas(images_keys,initial_atril2)
+		initial_atril=[]
+		print(initial_atril2,'xxxx2')
+		print(initial_atril,'xxxx1')
+		#initial_atril2=[]
+		print(initial_atril2,'xxxx2')
+		
+		initial_atril=initial_atril2[:]
+		print(initial_atril,'Final')
+		# for i in range(7): ##cambiar i
+			# initial_atril[i]=initial_atril[2]
+		for i in range(7):
+			#window[i].update(initial_atril[i])
+			piece_image = images[initial_atril[i]]
+							
+##### blanquear tablero
+			img=piece_image['imagen']
+
+			window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))				
+				
+							
+		return initial_atril			
 
 
 
@@ -813,22 +858,40 @@ def main_game(num_tablero):
 						
 					if button =='PASAR':
 						cantPasadas=cantPasadas+1
+						controlAt=[7,7,0,0]
 						if cantPasadas<4:
-					
-							initial_atril=[]
-							for i in range(0,7): ##cambiar i
-								initial_atril.append(random.choice(images_keys))
-							for i in range(7):
-								#window[i].update(initial_atril[i])
-								piece_image = images[initial_atril[i]]
+							initial_atril=PasarTurno(initial_atril)
+							#####################################
+							# print(initial_atril,'xxx inicio')
+							# initial_atril2=[]
+							# random.shuffle(images_keys,random.random)
+							# # PC.atrilPalabrasValidas(images_keys,initial_atril2)				
+							# #initial_atril2=['H','O','L','A','G','I','L']
+							# # print(initial_atril2)
+							# # initial_atril2=[]
+							# PC.atrilPalabrasValidas(images_keys,initial_atril2)
+							# initial_atril=[]
+							# print(initial_atril2,'xxxx2')
+							# print(initial_atril,'xxxx1')
+							# #initial_atril2=[]
+							# print(initial_atril2,'xxxx2')
+							
+							# initial_atril=initial_atril2[:]
+							# print(initial_atril)
+							# # for i in range(7): ##cambiar i
+								# # initial_atril[i]=initial_atril[2]
+							# for i in range(7):
+								# #window[i].update(initial_atril[i])
+								# piece_image = images[initial_atril[i]]
 												
-								img=piece_image['imagen']
+					# ##### blanquear tablero
+								# img=piece_image['imagen']
 			
-								window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
-					##### blanquear tablero
+								# window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
+	######################################				
 					
-					
-							actulizarTablero(opc)
+							#actulizarTablero(opc)
+							
 							listadoPosicionLetrasAtril=[]
 							listadoPosicionLetrasTablero=[]
 							# for i in range(15):
@@ -838,20 +901,22 @@ def main_game(num_tablero):
 									# color=boardConfig[i][j].get_color()
 									# BorrarTablero1(color)
 							#Actualizacion bolsa
-							
+							bolsa.sacar_fichas(7)
+							window.FindElement('bolsa_fichas').update(str(bolsa.get_fichas_restantes()))
 							###	
-							PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys)							
+							PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys)
+														
 						else:
 							sg.Popup('se supero la cantidad de pasadas')
 						cant=4
 						T1=True
 						T2=True
-						T3=True
+						#T3=True
+						T4=True
 						palabra=['']
 						listado=[]
 						listadoPosicionLetrasAtril=[]
 						listadoPosicionLetrasTablero=[]						
-						actualizar_listado(window.FindElement('datosj'))
 			
 						
 							
@@ -988,12 +1053,12 @@ def main_game(num_tablero):
 			listadoPosicionLetrasAtril=[]
 			listadoPosicionLetrasTablero=[]
 			initial_atril2=[]			
-			
+			cantPasadas=0
 			actualizar_listado(window.FindElement('datosj'))
 			actualizar_listado(window.FindElement('datosm'))
 			controlAt=[7,7,0,0]	
 			#window['COMENZAR'].update( button_color=('white','green'))		
-			
+			bolsa = Bolsa(conf.getConfiguracionLetras())
 			
 						
 					
