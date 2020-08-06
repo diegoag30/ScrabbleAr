@@ -8,20 +8,21 @@ def clasificarPalabraPattern(palabra):
     (sustantivo(NN), adjetivo(JJ) o verbo(VB)).
     '''
     s = parse(palabra.lower()).split()
+    print(s)
     try:
         for cada in s:
             for i in cada:
                 if i[1] == 'VB':
                     tipo_palabra = 'VB'
                     return tipo_palabra
-                elif i[1] == 'NN':
+                if i[1] == 'NN':
                     tipo_palabra = 'NN'
                     return tipo_palabra
-                elif i[1] == 'JJ':
+                if i[1] == 'JJ':
                     tipo_palabra = 'JJ'
                     return tipo_palabra
     except(AttributeError):
-        return 'No se pudo clasificar'
+        return False
 
 
 #Esto lo tengo de prueba para algo a futuro
@@ -94,7 +95,7 @@ if __name__ == "__main__":
     #======================PRUEBAS======================
     # nivel = 'dificil'
     # nivel = 'normal'
-    palabra = 'casa'
+    palabra = 'casa perro bicicleta jarra zxczx'
     print(comprobarPalabraEnBaseAlNivel(palabra))
     
 

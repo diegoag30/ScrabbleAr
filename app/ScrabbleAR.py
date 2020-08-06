@@ -28,7 +28,8 @@ while True:
     if event == 'RANKING':
         mejores_puntajes.create_ui()
     if event == 'LOGO':
-        window.close(); del window
+        # window.close(); del window
+        window.Disappear()
         main_game(conf.get_tablero_elegido())
     if event == 'CONFIGURACION':
         window.Disappear()
@@ -47,7 +48,9 @@ while True:
                 # print(conf.getConfiguracionesSeleccionadas())
                 # event, values = window.read()
                 # print(event, values)
-                ventana_configuracion.close()
+
+                # ventana_configuracion.close()
+                ventana_configuracion.Disappear()
                 window.reappear()
                 break
             if event == 'Configurar letras':

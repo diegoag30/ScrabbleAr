@@ -101,7 +101,7 @@ class Configuracion():
 
         self._configuraciones_seleccionadas = {
             'tiempo':'dificil',
-            'dificultad':'facil',
+            'dificultad':'normal',
             'tablero':1
             }      
         
