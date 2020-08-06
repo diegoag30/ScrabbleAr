@@ -850,11 +850,7 @@ def main_game(num_tablero, configuracion):
 								
 								#print(palabra[0])
 								sg.Popup('PALABRA FORMADA : ' ,palabra)
-<<<<<<< HEAD
 								print(clasificar.comprobarPalabraEnBaseAlNivel(palabra[0], conf))
-=======
-								#print(clasificar.comprobarPalabraEnBaseAlNivel(palabra[0]))
->>>>>>> bolsa se actualiza al pasar turno
 								#palabra[0]=''
 								T2= True
 								T1=True
@@ -902,37 +898,6 @@ def main_game(num_tablero, configuracion):
 						cantPasadas=cantPasadas+1
 						controlAt=[7,7,0,0]
 						if cantPasadas<4:
-<<<<<<< HEAD
-							initial_atril=PasarTurno(initial_atril)
-							#####################################
-							# print(initial_atril,'xxx inicio')
-							# initial_atril2=[]
-							# random.shuffle(images_keys,random.random)
-							# # PC.atrilPalabrasValidas(images_keys,initial_atril2)				
-							# #initial_atril2=['H','O','L','A','G','I','L']
-							# # print(initial_atril2)
-							# # initial_atril2=[]
-							# PC.atrilPalabrasValidas(images_keys,initial_atril2)
-							# initial_atril=[]
-							# print(initial_atril2,'xxxx2')
-							# print(initial_atril,'xxxx1')
-							# #initial_atril2=[]
-							# print(initial_atril2,'xxxx2')
-							
-							# initial_atril=initial_atril2[:]
-							# print(initial_atril)
-							# # for i in range(7): ##cambiar i
-								# # initial_atril[i]=initial_atril[2]
-							# for i in range(7):
-								# #window[i].update(initial_atril[i])
-								# piece_image = images[initial_atril[i]]
-												
-					# ##### blanquear tablero
-								# img=piece_image['imagen']
-			
-								# window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
-	######################################				
-=======
 					
 							initial_atril=[]
 							for i in range(0,7): ##cambiar i
@@ -956,7 +921,6 @@ def main_game(num_tablero, configuracion):
 								img=piece_image['imagen']
 								window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
 					##### blanquear tablero
->>>>>>> bolsa se actualiza al pasar turno
 					
 							#actulizarTablero(opc)
 							
@@ -984,12 +948,8 @@ def main_game(num_tablero, configuracion):
 						listado=[]
 						listadoPosicionLetrasAtril=[]
 						listadoPosicionLetrasTablero=[]						
-<<<<<<< HEAD
-			
-=======
 						actualizar_listado(window.FindElement('datosj'))
 
->>>>>>> bolsa se actualiza al pasar turno
 						
 							
 					if type(button) is int:
