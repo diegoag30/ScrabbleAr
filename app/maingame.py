@@ -807,7 +807,7 @@ def main_game(num_tablero, configuracion):
                                                                   (current_time // 100) % 60,
                                                                   current_time % 100),background_color=('red'))
 					if conf.getConfiguracionesSeleccionadas()['tiempo'] == 'minimo':
-						if (current_time // 100) // 60 == 1:
+						if (current_time // 100) // 60 == 5:
 							print('=============================================5 MINUTOS====================================')
 							print('=============================================5 MINUTOS====================================')
 							print('=============================================5 MINUTOS====================================')
