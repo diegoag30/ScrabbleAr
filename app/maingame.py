@@ -807,12 +807,13 @@ def main_game(num_tablero, configuracion):
                                                                   (current_time // 100) % 60,
                                                                   current_time % 100),background_color=('red'))
 					if conf.getConfiguracionesSeleccionadas()['tiempo'] == 'minimo':
-						if (current_time // 100) // 60 == 5:
+						if (current_time // 100) // 60 == 1:
 							print('=============================================5 MINUTOS====================================')
 							print('=============================================5 MINUTOS====================================')
 							print('=============================================5 MINUTOS====================================')
 							print('=============================================5 MINUTOS====================================')
 							sg.Popup('SE ACABO EL TIEMPO!!!')
+							window.close()
 					
 					if conf.getConfiguracionesSeleccionadas()['tiempo'] == 'medio':
 						if (current_time // 100) // 60 == 15:
@@ -820,7 +821,8 @@ def main_game(num_tablero, configuracion):
 							print('=============================================15 MINUTOS====================================')
 							print('=============================================15 MINUTOS====================================')
 							print('=============================================15 MINUTOS====================================')
-							sg.Popup('SE ACABO EL TIEMPO!!!O')
+							sg.Popup('SE ACABO EL TIEMPO!!!')
+							window.close()
 
 					if conf.getConfiguracionesSeleccionadas()['tiempo'] == 'maximo':
 						if (current_time // 100) // 60 == 30:
@@ -829,6 +831,7 @@ def main_game(num_tablero, configuracion):
 							print('=============================================30 MINUTOS====================================')
 							print('=============================================30 MINUTOS====================================')
 							sg.Popup('SE ACABO EL TIEMPO!!!')
+							window.close()
 
 					puntosP=0
 					puntosL=0
