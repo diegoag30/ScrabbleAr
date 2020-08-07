@@ -387,20 +387,7 @@ def main_game(num_tablero, configuracion):
 			initial_atril[i]='' ## relacionar con la bolsa
 			listadoPosicionLetrasAtril.append(i)
 			boardConfig[button[0]][button[1]].set_estado(True)
-	
-			if boardConfig[button[0]][button[1]].get_tipo() =='L':
-				
-				#puntosL=boardConfig1[button[0]][button[1]].get_valor()
-				#puntosl='puntos PxP'+str(puntosL)
-				listado.append('LetraX'+str(boardConfig[button[0]][button[1]].get_valor()))
-				### crear una lista que para los puntos por letra que despues los multiplicamos lor el valor de las letra
-				
-			
-			elif boardConfig[button[0]][button[1]].get_tipo() =='P':
-				#puntosP=boardConfig1[button[0]][button[1]].get_valor()
-				listado.append('PalabraX'+str(boardConfig[button[0]][button[1]].get_valor()))
-				
-				### crear una lista que para los puntos por palabra que despues los multiplicamos lor el valor de letra
+
 			
 		
 
@@ -852,6 +839,7 @@ def main_game(num_tablero, configuracion):
 	window.Finalize()
 	inicio=time.time()
 	iniciar=True
+	puntaje_jugador = 0
 	
 
 	while ((True and iniciar)and (not bolsa.bolsa_vacia())):
@@ -956,6 +944,8 @@ def main_game(num_tablero, configuracion):
 						# wait2=True
 						# break
 					if button == 'CHECK':
+						p = ""
+						p = p.join(palabra)
 						j
 						if palabra == '':
 							sg.Popup('todavia no formo una palabra')
@@ -966,6 +956,7 @@ def main_game(num_tablero, configuracion):
 								#print(palabra[0])
 								sg.Popup('PALABRA FORMADA : ' ,palabra)
 								print(clasificar.comprobarPalabraEnBaseAlNivel(palabra[0], conf))
+
 								#palabra[0]=''
 								T2= True
 								T1=True
@@ -982,7 +973,13 @@ def main_game(num_tablero, configuracion):
 									actualizarAtrilJugador()
 									wait2=True
 								listadoPosicionLetrasAtril=[]
-								listadoPosicionLetrasTablero=[]								
+								listadoPosicionLetrasTablero=[]
+								### se agrega el puntaje a la lista
+								listado.append(p + " " + str(bolsa.calcular_puntos(p)) + " Puntos")
+								actualizar_listado(window.FindElement('datosj'))
+								puntaje_jugador = puntaje_jugador + bolsa.calcular_puntos(p) 
+								print(puntaje_jugador)
+								#####
 								break
 							else:
 								sg.Popup('PALABRA INVALIDA')
@@ -999,7 +996,8 @@ def main_game(num_tablero, configuracion):
 						# if len(word)>= 2 and len(word) <=7:
 						elif len(palabra[0])<2:
 							sg.Popup('la palabra es menor de 2')
-							#break							
+							#break
+													
 
 
 										
