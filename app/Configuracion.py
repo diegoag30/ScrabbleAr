@@ -196,56 +196,190 @@ class Configuracion():
 
     def configurar_letras(self, diccionario):
         #modifico la cantidad de letras en base a lo ingresado en el input del menu de configurar letras
-        self._configuracion_letras['A']['cant']=diccionario['cantA']
-        self._configuracion_letras['B']['cant']=diccionario['cantB']
-        self._configuracion_letras['C']['cant']=diccionario['cantC']
-        self._configuracion_letras['D']['cant']=diccionario['cantD']
-        self._configuracion_letras['E']['cant']=diccionario['cantE']
-        self._configuracion_letras['F']['cant']=diccionario['cantF']
-        self._configuracion_letras['G']['cant']=diccionario['cantG']
-        self._configuracion_letras['H']['cant']=diccionario['cantH']
-        self._configuracion_letras['I']['cant']=diccionario['cantI']
-        self._configuracion_letras['J']['cant']=diccionario['cantJ']
-        self._configuracion_letras['K']['cant']=diccionario['cantK']
-        self._configuracion_letras['L']['cant']=diccionario['cantL']
-        self._configuracion_letras['M']['cant']=diccionario['cantM']
-        self._configuracion_letras['N']['cant']=diccionario['cantN']
-        self._configuracion_letras['O']['cant']=diccionario['cantO']
-        self._configuracion_letras['P']['cant']=diccionario['cantP']
-        self._configuracion_letras['Q']['cant']=diccionario['cantQ']
-        self._configuracion_letras['R']['cant']=diccionario['cantR']
-        self._configuracion_letras['S']['cant']=diccionario['cantS']
-        self._configuracion_letras['T']['cant']=diccionario['cantT']
-        self._configuracion_letras['U']['cant']=diccionario['cantU']
-        self._configuracion_letras['V']['cant']=diccionario['cantV']
-        self._configuracion_letras['W']['cant']=diccionario['cantW']
-        self._configuracion_letras['X']['cant']=diccionario['cantX']
-        self._configuracion_letras['Y']['cant']=diccionario['cantY']
-        self._configuracion_letras['Z']['cant']=diccionario['cantZ']     
+        if diccionario['cantA'] != '0' and diccionario['cantA'] != '':
+            self._configuracion_letras['A']['cant']=int(diccionario['cantA'])
+        else:
+            print('no pueder ser 0 o campo vacio')
+        
+        if diccionario['cantB'] != '0' and diccionario['cantB'] != '':
+            self._configuracion_letras['B']['cant']=int(diccionario['cantB'])
+
+        if diccionario['cantB'] != '0' and diccionario['cantC'] != '':
+            self._configuracion_letras['C']['cant']=int(diccionario['cantC'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantD'] != '':
+            self._configuracion_letras['D']['cant']=int(diccionario['cantD'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantE'] != '':
+            self._configuracion_letras['E']['cant']=int(diccionario['cantE'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantF'] != '':
+            self._configuracion_letras['F']['cant']=int(diccionario['cantF'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantG'] != '':
+            self._configuracion_letras['G']['cant']=int(diccionario['cantG'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantH'] != '':
+            self._configuracion_letras['H']['cant']=int(diccionario['cantH'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantI'] != '':
+            self._configuracion_letras['I']['cant']=int(diccionario['cantI'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantJ'] != '':
+            self._configuracion_letras['J']['cant']=int(diccionario['cantJ'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantK'] != '':
+            self._configuracion_letras['K']['cant']=int(diccionario['cantK'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantL'] != '':
+            self._configuracion_letras['L']['cant']=int(diccionario['cantL'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantM'] != '':
+            self._configuracion_letras['M']['cant']=int(diccionario['cantM'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantN'] != '':
+            self._configuracion_letras['N']['cant']=int(diccionario['cantN'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantO'] != '':
+            self._configuracion_letras['O']['cant']=int(diccionario['cantO'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantP'] != '':
+            self._configuracion_letras['P']['cant']=int(diccionario['cantP'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantQ'] != '':
+            self._configuracion_letras['Q']['cant']=int(diccionario['cantQ'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantR'] != '':
+            self._configuracion_letras['R']['cant']=int(diccionario['cantR'])
+            
+        if diccionario['cantA'] != '0' and diccionario['cantS'] != '':
+            self._configuracion_letras['S']['cant']=int(diccionario['cantS'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantT'] != '':
+            self._configuracion_letras['T']['cant']=int(diccionario['cantT'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantU'] != '':
+            self._configuracion_letras['U']['cant']=int(diccionario['cantU'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantV'] != '':
+            self._configuracion_letras['V']['cant']=int(diccionario['cantV'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantW'] != '':
+            self._configuracion_letras['W']['cant']=int(diccionario['cantW'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantX'] != '':
+            self._configuracion_letras['X']['cant']=int(diccionario['cantX'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantY'] != '':
+            self._configuracion_letras['Y']['cant']=int(diccionario['cantY'])
+
+        if diccionario['cantA'] != '0' and diccionario['cantZ'] != '':
+            self._configuracion_letras['Z']['cant']=int(diccionario['cantZ'])
+
+        # self._configuracion_letras['C']['cant']=diccionario['cantC']
+        # self._configuracion_letras['D']['cant']=diccionario['cantD']
+        # self._configuracion_letras['E']['cant']=diccionario['cantE']
+        # self._configuracion_letras['F']['cant']=diccionario['cantF']
+        # self._configuracion_letras['G']['cant']=diccionario['cantG']
+        # self._configuracion_letras['H']['cant']=diccionario['cantH']
+        # self._configuracion_letras['I']['cant']=diccionario['cantI']
+        # self._configuracion_letras['J']['cant']=diccionario['cantJ']
+        # self._configuracion_letras['K']['cant']=diccionario['cantK']
+        # self._configuracion_letras['L']['cant']=diccionario['cantL']
+        # self._configuracion_letras['M']['cant']=diccionario['cantM']
+        # self._configuracion_letras['N']['cant']=diccionario['cantN']
+        # self._configuracion_letras['O']['cant']=diccionario['cantO']
+        # self._configuracion_letras['P']['cant']=diccionario['cantP']
+        # self._configuracion_letras['Q']['cant']=diccionario['cantQ']
+        # self._configuracion_letras['R']['cant']=diccionario['cantR']
+        # self._configuracion_letras['S']['cant']=diccionario['cantS']
+        # self._configuracion_letras['T']['cant']=diccionario['cantT']
+        # self._configuracion_letras['U']['cant']=diccionario['cantU']
+        # self._configuracion_letras['V']['cant']=diccionario['cantV']
+        # self._configuracion_letras['W']['cant']=diccionario['cantW']
+        # self._configuracion_letras['X']['cant']=diccionario['cantX']
+        # self._configuracion_letras['Y']['cant']=diccionario['cantY']
+        # self._configuracion_letras['Z']['cant']=diccionario['cantZ']
+         
+        if diccionario['valA'] != '0' and diccionario['cantA'] != '':
+            self._configuracion_letras['A']['val']=int(diccionario['valA'])
+        if diccionario['valB'] != '0' and diccionario['cantB'] != '':
+            self._configuracion_letras['B']['val']=int(diccionario['valB'])
+        if diccionario['valC'] != '0' and diccionario['cantC'] != '':
+            self._configuracion_letras['C']['val']=int(diccionario['valC'])
+        if diccionario['valD'] != '0' and diccionario['cantD'] != '':
+            self._configuracion_letras['D']['val']=int(diccionario['valD'])
+        if diccionario['valE'] != '0' and diccionario['cantE'] != '':
+            self._configuracion_letras['E']['val']=int(diccionario['valE'])
+        if diccionario['valF'] != '0' and diccionario['cantF'] != '':
+            self._configuracion_letras['F']['val']=int(diccionario['valF'])
+        if diccionario['valG'] != '0' and diccionario['cantG'] != '':
+            self._configuracion_letras['G']['val']=int(diccionario['valG'])
+        if diccionario['valH'] != '0' and diccionario['cantH'] != '':
+            self._configuracion_letras['H']['val']=int(diccionario['valH'])
+        if diccionario['valI'] != '0' and diccionario['cantI'] != '':
+            self._configuracion_letras['I']['val']=int(diccionario['valI'])
+        if diccionario['valJ'] != '0' and diccionario['cantJ'] != '':
+            self._configuracion_letras['J']['val']=int(diccionario['valJ'])
+        if diccionario['valK'] != '0' and diccionario['cantK'] != '':
+            self._configuracion_letras['K']['val']=int(diccionario['valK'])
+        if diccionario['valL'] != '0' and diccionario['cantL'] != '':
+            self._configuracion_letras['L']['val']=int(diccionario['valL'])
+        if diccionario['valM'] != '0' and diccionario['cantM'] != '':
+            self._configuracion_letras['M']['val']=int(diccionario['valM'])
+        if diccionario['valN'] != '0' and diccionario['cantN'] != '':
+            self._configuracion_letras['N']['val']=int(diccionario['valN'])
+        if diccionario['valO'] != '0' and diccionario['cantO'] != '':
+            self._configuracion_letras['O']['val']=int(diccionario['valO'])
+        if diccionario['valP'] != '0' and diccionario['cantP'] != '':
+            self._configuracion_letras['P']['val']=int(diccionario['valP'])
+        if diccionario['valQ'] != '0' and diccionario['cantQ'] != '':
+            self._configuracion_letras['Q']['val']=int(diccionario['valQ'])
+        if diccionario['valR'] != '0' and diccionario['cantR'] != '':
+            self._configuracion_letras['R']['val']=int(diccionario['valR'])
+        if diccionario['valS'] != '0' and diccionario['cantS'] != '':
+            self._configuracion_letras['S']['val']=int(diccionario['valS'])
+        if diccionario['valT'] != '0' and diccionario['cantT'] != '':
+            self._configuracion_letras['T']['val']=int(diccionario['valT'])
+        if diccionario['valU'] != '0' and diccionario['cantU'] != '':
+            self._configuracion_letras['U']['val']=int(diccionario['valU'])
+        if diccionario['valV'] != '0' and diccionario['cantV'] != '':
+            self._configuracion_letras['V']['val']=int(diccionario['valV'])
+        if diccionario['valW'] != '0' and diccionario['cantW'] != '':
+            self._configuracion_letras['W']['val']=int(diccionario['valW'])
+        if diccionario['valX'] != '0' and diccionario['cantX'] != '':
+            self._configuracion_letras['X']['val']=int(diccionario['valX'])
+        if diccionario['valY'] != '0' and diccionario['cantY'] != '':
+            self._configuracion_letras['Y']['val']=int(diccionario['valY'])
+        if diccionario['valZ'] != '0' and diccionario['cantZ'] != '':
+            self._configuracion_letras['Z']['val']=int(diccionario['valZ'])
+
+
+
         #modifico el valor del puntaje de las letras en base a lo ingresado en el input del menu de configurar letras
-        self._configuracion_letras['A']['val']=diccionario['valA']
-        self._configuracion_letras['B']['val']=diccionario['valB']
-        self._configuracion_letras['C']['val']=diccionario['valC']
-        self._configuracion_letras['D']['val']=diccionario['valD']
-        self._configuracion_letras['E']['val']=diccionario['valE']
-        self._configuracion_letras['F']['val']=diccionario['valF']
-        self._configuracion_letras['G']['val']=diccionario['valG']
-        self._configuracion_letras['H']['val']=diccionario['valH']
-        self._configuracion_letras['I']['val']=diccionario['valI']
-        self._configuracion_letras['J']['val']=diccionario['valJ']
-        self._configuracion_letras['K']['val']=diccionario['valK']
-        self._configuracion_letras['L']['val']=diccionario['valL']
-        self._configuracion_letras['M']['val']=diccionario['valM']
-        self._configuracion_letras['N']['val']=diccionario['valN']
-        self._configuracion_letras['O']['val']=diccionario['valO']
-        self._configuracion_letras['P']['val']=diccionario['valP']
-        self._configuracion_letras['Q']['val']=diccionario['valQ']
-        self._configuracion_letras['R']['val']=diccionario['valR']
-        self._configuracion_letras['S']['val']=diccionario['valS']
-        self._configuracion_letras['T']['val']=diccionario['valT']
-        self._configuracion_letras['U']['val']=diccionario['valU']
-        self._configuracion_letras['V']['val']=diccionario['valV']
-        self._configuracion_letras['W']['val']=diccionario['valW']
-        self._configuracion_letras['X']['val']=diccionario['valX']
-        self._configuracion_letras['Y']['val']=diccionario['valY']
-        self._configuracion_letras['Z']['val']=diccionario['valZ']
+        # self._configuracion_letras['A']['val']=diccionario['valA']
+        # self._configuracion_letras['B']['val']=diccionario['valB']
+        # self._configuracion_letras['C']['val']=diccionario['valC']
+        # self._configuracion_letras['D']['val']=diccionario['valD']
+        # self._configuracion_letras['E']['val']=diccionario['valE']
+        # self._configuracion_letras['F']['val']=diccionario['valF']
+        # self._configuracion_letras['G']['val']=diccionario['valG']
+        # self._configuracion_letras['H']['val']=diccionario['valH']
+        # self._configuracion_letras['I']['val']=diccionario['valI']
+        # self._configuracion_letras['J']['val']=diccionario['valJ']
+        # self._configuracion_letras['K']['val']=diccionario['valK']
+        # self._configuracion_letras['L']['val']=diccionario['valL']
+        # self._configuracion_letras['M']['val']=diccionario['valM']
+        # self._configuracion_letras['N']['val']=diccionario['valN']
+        # self._configuracion_letras['O']['val']=diccionario['valO']
+        # self._configuracion_letras['P']['val']=diccionario['valP']
+        # self._configuracion_letras['Q']['val']=diccionario['valQ']
+        # self._configuracion_letras['R']['val']=diccionario['valR']
+        # self._configuracion_letras['S']['val']=diccionario['valS']
+        # self._configuracion_letras['T']['val']=diccionario['valT']
+        # self._configuracion_letras['U']['val']=diccionario['valU']
+        # self._configuracion_letras['V']['val']=diccionario['valV']
+        # self._configuracion_letras['W']['val']=diccionario['valW']
+        # self._configuracion_letras['X']['val']=diccionario['valX']
+        # self._configuracion_letras['Y']['val']=diccionario['valY']
+        # self._configuracion_letras['Z']['val']=diccionario['valZ']
