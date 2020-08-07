@@ -4,4 +4,6 @@ Integrantes del grupo:
 - Cristian Torrez
 
 La aplicacion se ejecuta desde el archivo llamado ScrabbleAR.py que esta en la carpeta app.
+se usaron recursos libres para las imagenes del tablero 
+dichas imagenes se usaron de icon8.es
 
