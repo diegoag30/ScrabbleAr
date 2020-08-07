@@ -555,10 +555,12 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images
 		# T=True
 		while cont!=cont2 and T:
 			
-			if clasificar.comprobarPalabraEnBaseAlNivel(listaPalabras[cont2], conf):
+			if clasificar.comprobarPalabraEnBaseAlNivel(listaPalabras[cont2]):
 				print(listaPalabras[cont2])
 				T=False
 				IA(listaPalabras[cont2])
+				fichasIA=list(listaPalabras[cont2])
+				print('fichas',fichasIA)
 			
 					
 					
@@ -567,11 +569,11 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images
 			
 			
 			if cont==cont2:
-				cont3=cont3-1
-			
+				cont3=cont3-1			
 	if cont3<2:
 		#sg.Popup('LA IA NO PUDO FORMAR UNA PALABRA VALIDA ')
-		print('LA IA NO PUDO FORMAR UNA PALABRA VALIDA ')		
+		print('LA IA NO PUDO FORMAR UNA PALABRA VALIDA ')
+		fichasIA=[]
 	
 	
 	
