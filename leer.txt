@@ -1,9 +1,9 @@
 Integrantes del grupo:
 - Gomez Brian Agustin
 - Diego Pablo Aguilar Garcia
-- Cristian Torrez
+- Torrez Cristian
 
 La aplicacion se ejecuta desde el archivo llamado ScrabbleAR.py que esta en la carpeta app.
-se usaron recursos libres para las imagenes del tablero 
-dichas imagenes se usaron de icon8.es
+Se usaron recursos libres para las imagenes del tablero.
+Dichas imagenes se usaron de icon8.es,freepik.es,unsplash.com y diseños propios.
 
