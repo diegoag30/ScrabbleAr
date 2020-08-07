@@ -63,11 +63,16 @@ class Bolsa():
         if letra in self._fichas.keys():
             return self._fichas[letra]["cant"]
 
-"""
+    def calcular_puntos(self,palabra):
+        puntaje = 0
+        for letra in palabra:
+            puntaje = puntaje + self.get_fichas()[letra]["val"]
+        return puntaje
+            
+
+
+
 conf = Configuracion()
 bolsa = Bolsa(conf.getConfiguracionLetras())
-bolsa.quitar_fichas("A",15)
-print(bolsa.cant_letras("A"))
-bolsa.check_bolsa_vacia()
-print(bolsa.bolsa_vacia())
-"""
+print(bolsa.calcular_puntos("HOLA"))
+
