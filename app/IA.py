@@ -10,16 +10,13 @@ from pattern.es import singularize , pluralize, conjugate , INFINITIVE , PRESENT
 import os.path
 base_path=os.path.dirname(os.path.abspath(__file__))
 clasificar=clasificarPalabra
-
+'''
+ genera un conjunto de palabras validas para que el jugador pueda ingresarlas en el tablero 
+'''
 def atrilPalabrasValidas(images_keys,initial_atril2,configuracion):
 	
 
-	#random.shuffle(images_keys2,random.random)
-	# for i in range(0,len(images_keys)):
-		# images_keys2[i]=random.choice(images_keys)
-		# # images_keys2[i].append(random.choice(images_keys))
-		
-	#initial_atril2=[]	
+
 	atril2=''
 	listaPalabras=[]
 	cont3=3
@@ -70,11 +67,21 @@ def atrilPalabrasValidas(images_keys,initial_atril2,configuracion):
 		initial_atril2.append(i)		
 	print('PALABRA PARA EL JUGADOR',initial_atril2)
 	
-	#random.shuffle(initial_atril2,random.random)
+'''
+.
+'''
+"""  esta funcion es la encargada de manejar todas las funciones necesarias para generar la IA  .
+"""
 
 def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys,configuracion, fichasIA):
 	conf = configuracion
-		
+	""" 
+	  la funcion gestiona la  orientacion y los lugares donde pueden agregar las palabras dentro del tablero
+	  la IA toma una orientacion principal de manera random para una partida
+	  si no puede ingresar una palabra en dicha orientacion cambia a otra orientacion (de vertical a horizontal si vertical fuera la principal) , si no se puede agregar la palabra con ninguna de las orientaciones 
+	  se avanza en 1 en la orientacion principal
+	  
+	."""		
 	def IA(initial_atril2):
 		#clasificar=clasificarPalabra
 
@@ -84,13 +91,15 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images
 			listbox.Update(listadoPc)		
 		
 		
-            # piece_image = images[initial_atril[i]]
-			# img=piece_image['imagen']
-			# window[button].update(image_filename=img, image_size= tamaño_img ,button_color=('white','grey'))
 		if controlAt[0]>7 or controlAt[1]>7:
 			controlAt[0]=random.randint(0,13)
 			controlAt[1]=random.randint(0,13)
 		tamaño_img=(50,50)
+		
+		"""
+		 recorre el tablero de forma horizontal hasta encontrar posiciones donde puede ingresar una palabra
+		.""" 		
+		
 		def horizontal():
 			T=True;
 			while T and controlAt[0]<15 :
@@ -114,10 +123,9 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images
 							cont=1
 							if boardConfig[controlAt[0]][controlAt[1]].get_tipo() =='L':
 								
-								#puntosL=boardConfig1[button[0]][button[1]].get_valor()
-								#puntosl='puntos PxP'+str(puntosL)
+							
 								listadoPc.append('LetraX'+str(boardConfig[controlAt[0]][controlAt[1]].get_valor()))
-								### crear una lista que para los puntos por letra que despues los multiplicamos lor el valor de las letra
+								
 								
 							
 							elif boardConfig[controlAt[0]][controlAt[1]].get_tipo() =='P':
@@ -160,8 +168,7 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images
 									cont=1
 									if boardConfig[controlAt[0]][controlAt[1]].get_tipo() =='L':
 										
-										#puntosL=boardConfig1[button[0]][button[1]].get_valor()
-										#puntosl='puntos PxP'+str(puntosL)
+									
 										listadoPc.append('LetraX'+str(boardConfig[controlAt[0]][controlAt[1]].get_valor()))
 										### crear una lista que para los puntos por letra que despues los multiplicamos lor el valor de las letra
 										
@@ -266,7 +273,9 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images
 			if(controlAt[0]==15):
 				print('final')
 				print(controlAt)
-									
+		"""
+		 recorre el tablero de forma vertical hasta encontrar posiciones donde puede ingresar una palabra
+		."""  										
 	
 		def vertical():
 			T=True;
@@ -448,26 +457,7 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images
 				print(controlAt)
 				#VF[0]=False	
 	
-		# D=random.randint(0,2)
-		
-		# if D==0:
-			# initial_atril2=['h','o','l','a']
-		# elif D==1:
-			# initial_atril2=['c','o','m','o']
-		# else:
-			# initial_atril2=['e','s','t','a','n']
-		# if VF[1]==0:
-			# VF[1]=VF[1]+1
-			# opc=random.randint(0,1)
-			# VF[2]=opc
-		# if VF[1]==1:
-			# if (VF[2]==0):
-				# print('VERTICAL')
-				# vertical()
-			# else:
-				# print('HORIZONTAL')
-				# horizontal()
-	#######
+
 		if controlAt[2]==0:
 			controlAt[2]=controlAt[2]+1
 			opc=random.randint(0,1)
@@ -479,64 +469,20 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images
 			else:
 				print('HORIZONTAL')
 				horizontal()
-	def comprobarPalabra(palabra):
-		#ll[0]='zzzzz'
-		T=False
-	
-		if not palabra.lower() in verbs:
-			
-			if not palabra.lower() in spelling:
-				
-				
-				if (not(palabra.lower() in lexicon) and not(palabra.upper() in lexicon) and not(palabra.capitalize() in lexicon)):
-					
-				#print('no existe la palabra')
-					#sg.Popup('la palabra no existe')
-					T=False
-				else:
-					T=True
-					#sg.Popup('la palabra existe')
-				
-			else:
-				#print('existe')
-				#print(palabra)
-				T=True
-				
-				#sg.Popup('la palabra existe')		
-				
-		else:
-			#print('existe')
-			#print(palabra)
-			T=True
-			#sg.Popup('la palabra existe')	
-		return T
-				
 
-	# StrA = "".join(A)
-	# print(StrA)
-	# cadena =['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','Z','X']
-	# random.shuffle(images_keys,random.random)
+				
+	"""
+	 cada vez que la IA se usa , se elige de manera aleatoria  7 letras de la lista de palabras
+	."""  
 	
-	# for c in combinations(cadena,4):
-		# print(c)
-		# STRA="".join(c)
-		# print(STRA)
-		
 	initial_atril=[]
 	for i in range(0,7):
 		initial_atril.append(random.choice(images_keys))	
 	
-	#print(initial_atril)
-	
-	# for c in combinations(initial_atril,2):
-		# lt="".join(c)
-		# #lt='de'
-		# #print(lt.capitalize())
-		# #print(lt)
-		# if(comprobarPalabra(lt)):
-			# print('palabra valida',lt)
-		
-	#print(ll[0])
+	"""
+	  se generan todas las combinaciones posibles entre 7 y 2 letras 
+	   se chequean todas las combinaciones posibles y se detiene al generar  una palabra valida 
+	.""" 
 	listaPalabras=[]
 	cont3=7
 	nivel=3 ## pasar como parametro
@@ -569,7 +515,11 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images
 			
 			
 			if cont==cont2:
-				cont3=cont3-1			
+				cont3=cont3-1
+	"""
+	 si no se puede generar una palabra valida la IA  pasa de Turno 
+	."""				
+							
 	if cont3<2:
 		#sg.Popup('LA IA NO PUDO FORMAR UNA PALABRA VALIDA ')
 		print('LA IA NO PUDO FORMAR UNA PALABRA VALIDA ')
