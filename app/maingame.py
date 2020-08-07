@@ -10,7 +10,7 @@ from Bolsa import Bolsa
 from Configuracion import Configuracion
 
 base_path=os.path.dirname(os.path.abspath(__file__))
-##anda genial
+
 def main_game(num_tablero, configuracion):
 	
 	#Bolsa y configuracion instanciada,
@@ -48,12 +48,11 @@ def main_game(num_tablero, configuracion):
 	x={'letra':'X','imagen': os.path.join(base_path,'images/x.png')}
 	y={'letra':'Y','imagen': os.path.join(base_path,'images/y.png')}
 	z={'letra':'Z','imagen': os.path.join(base_path,'images/z.png')}
-	px2=os.path.join(base_path,'images/PX2.png')
-	lx3=os.path.join(base_path,'images/LX3.png')
-	lx2=os.path.join(base_path,'images/LX2.png')
-	px3=os.path.join(base_path,'images/PX3.png')
-	images_PuntosNv1={'PX2':px2 , 'LX3':lx3 , 'LX2' :lx2 ,'PX3':px3}
-
+	images_PuntosTablero2={'centro':os.path.join(base_path,'images/centro.png'), 'fondo':os.path.join(base_path,'images/fond2.png'), 'green' :os.path.join(base_path,'images/LX2.png') ,'red':os.path.join(base_path,'images/PX3.png'),'orange':os.path.join(base_path,'images/PX-2.png'),'blue':os.path.join(base_path,'images/LX3.png')}
+	images_PuntosTablero3={'centro':os.path.join(base_path,'images/corona1.png'),'fondo':os.path.join(base_path,'images/fond3.png'),'red':os.path.join(base_path,'images/PX3ESC.png'),'orange':os.path.join(base_path,'images/PX2ESC.png'),'blue':os.path.join(base_path,'images/LX-3Cr.png'),'green':os.path.join(base_path,'images/LX-2Cr.png')}
+	images_PuntosTablero1={'centro':os.path.join(base_path,'images/corona.png'),'fondo':os.path.join(base_path,'images/fondo.png'),'red':os.path.join(base_path,'images/PX3.png'),'orange':os.path.join(base_path,'images/PX2.png'),'blue':os.path.join(base_path,'images/LX3.png'),'green':os.path.join(base_path,'images/LX2.png')}	
+	images_PuntosTablero={}
+	fichasIA=[]
 	color_button=('white','white')
 	images = {'BLANK':blank,'A': a, 'B': b, 'C': c, 'D': d, 'E': e, 'F': f, 'G': g, 'H': h, 'I': i, 'J': j, 'K': k, 'L': l, 'M': m, 'N': n, 'O': o, 'P': p, 'Q': q, 'R': r, 'S': s, 'T': t, 'U': u, 'V': v, 'W': w, 'X': x, 'Y': y, 'Z': z}
 	initial_atril=[]
@@ -146,7 +145,7 @@ def main_game(num_tablero, configuracion):
 			
 			
 			
-	class Tablero1(Tablero):
+	class Tablero(Tablero):
 		def Tab(self,images):
 	
 	
@@ -160,7 +159,8 @@ def main_game(num_tablero, configuracion):
 			for i in range(15):
 				row=[]
 				for j in range(15):
-					piece_image = images['BLANK']
+					#piece_image = images['BLANK']
+					piece_image=images_PuntosTablero['fondo']
 					valor=boardConfig[i][j].get_valor()
 					color=boardConfig[i][j].get_color()
 					# if color == 'violet':
@@ -173,23 +173,29 @@ def main_game(num_tablero, configuracion):
 						# row.append(render_square(piece_image,key =(i,j),texto='', color_button=('white','orange')))
 					if color == 'green':
 						#piece_image=os.path.join(base_path,'images/PX2.png')
-						piece_image = images_PuntosNv1['LX2']
+						#piece_image = images_PuntosNv1['LX2']
+						piece_image=images_PuntosTablero['green']
 						row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','green')))
 			
 					elif color == 'red':
 						#piece_image=os.path.join(base_path,'images/P2.png')
-						piece_image = images_PuntosNv1['PX3']
+						#piece_image = images_PuntosNv1['PX3']
+						piece_image=images_PuntosTablero['red']
 						row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','red')))
 					elif color == 'blue':
 						#piece_image=os.path.join(base_path,'images/PX2.png')
-						piece_image = images_PuntosNv1['LX3']
+						#piece_image = images_PuntosNv1['LX3']
+						piece_image=images_PuntosTablero['blue']
 						row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','blue')))
 					elif color == 'violet':
-						piece_image=os.path.join(base_path,'images/corona.png')
-						row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','white')))												
+						#piece_image=os.path.join(base_path,'images/corona.png')
+						piece_image=images_PuntosTablero['centro']
+						
+						row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','Dark violet')))												
 					elif color == 'orange':
 						#piece_image=os.path.join(base_path,'images/PX2.png')
-						piece_image = images_PuntosNv1['PX2']
+						#piece_image = images_PuntosNv1['PX2']
+						piece_image=images_PuntosTablero['orange']
 						row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','orange')))
 
 
@@ -198,7 +204,7 @@ def main_game(num_tablero, configuracion):
 						
 					else:
 						color_button=('white','white')
-						row.append(self.render_square(piece_image['imagen'],key =(i,j),texto=''))
+						row.append(self.render_square(piece_image,key =(i,j),texto=''))
 		
 				tablero1.append(row)
 		
@@ -206,129 +212,129 @@ def main_game(num_tablero, configuracion):
 			
 			
 			
-	class Tablero2(Tablero):
-		def Tab(self,images):
+	# class Tablero2(Tablero):
+		# def Tab(self,images):
 	
 	
-			tamaño=(50,50)
-		
-	
-		
-				
-				
-			tablero1=[]
-			for i in range(15):
-				row=[]
-				for j in range(15):
-					piece_image = os.path.join(base_path,'images/fond2.png')
-					valor=boardConfig[i][j].get_valor()
-					color=boardConfig[i][j].get_color()
-					# if color == 'violet':
-						# piece_image=os.path.join(base_path,'images/corona.png')
-						# row.append(render_square(piece_image,key =(i,j),texto='', color_button=('white','Dark violet')))
-						
-
-					# elif valor == 2:
-						# piece_image=os.path.join(base_path,'images/P2.png')
-						# row.append(render_square(piece_image,key =(i,j),texto='', color_button=('white','orange')))
-					if color == 'green':
-						#piece_image=os.path.join(base_path,'images/PX2.png')
-						piece_image = images_PuntosNv1['LX2']
-						row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','green')))
-			
-					elif color == 'red':
-						#piece_image=os.path.join(base_path,'images/P2.png')
-						piece_image = images_PuntosNv1['PX3']
-						#piece_image=os.path.join(base_path,'images/PX-3Cr.png')
-						
-						row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','red')))
-					elif color == 'blue':
-						#piece_image=os.path.join(base_path,'images/PX2.png')
-						piece_image = images_PuntosNv1['LX3']
-						row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','blue')))
-					elif color == 'violet':
-						piece_image=os.path.join(base_path,'images/centro.png')
-						row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','Dark violet')))												
-					elif color == 'orange':
-						piece_image=os.path.join(base_path,'images/PX-2.png')
-						#piece_image = images_PuntosNv1['PX2']
-						#piece_image=os.path.join(base_path,'images/LX-3Cr.png')
-						row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','orange')))
-
-
-
-
-						
-					else:
-						color_button=('white','white')
-						piece_image = os.path.join(base_path,'images/fond2.png')
-						row.append(self.render_square(piece_image,key =(i,j),texto=''))
-		
-				tablero1.append(row)
-		
-			return (tablero1,tamaño)			
-			
-			
-	class Tablero3(Tablero):
-		def Tab(self,images):
-	
-	
-			tamaño=(50,50)
+			# tamaño=(50,50)
 		
 	
 		
 				
 				
-			tablero1=[]
-			for i in range(15):
-				row=[]
-				for j in range(15):
-					piece_image = os.path.join(base_path,'images/fond2.png')
-					valor=boardConfig[i][j].get_valor()
-					color=boardConfig[i][j].get_color()
-					# if color == 'violet':
-						# piece_image=os.path.join(base_path,'images/corona.png')
-						# row.append(render_square(piece_image,key =(i,j),texto='', color_button=('white','Dark violet')))
+			# tablero1=[]
+			# for i in range(15):
+				# row=[]
+				# for j in range(15):
+					# piece_image = os.path.join(base_path,'images/fond2.png')
+					# valor=boardConfig[i][j].get_valor()
+					# color=boardConfig[i][j].get_color()
+					# # if color == 'violet':
+						# # piece_image=os.path.join(base_path,'images/corona.png')
+						# # row.append(render_square(piece_image,key =(i,j),texto='', color_button=('white','Dark violet')))
 						
 
-					# elif valor == 2:
-						# piece_image=os.path.join(base_path,'images/P2.png')
-						# row.append(render_square(piece_image,key =(i,j),texto='', color_button=('white','orange')))
-					if color == 'green':
-						piece_image=os.path.join(base_path,'images/LX-2Cr.png')
-						#piece_image = images_PuntosNv1['LX2']
-						row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','green')))
+					# # elif valor == 2:
+						# # piece_image=os.path.join(base_path,'images/P2.png')
+						# # row.append(render_square(piece_image,key =(i,j),texto='', color_button=('white','orange')))
+					# if color == 'green':
+						# #piece_image=os.path.join(base_path,'images/PX2.png')
+						# piece_image = images_PuntosNv1['LX2']
+						# row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','green')))
 			
-					elif color == 'red':
-						#piece_image=os.path.join(base_path,'images/P2.png')
-						#piece_image = images_PuntosNv1['PX3']
-						piece_image=os.path.join(base_path,'images/PX3ESC.png')
+					# elif color == 'red':
+						# #piece_image=os.path.join(base_path,'images/P2.png')
+						# piece_image = images_PuntosNv1['PX3']
+						# #piece_image=os.path.join(base_path,'images/PX-3Cr.png')
 						
-						row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','red')))
-					elif color == 'blue':
-						piece_image=os.path.join(base_path,'images/LX-3Cr.png')
-						#piece_image = images_PuntosNv1['LX3']
-						row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','blue')))
-					elif color == 'violet':
-						piece_image=os.path.join(base_path,'images/corona1.png')
-						row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','Dark violet')))												
-					elif color == 'orange':
-						piece_image=os.path.join(base_path,'images/PX2ESC.png')
-						#piece_image = images_PuntosNv1['PX2']
-						row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','orange')))
+						# row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','red')))
+					# elif color == 'blue':
+						# #piece_image=os.path.join(base_path,'images/PX2.png')
+						# piece_image = images_PuntosNv1['LX3']
+						# row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','blue')))
+					# elif color == 'violet':
+						# piece_image=os.path.join(base_path,'images/centro.png')
+						# row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','Dark violet')))												
+					# elif color == 'orange':
+						# piece_image=os.path.join(base_path,'images/PX-2.png')
+						# #piece_image = images_PuntosNv1['PX2']
+						# #piece_image=os.path.join(base_path,'images/LX-3Cr.png')
+						# row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','orange')))
 
 
 
 
 						
-					else:
-						color_button=('white','white')
-						piece_image = os.path.join(base_path,'images/fond3.png')
-						row.append(self.render_square(piece_image,key =(i,j),texto=''))
+					# else:
+						# color_button=('white','white')
+						# piece_image = os.path.join(base_path,'images/fond2.png')
+						# row.append(self.render_square(piece_image,key =(i,j),texto=''))
 		
-				tablero1.append(row)
+				# tablero1.append(row)
 		
-			return (tablero1,tamaño)					
+			# return (tablero1,tamaño)			
+			
+			
+	# class Tablero3(Tablero):
+		# def Tab(self,images):
+	
+	
+			# tamaño=(50,50)
+		
+	
+		
+				
+				
+			# tablero1=[]
+			# for i in range(15):
+				# row=[]
+				# for j in range(15):
+					# piece_image = os.path.join(base_path,'images/fond2.png')
+					# valor=boardConfig[i][j].get_valor()
+					# color=boardConfig[i][j].get_color()
+					# # if color == 'violet':
+						# # piece_image=os.path.join(base_path,'images/corona.png')
+						# # row.append(render_square(piece_image,key =(i,j),texto='', color_button=('white','Dark violet')))
+						
+
+					# # elif valor == 2:
+						# # piece_image=os.path.join(base_path,'images/P2.png')
+						# # row.append(render_square(piece_image,key =(i,j),texto='', color_button=('white','orange')))
+					# if color == 'green':
+						# piece_image=os.path.join(base_path,'images/LX-2Cr.png')
+						# #piece_image = images_PuntosNv1['LX2']
+						# row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','green')))
+			
+					# elif color == 'red':
+						# #piece_image=os.path.join(base_path,'images/P2.png')
+						# #piece_image = images_PuntosNv1['PX3']
+						# piece_image=os.path.join(base_path,'images/PX3ESC.png')
+						
+						# row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','red')))
+					# elif color == 'blue':
+						# piece_image=os.path.join(base_path,'images/LX-3Cr.png')
+						# #piece_image = images_PuntosNv1['LX3']
+						# row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','blue')))
+					# elif color == 'violet':
+						# piece_image=os.path.join(base_path,'images/corona1.png')
+						# row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','Dark violet')))												
+					# elif color == 'orange':
+						# piece_image=os.path.join(base_path,'images/PX2ESC.png')
+						# #piece_image = images_PuntosNv1['PX2']
+						# row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','orange')))
+
+
+
+
+						
+					# else:
+						# color_button=('white','white')
+						# piece_image = os.path.join(base_path,'images/fond3.png')
+						# row.append(self.render_square(piece_image,key =(i,j),texto=''))
+		
+				# tablero1.append(row)
+		
+			# return (tablero1,tamaño)					
 			
 	
 			
@@ -420,27 +426,54 @@ def main_game(num_tablero, configuracion):
 			# cont=cont+1
 
 	def devolverLetras():
+		
+		#images_PuntosTablero3
 		p=palabra[0]
 		print(p)
-		cont=0
+		cont=0		
+		#if opc==3:
+			
 		for i in listadoPosicionLetrasAtril:
 			piece_image = images[p[cont]]
 			img=piece_image['imagen']
 			window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
 			initial_atril[i]=p[cont]
-			piece_image = images['BLANK']
-			img=piece_image['imagen']
+			###########
+			img=images_PuntosTablero['fondo']
+			#piece_image = images['BLANK']
+			#img=piece_image['imagen']
+#images_PuntosTablero3={'corona':os.path.join(base_path,'images/corona1.png'),'fond3':os.path.join(base_path,'images/fond3.png'),'PX3':os.path.join(base_path,'images/PX3ESC.png'),'PX2':os.path.join(base_path,'images/PX2ESC.png'),'LX-3':os.path.join(base_path,'images/LX-3Cr.png'),'LX-2':os.path.join(base_path,'images/LX-2Cr.png')}				
+			
 			boardConfig[listadoPosicionLetrasTablero[cont][0]][listadoPosicionLetrasTablero[cont][1]].set_estado(False)
 			#color=boardConfig[listadoPosicionLetrasTablero[cont][0][listadoPosicionLetrasTablero[cont][1]].get_color()
 			color=boardConfig[listadoPosicionLetrasTablero[cont][0]][listadoPosicionLetrasTablero[cont][1]].get_color()
 			if color == 'violet':
-				piece_image=os.path.join(base_path,'images/corona.png')
-				window[listadoPosicionLetrasTablero[cont]].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','white'))
+				piece_image=images_PuntosTablero['centro']
+				
+				window[listadoPosicionLetrasTablero[cont]].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','Dark violet'))
+			elif color == 'green':
+				piece_image=images_PuntosTablero['green']
+					
+				window[listadoPosicionLetrasTablero[cont]].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','green'))					
+			elif color == 'red':									
+				piece_image=images_PuntosTablero['red']
+					
+				window[listadoPosicionLetrasTablero[cont]].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','red'))	
+			elif color == 'blue':									
+				piece_image=images_PuntosTablero['blue']
+					
+				window[listadoPosicionLetrasTablero[cont]].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','blue'))					
+			elif color == 'orange':									
+				piece_image=images_PuntosTablero['orange']
+					
+				window[listadoPosicionLetrasTablero[cont]].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','orange'))
+
+								
 			else:
 				window[listadoPosicionLetrasTablero[cont]].update(image_filename=img, image_size= tamaño_img ,button_color=('white','white'))
 			cont=cont+1
 
-		print(initial_atril)					
+		print(initial_atril)											
 
 	def actualizarAtrilJugador():
 		initial_atril2=[]
@@ -463,16 +496,36 @@ def main_game(num_tablero, configuracion):
 
 				
 			for i in range(0,len(listadoPosicionLetrasTablero)):
-				piece_image = images['BLANK']
-				img=piece_image['imagen']
+				img=images_PuntosTablero['fondo']	
 				boardConfig[listadoPosicionLetrasTablero[i][0]][listadoPosicionLetrasTablero[i][1]].set_estado(False)
 				#color=boardConfig[listadoPosicionLetrasTablero[cont][0][listadoPosicionLetrasTablero[cont][1]].get_color()
 				color=boardConfig[listadoPosicionLetrasTablero[i][0]][listadoPosicionLetrasTablero[i][1]].get_color()
 				if color == 'violet':
-					piece_image=os.path.join(base_path,'images/corona.png')
-					window[listadoPosicionLetrasTablero[i]].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','white'))
+					piece_image=images_PuntosTablero['centro']
+					
+					window[listadoPosicionLetrasTablero[i]].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','Dark violet'))	
+				elif color == 'green':
+					piece_image=images_PuntosTablero['green']
+						
+					window[listadoPosicionLetrasTablero[i]].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','green'))					
+				elif color == 'red':									
+					piece_image=images_PuntosTablero['red']
+						
+					window[listadoPosicionLetrasTablero[i]].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','red'))	
+				elif color == 'blue':									
+					piece_image=images_PuntosTablero['blue']
+						
+					window[listadoPosicionLetrasTablero[i]].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','blue'))					
+				elif color == 'orange':									
+					piece_image=images_PuntosTablero['orange']
+						
+					window[listadoPosicionLetrasTablero[i]].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','orange'))
+	
+									
 				else:
-					window[listadoPosicionLetrasTablero[i]].update(image_filename=img, image_size= tamaño_img ,button_color=('white','white'))				
+					window[listadoPosicionLetrasTablero[i]].update(image_filename=img, image_size= tamaño_img ,button_color=('white','white'))
+				
+									
 							
 		print(initial_atril,'xxx inicio')
 		initial_atril2=[]
@@ -481,7 +534,7 @@ def main_game(num_tablero, configuracion):
 		#initial_atril2=['H','O','L','A','G','I','L']
 		# print(initial_atril2)
 		# initial_atril2=[]
-		PC.atrilPalabrasValidas(images_keys,initial_atril2,conf)
+		PC.atrilPalabrasValidas(images_keys,initial_atril2)
 		initial_atril=[]
 		print(initial_atril2,'xxxx2')
 		print(initial_atril,'xxxx1')
@@ -506,7 +559,58 @@ def main_game(num_tablero, configuracion):
 
 
 
+	def BorrarTablerGeneral():
+		def BorrarTablero(color):
+			piece_image=images_PuntosTablero['fondo']		
+		
+			if color == 'green':
+				piece_image=images_PuntosTablero['green']
+				# piece_image = images_PuntosNv1['LX2']
+				# piece_image=os.path.join(base_path,'images/LX-2Cr.png')
+			
+				#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','green')))
+				window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','green'))
+		
+			elif color == 'red':
+				piece_image=images_PuntosTablero['red']
+				
+				#piece_image=os.path.join(base_path,'images/PX3ESC.png')
+			#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','red')))
+			
+	
+				window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','red'))
+			elif color == 'blue':
+			    #piece_image = images_PuntosNv1['LX3']
+			    #piece_image=os.path.join(base_path,'images/LX-3Cr.png')
+			    piece_image=images_PuntosTablero['blue']
+			#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','blue')))
+			    window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','blue'))
+			elif color == 'violet':
+			    #piece_image=os.path.join(base_path,'images/corona1.png')
+			    piece_image=images_PuntosTablero['centro']
+			#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','white')))
+			    window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','Dark violet'))												
+			elif color == 'orange':
+			    #piece_image = images_PuntosNv1['PX2']
+			    #piece_image=os.path.join(base_path,'images/PX2ESC.png')
+			    piece_image=images_PuntosTablero['orange']
+			#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','orange')))
+			    window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','orange'))
+						
+			else:
+			#color_button=('white','white')
+			
+			   #piece_image=os.path.join(base_path,'images/fond3.png')
+			#row.append(self.render_square(piece_image['imagen'],key =(i,j),texto='')) 
+			   window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','white'))		
 
+		
+		for i in range(15):
+			for j in range(15):
+				window[(i,j)].update('')
+				boardConfig[i][j].set_estado(False)
+				color=boardConfig[i][j].get_color()
+				BorrarTablero(color)	
 
 
 
@@ -517,151 +621,151 @@ def main_game(num_tablero, configuracion):
 
 		listbox.Update(listado)	## accedo a la tupla			
 
-	def actulizarTablero (opc):
-		def BorrarTablero1(color):
-			if color == 'green':
-				piece_image = images_PuntosNv1['LX2']
-				#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','green')))
-				window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','green'))
+	# def actulizarTablero (opc):
+		# def BorrarTablero1(color):
+			# if color == 'green':
+				# piece_image = images_PuntosNv1['LX2']
+				# #row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','green')))
+				# window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','green'))
 		
-			elif color == 'red':
+			# elif color == 'red':
 				
-				piece_image = images_PuntosNv1['PX3']
-			#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','red')))
+				# piece_image = images_PuntosNv1['PX3']
+			# #row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','red')))
 			
 
-				window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','red'))
-			elif color == 'blue':
-			    piece_image = images_PuntosNv1['LX3']
-			#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','blue')))
-			    window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','blue'))
-			elif color == 'violet':
-			    piece_image=os.path.join(base_path,'images/corona.png')
-			#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','white')))
-			    window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','white'))												
-			elif color == 'orange':
-			    piece_image = images_PuntosNv1['PX2']
-			#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','orange')))
-			    window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','orange'))
+				# window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','red'))
+			# elif color == 'blue':
+			    # piece_image = images_PuntosNv1['LX3']
+			# #row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','blue')))
+			    # window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','blue'))
+			# elif color == 'violet':
+			    # piece_image=os.path.join(base_path,'images/corona.png')
+			# #row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','white')))
+			    # window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','white'))												
+			# elif color == 'orange':
+			    # piece_image = images_PuntosNv1['PX2']
+			# #row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','orange')))
+			    # window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','orange'))
 						
-			else:
-			#color_button=('white','white')
-			   piece_image = images['BLANK']
-			   piece_image = piece_image['imagen']
-			#row.append(self.render_square(piece_image['imagen'],key =(i,j),texto='')) 
-			   window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','white'))
-			   
-			   
-		def BorrarTablero2(color):
-			if color == 'green':
-				piece_image = images_PuntosNv1['LX2']
-				#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','green')))
-				window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','green'))
-		
-			elif color == 'red':
-				
-				piece_image = images_PuntosNv1['PX3']
-			#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','red')))
-			
-
-				window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','red'))
-			elif color == 'blue':
-			    piece_image = images_PuntosNv1['LX3']
-			#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','blue')))
-			    window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','blue'))
-			elif color == 'violet':
-			    piece_image=os.path.join(base_path,'images/centro.png')
-			#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','white')))
-			    window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','Dark violet'))												
-			elif color == 'orange':
-			    #piece_image = images_PuntosNv1['PX2']
-			    piece_image=os.path.join(base_path,'images/PX-2.png')
-			#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','orange')))
-			    window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','orange'))
-						
-			else:
-			#color_button=('white','white')
+			# else:
+			# #color_button=('white','white')
 			   # piece_image = images['BLANK']
 			   # piece_image = piece_image['imagen']
-			   piece_image=os.path.join(base_path,'images/fond2.png')
-			#row.append(self.render_square(piece_image['imagen'],key =(i,j),texto='')) 
-			   window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','white'))			   
+			# #row.append(self.render_square(piece_image['imagen'],key =(i,j),texto='')) 
+			   # window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','white'))
 			   
 			   
-			   
-			   
-		def BorrarTablero3(color):
-			if color == 'green':
-				piece_image = images_PuntosNv1['LX2']
-				piece_image=os.path.join(base_path,'images/LX-2Cr.png')
-				#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','green')))
-				window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','green'))
+		# def BorrarTablero2(color):
+			# if color == 'green':
+				# piece_image = images_PuntosNv1['LX2']
+				# #row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','green')))
+				# window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','green'))
 		
-			elif color == 'red':
+			# elif color == 'red':
 				
-				piece_image=os.path.join(base_path,'images/PX3ESC.png')
-			#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','red')))
+				# piece_image = images_PuntosNv1['PX3']
+			# #row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','red')))
 			
 
-				window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','red'))
-			elif color == 'blue':
-			    piece_image = images_PuntosNv1['LX3']
-			    piece_image=os.path.join(base_path,'images/LX-3Cr.png')
-			#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','blue')))
-			    window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','blue'))
-			elif color == 'violet':
-			    piece_image=os.path.join(base_path,'images/corona1.png')
-			#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','white')))
-			    window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','Dark violet'))												
-			elif color == 'orange':
-			    #piece_image = images_PuntosNv1['PX2']
-			    piece_image=os.path.join(base_path,'images/PX2ESC.png')
-			#row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','orange')))
-			    window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','orange'))
+				# window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','red'))
+			# elif color == 'blue':
+			    # piece_image = images_PuntosNv1['LX3']
+			# #row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','blue')))
+			    # window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','blue'))
+			# elif color == 'violet':
+			    # piece_image=os.path.join(base_path,'images/centro.png')
+			# #row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','white')))
+			    # window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','Dark violet'))												
+			# elif color == 'orange':
+			    # #piece_image = images_PuntosNv1['PX2']
+			    # piece_image=os.path.join(base_path,'images/PX-2.png')
+			# #row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','orange')))
+			    # window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','orange'))
 						
-			else:
-			#color_button=('white','white')
+			# else:
+			# #color_button=('white','white')
+			   # # piece_image = images['BLANK']
+			   # # piece_image = piece_image['imagen']
+			   # piece_image=os.path.join(base_path,'images/fond2.png')
+			# #row.append(self.render_square(piece_image['imagen'],key =(i,j),texto='')) 
+			   # window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','white'))			   
+			   
+			   
+			   
+			   
+		# def BorrarTablero3(color):
+			# if color == 'green':
+				# piece_image = images_PuntosNv1['LX2']
+				# piece_image=os.path.join(base_path,'images/LX-2Cr.png')
+				# #row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','green')))
+				# window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','green'))
+		
+			# elif color == 'red':
+				
+				# piece_image=os.path.join(base_path,'images/PX3ESC.png')
+			# #row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','red')))
 			
-			   piece_image=os.path.join(base_path,'images/fond3.png')
-			#row.append(self.render_square(piece_image['imagen'],key =(i,j),texto='')) 
-			   window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','white'))			   
-			   
-			   
-			   
-			   
-			   
-			   
-			   
-			   
-			   
-			   
-			   
-		if opc ==1:
+
+				# window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','red'))
+			# elif color == 'blue':
+			    # piece_image = images_PuntosNv1['LX3']
+			    # piece_image=os.path.join(base_path,'images/LX-3Cr.png')
+			# #row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','blue')))
+			    # window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','blue'))
+			# elif color == 'violet':
+			    # piece_image=os.path.join(base_path,'images/corona1.png')
+			# #row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','white')))
+			    # window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','Dark violet'))												
+			# elif color == 'orange':
+			    # #piece_image = images_PuntosNv1['PX2']
+			    # piece_image=os.path.join(base_path,'images/PX2ESC.png')
+			# #row.append(self.render_square(piece_image,key =(i,j),texto='', color_button=('white','orange')))
+			    # window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','orange'))
+						
+			# else:
+			# #color_button=('white','white')
 			
-			for i in range(15):
-				for j in range(15):
-					window[(i,j)].update('')
-					boardConfig[i][j].set_estado(False)
-					color=boardConfig[i][j].get_color()
-					BorrarTablero1(color)	
+			   # piece_image=os.path.join(base_path,'images/fond3.png')
+			# #row.append(self.render_square(piece_image['imagen'],key =(i,j),texto='')) 
+			   # window[(i,j)].update(image_filename=piece_image, image_size= tamaño_img ,button_color=('white','white'))			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+		# if opc ==1:
+			
+			# for i in range(15):
+				# for j in range(15):
+					# window[(i,j)].update('')
+					# boardConfig[i][j].set_estado(False)
+					# color=boardConfig[i][j].get_color()
+					# BorrarTablero1(color)	
 						  
-		if opc ==2:
+		# if opc ==2:
 			
-			for i in range(15):
-				for j in range(15):
-					window[(i,j)].update('')
-					boardConfig[i][j].set_estado(False)
-					color=boardConfig[i][j].get_color()
-					BorrarTablero2(color)				
+			# for i in range(15):
+				# for j in range(15):
+					# window[(i,j)].update('')
+					# boardConfig[i][j].set_estado(False)
+					# color=boardConfig[i][j].get_color()
+					# BorrarTablero2(color)				
 			
-		if opc ==3:
+		# if opc ==3:
 			
-			for i in range(15):
-				for j in range(15):
-					window[(i,j)].update('')
-					boardConfig[i][j].set_estado(False)
-					color=boardConfig[i][j].get_color()
-					BorrarTablero3(color)				
+			# for i in range(15):
+				# for j in range(15):
+					# window[(i,j)].update('')
+					# boardConfig[i][j].set_estado(False)
+					# color=boardConfig[i][j].get_color()
+					# BorrarTablero3(color)				
 		
 		
 		
@@ -671,12 +775,12 @@ def main_game(num_tablero, configuracion):
 		
 		
 		
-						# for i in range(15):
-					# for j in range(15):
-						# window[(i,j)].update('')
-						# boardConfig[i][j].set_estado(False)
-						# color=boardConfig[i][j].get_color()
-						# BorrarTablero1(color)			
+						# # for i in range(15):
+					# # for j in range(15):
+						# # window[(i,j)].update('')
+						# # boardConfig[i][j].set_estado(False)
+						# # color=boardConfig[i][j].get_color()
+						# # BorrarTablero1(color)			
 			
 			
 ####################
@@ -684,14 +788,22 @@ def main_game(num_tablero, configuracion):
 	atr1=atril1(True).crearAtril()
 	atr2=atril1(False).crearAtril()
 	if num_tablero ==1:
-		obj = Tablero1()
+
+		images_PuntosTablero=images_PuntosTablero1
+		
+		boardConfig=config_tablero.Config1()
+		obj = Tablero()
 		opc=1
 	elif num_tablero == 2:
-		obj = Tablero2()	
-		opc=2	
+		#obj = Tablero2()
+		images_PuntosTablero=images_PuntosTablero2
+		boardConfig=config_tablero.Config2()
+		obj = Tablero()	
+		#opc=2	
 	elif num_tablero ==3:
-		obj = Tablero3()
-		opc=3
+		images_PuntosTablero=images_PuntosTablero3
+		boardConfig=config_tablero.Config3()
+		obj = Tablero()
 	#bolsa.sacar_fichas(14)		
 
 	#opc=1 # 2 para borrar el tablero 2 , 3 para el tablero 3 se tiene que elegir cuando se elige el tablero
@@ -900,35 +1012,55 @@ def main_game(num_tablero, configuracion):
 					if button =='PASAR':
 						cantPasadas=cantPasadas+1
 						controlAt=[7,7,0,0]
-						if cantPasadas<4:
-					
-							initial_atril=[]
-							for i in range(0,7): ##cambiar i
-								initial_atril.append(random.choice(images_keys))
-
-							## SE Restan las fichas cuando se crea el atril del jugador, ademas se quitan las fichas que quedaron en 0
-							for ficha in initial_atril:
-								if ficha in bolsa.get_fichas():
-									bolsa.quitar_fichas(ficha,1)
-									window.FindElement(ficha).update(bolsa.cant_letras(ficha))
-									#print(bolsa.letras_validas().keys())
-							#####
+						# if cantPasadas==3:
+							# window.FindElement('PASAR').update(disabled=True)
 						
-							images_keys = list(bolsa.letras_validas().keys())
-							#print(images_keys)
-							######	
-							for i in range(7):
-								#window[i].update(initial_atril[i])
-								piece_image = images[initial_atril[i]]
+						if cantPasadas<4:
+							
+							initial_atril=PasarTurno(initial_atril)
+							#####################################
+							# print(initial_atril,'xxx inicio')
+							# initial_atril2=[]
+							# random.shuffle(images_keys,random.random)
+							# # PC.atrilPalabrasValidas(images_keys,initial_atril2)				
+							# #initial_atril2=['H','O','L','A','G','I','L']
+							# # print(initial_atril2)
+							# # initial_atril2=[]
+							# PC.atrilPalabrasValidas(images_keys,initial_atril2)
+							# initial_atril=[]
+							# print(initial_atril2,'xxxx2')
+							# print(initial_atril,'xxxx1')
+							# #initial_atril2=[]
+							# print(initial_atril2,'xxxx2')
+							
+							# initial_atril=initial_atril2[:]
+							# print(initial_atril)
+							# # for i in range(7): ##cambiar i
+								# # initial_atril[i]=initial_atril[2]
+							# for i in range(7):
+								# #window[i].update(initial_atril[i])
+								# piece_image = images[initial_atril[i]]
 												
-								img=piece_image['imagen']
-								window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
-					##### blanquear tablero
+					# ##### blanquear tablero
+								# img=piece_image['imagen']
+			
+								# window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
+	######################################				
 					
 							#actulizarTablero(opc)
 							
 							listadoPosicionLetrasAtril=[]
 							listadoPosicionLetrasTablero=[]
+							palabra=['']
+							T1=True
+							T2=True
+							#T3=True
+							T4=True
+							
+							listado=[]
+							listadoPosicionLetrasAtril=[]
+							listadoPosicionLetrasTablero=[]									
+							
 							# for i in range(15):
 								# for j in range(15):
 									# window[(i,j)].update('')
@@ -938,20 +1070,10 @@ def main_game(num_tablero, configuracion):
 							#Actualizacion bolsa
 
 							###	
-							PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys, conf)
+							PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys,fichasIA)
 														
 						else:
 							sg.Popup('se supero la cantidad de pasadas')
-						cant=4
-						T1=True
-						T2=True
-						#T3=True
-						T4=True
-						palabra=['']
-						listado=[]
-						listadoPosicionLetrasAtril=[]
-						listadoPosicionLetrasTablero=[]						
-						actualizar_listado(window.FindElement('datosj'))
 
 						
 							
@@ -1090,8 +1212,8 @@ def main_game(num_tablero, configuracion):
 	##### blanquear tablero
 	
 	
-			actulizarTablero(opc)
-						#cant=4
+			#actulizarTablero(opc)
+			BorrarTablerGeneral()#cant=4
 			T1=True
 			T2=True
 			T3=True
@@ -1112,6 +1234,5 @@ def main_game(num_tablero, configuracion):
 					
 if __name__ == "__main__":
 
-    main_game(1)			
-
+    main_game(1)
 
