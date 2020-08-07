@@ -534,7 +534,7 @@ def main_game(num_tablero, configuracion):
 		#initial_atril2=['H','O','L','A','G','I','L']
 		# print(initial_atril2)
 		# initial_atril2=[]
-		PC.atrilPalabrasValidas(images_keys,initial_atril2)
+		PC.atrilPalabrasValidas(images_keys,initial_atril2, conf)
 		initial_atril=[]
 		print(initial_atril2,'xxxx2')
 		print(initial_atril,'xxxx1')
@@ -907,7 +907,7 @@ def main_game(num_tablero, configuracion):
 						
 			#########################
 				if (opc2==0)and wait2:
-					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys, conf)
+					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys,conf,fichasIA)
 					print('IA INICIAL')
 					wait2=False
 				while True:
@@ -1070,7 +1070,7 @@ def main_game(num_tablero, configuracion):
 							#Actualizacion bolsa
 
 							###	
-							PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys,fichasIA)
+							PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys,conf,fichasIA)
 														
 						else:
 							sg.Popup('se supero la cantidad de pasadas')
@@ -1163,7 +1163,7 @@ def main_game(num_tablero, configuracion):
 						sg.Popup('movimiento incorrecto')
 			
 				if (opc2==1)and wait2:
-					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys, conf)
+					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys, conf,fichasIA)
 					print('IA FINAL')
 					controlAt=[8,7,0,0]
 			final=time.time()
