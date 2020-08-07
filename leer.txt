@@ -1,0 +1,7 @@
+Integrantes del grupo:
+- Gomez Brian Agustin
+- Diego Pablo Aguilar
+- Cristian Torrez
+
+La aplicacion se ejecuta desde el archivo llamado ScrabbleAR.py que esta en la carpeta app.
+
