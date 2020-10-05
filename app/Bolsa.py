@@ -49,7 +49,7 @@ class Bolsa():
         return layout
 
     def letras_validas(self):
-        """Elimina las fichas que tengan como cantidad 0 """
+        """Devuelve un diccionario, que saca las fichas que tengan como cantidad 0 """
         nuevas_fichas = dict(self._fichas)
         for key,value in self._fichas.items():
             if value["cant"] == 0:

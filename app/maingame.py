@@ -15,7 +15,7 @@ base_path=os.path.dirname(os.path.abspath(__file__))
 ."""
 def main_game(num_tablero, configuracion):
 	
-	#Bolsa y configuracion instanciada,
+	#Inicializacion de variables e imagenes
 	conf = configuracion
 	bolsa = Bolsa(conf.getConfiguracionLetras())
 	PC=IA
@@ -63,16 +63,17 @@ def main_game(num_tablero, configuracion):
 	fichasIA=[]
 	color_button=('white','white')
 	images = {'BLANK':blank,'A': a, 'B': b, 'C': c, 'D': d, 'E': e, 'F': f, 'G': g, 'H': h, 'I': i, 'J': j, 'K': k, 'L': l, 'M': m, 'N': n, 'O': o, 'P': p, 'Q': q, 'R': r, 'S': s, 'T': t, 'U': u, 'V': v, 'W': w, 'X': x, 'Y': y, 'Z': z}
-	initial_atril=[]
-	#print(bolsa.letras_validas().keys())
-	images_keys= list(bolsa.letras_validas().keys()) ### seria la lista de palabras
 
+
+	images_keys= list(bolsa.letras_validas().keys()) ### Se recibe las letras configuradas por el usuario, y se eliminan las que estan en 0
+	
 
 	random.shuffle(images_keys,random.random)
 	initial_atril=[]
 	initial_atril2=[]
 	PC.atrilPalabrasValidas(images_keys,initial_atril2, conf)
 	initial_atril=initial_atril2[:]
+	
 
 	## SE Restan las fichas cuando se crea el atril del jugador, ademas se quitan las fichas que quedaron en 0
 	for ficha in initial_atril:
@@ -112,11 +113,6 @@ def main_game(num_tablero, configuracion):
 	
 	
 			tamaño=(50,50)
-		
-	
-		
-				
-				
 			tablero1=[]
 			for i in range(15):
 				row=[]
@@ -161,34 +157,28 @@ def main_game(num_tablero, configuracion):
 				tablero1.append(row)
 		
 			return (tablero1,tamaño)
-			
-			
-			
-			
-			
-	
-			
-			
+		
 	""" genera dos atriles que contienen las palabras del jugador y de simbolos que representan las palabras de la  pc  ."""			
-	
+
 			
 	class atril1():
+		'''Clase que controla la UI del '''
 		def __init__(self,T=True):
 			self._T= T
 		def crearAtril(self):
 			def render1(image, key, texto='',color_button=('white','white')):
 				return sg.RButton(texto,image_filename=image,image_size=(50, 50), pad=(2,2),key=key,button_color=color_button)
 			atril=[]
-			
-			if self._T:
+			#Si se pasa true como parametro, los botones del atril se rellenan con letras
+			if self._T: 
 				
 				for i in  range(7):
 					row=[]
 					piece_image = images[initial_atril[i]]
 					row.append(render1(piece_image['imagen'],key =(i),texto='', color_button=('white','white')))
 					atril.append(row)
-				
-			else:
+			#En caso de que se pase false, se mostraran signos de interrogacion en el atril(atril de la computadora)	
+			else: 
 				img=os.path.join(base_path,'images/interrogacion.png')
 				for i in  range(7):
 					row=[]
@@ -197,8 +187,10 @@ def main_game(num_tablero, configuracion):
 					row.append(render1(img,key =(i),texto='', color_button=('white','white')))
 					atril.append(row)
 			return atril
-			''' modificartBoton () cambia el estado del boton , cambia la imagen de una pieza del tablero y consta que esta ocupado'''
+
+
 	def modificarBoton(): 
+		''' modificartBoton () cambia el estado del boton , cambia la imagen de una pieza del tablero y consta que esta ocupado'''
 		#if boardConfig[button[0]][button[1]].get_estado() == True:
 			#print('')
 	
@@ -403,8 +395,6 @@ def main_game(num_tablero, configuracion):
 	""" actualizad el listado que contiene el historial de casillas con premios del jugador y la PC."""	
 			
 	def actualizar_listado(listbox):
-		
-
 		listbox.Update(listado)	## accedo a la tupla			
 	"""se crea el atril del jugador y la Pc."""	
 
@@ -740,9 +730,9 @@ def main_game(num_tablero, configuracion):
 							
 								
 								actualizar_listado(window.FindElement('datosj')) ## habria que multiplicar el valor de cada letra o palabra
-			
-							
-							
+								print("ESTE ES EL PUNTAJE DEL JUGADOR: -------------" + str(puntaje_jugador))
+								## modifiquenlo para que muestres los puntos que se van acumulando por casillas 
+								##
 																			
 																			
 								l=0
@@ -759,14 +749,16 @@ def main_game(num_tablero, configuracion):
 					controlAt=[8,7,0,0]
 			"""control del fin del tiempo de juego."""						
 			final=time.time()
-			if final-inicio>120:
-			
+			if final-inicio>120:			
 				break
-			if (current_time // 100) % 60 == 10:
-				print('=============================================10 SEGUNDOS====================================')
-				print('=============================================10 SEGUNDOS====================================')
-				print('=============================================10 SEGUNDOS====================================')
-				print('=============================================10 SEGUNDOS====================================')
+			try:
+				if (current_time // 100) % 60 == 10:
+					print('=============================================10 SEGUNDOS====================================')
+					print('=============================================10 SEGUNDOS====================================')
+					print('=============================================10 SEGUNDOS====================================')
+					print('=============================================10 SEGUNDOS====================================')
+			except:
+				print('porfavor, aprete el boton comenzar')
 		sg.Popup('FIN Juego')
 		wait=True
 		window.FindElement('PASAR').update(disabled=True)

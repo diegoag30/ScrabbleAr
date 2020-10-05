@@ -14,9 +14,8 @@ clasificar=clasificarPalabra
  genera un conjunto de palabras validas para que el jugador pueda ingresarlas en el tablero 
 '''
 def atrilPalabrasValidas(images_keys,initial_atril2,configuracion):
-	
-
-
+	'''A partir de una lista de palabras, crea un lista con todas las combinaciones posibles,
+	 luego comprueba cuales de estas son validas.y regresa un atril con palabras validas '''	
 	atril2=''
 	listaPalabras=[]
 	cont3=3
@@ -29,34 +28,29 @@ def atrilPalabrasValidas(images_keys,initial_atril2,configuracion):
 	
 	cont=len(listaPalabras)
 	cont2=0
-	while (cont!=cont2) and True:
+	while (cont!=cont2) and True: #Se recorre la lista de combinaciones
 		
-		if clasificar.comprobarPalabraEnBaseAlNivel(listaPalabras[cont2], conf):
+		if clasificar.comprobarPalabraEnBaseAlNivel(listaPalabras[cont2], conf): #Si la palabra es valida, para el nivel seleccionado.
 			
 			print('*'*30)
 			print('PALABRA VALIDA PARA JUGADOR',listaPalabras[cont2])
+			#Se agrega la palabra a atril2
 			atril2=atril2+listaPalabras[cont2][0]
 			atril2=atril2+listaPalabras[cont2][1]
 			atril2=atril2+listaPalabras[cont2][2]
-		
-		
-	
-			#T=False
-			#IA(listaPalabras[cont2])
+
 			if len(atril2)==6:
+				print(atril2)
 				atril2=atril2+(random.choice(images_keys))
 				
 				break
-		
-				
-				
-			#T=False
+
 		cont2=cont2+1
 		
 		
-		if cont==cont2:
-			
+		if cont==cont2:			
 			break
+
 	if len(atril2)<7:
 		while True:
 			atril2=atril2+(random.choice(images_keys))

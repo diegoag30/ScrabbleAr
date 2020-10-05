@@ -1,4 +1,6 @@
 class EstadBoton:
+	'''Esta clase maneja la configuracion del tablero,
+	 ya sea el valor de las casillas, los colores, y el estado de los botones '''
 	def __init__(self,valor=1,color='',estado=False,tipo='L'): # valor es 1 por defecto para multiplicar la L o P
 		self._estado = estado
 		self._valor = valor
