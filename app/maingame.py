@@ -8,6 +8,7 @@ import os.path
 import config_tablero
 from Bolsa import Bolsa
 from Configuracion import Configuracion
+from puntajes import Puntaje
 
 base_path=os.path.dirname(os.path.abspath(__file__))
 """
@@ -175,7 +176,7 @@ def main_game(num_tablero, configuracion):
 
 			
 	class atril1():
-		'''Clase que controla la UI del '''
+		'''Clase que controla la UI del atril'''
 		def __init__(self,T=True):
 			self._T= T
 		def crearAtril(self):
@@ -618,6 +619,8 @@ def main_game(num_tablero, configuracion):
 								actualizar_listado(window.FindElement('datosj'))
 								puntaje_jugador = puntaje_jugador + bolsa.calcular_puntos(p,word_values) 
 								print(puntaje_jugador)
+								del word_values[:]
+								break
 								#####
 							else:
 								sg.Popup('PALABRA INVALIDA')
@@ -629,13 +632,15 @@ def main_game(num_tablero, configuracion):
 								T4=True
 								palabra[0]=''
 								listadoPosicionLetrasAtril=[]
-								listadoPosicionLetrasTablero=[]								
+								listadoPosicionLetrasTablero=[]
+								del word_values[:]								
 							##window[]
 						# if len(word)>= 2 and len(word) <=7:
 						elif len(palabra[0])<2:
 							sg.Popup('la palabra es menor de 2')
 							#break
-						del word_values[:]
+						
+
 						
 													
 										
@@ -774,6 +779,7 @@ def main_game(num_tablero, configuracion):
 			except:
 				print('porfavor, aprete el boton comenzar')
 		sg.Popup('FIN Juego')
+		break
 		wait=True
 		window.FindElement('PASAR').update(disabled=True)
 		window.FindElement('GUARDAR').update(disabled=True)
@@ -825,6 +831,11 @@ def main_game(num_tablero, configuracion):
 			controlAt=[7,7,0,0]	
 			#window['COMENZAR'].update( button_color=('white','green'))		
 			bolsa = Bolsa(conf.getConfiguracionLetras())
+
+	##Una vez que el juego termino, se guardan los puntajes		
+	puntaje_final_jugador = Puntaje()	
+	puntaje_final_jugador.agregar_nuevo_puntaje(nombre,puntaje_jugador,configuracion.getConfiguracionesSeleccionadas()['dificultad'])	
+
 			
 						
 					
