@@ -777,7 +777,7 @@ def main_game(num_tablero, configuracion):
 					print('=============================================10 SEGUNDOS====================================')
 					print('=============================================10 SEGUNDOS====================================')
 			except:
-				print('porfavor, aprete el boton comenzar')
+				sg.Popup('Por favor aprete el boton comenzar',background_color='#00796B')
 		sg.Popup('FIN Juego')
 		break
 		wait=True
