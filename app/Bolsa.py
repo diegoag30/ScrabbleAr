@@ -63,16 +63,17 @@ class Bolsa():
         if letra in self._fichas.keys():
             return self._fichas[letra]["cant"]
 
-    def calcular_puntos(self,palabra):
-        puntaje = 0
-        for letra in palabra:
-            puntaje = puntaje + self.get_fichas()[letra]["val"]
-        return puntaje
+    def calcular_puntos(self,palabra,puntajes_casillas):
+        '''Se calculan los puntajes, basados en los valores de las letras que forman una palabra por el puntaje de cada casilla'''
+        puntuacion = 0
+        for letra,puntaje in zip(palabra,puntajes_casillas):
+            puntuacion= puntuacion + (self.get_fichas()[letra]["val"] * puntaje)
+        return puntuacion
             
 
 
 
 conf = Configuracion()
 bolsa = Bolsa(conf.getConfiguracionLetras())
-print(bolsa.calcular_puntos("HOLA"))
+#print(bolsa.calcular_puntos("HOLA"))
 

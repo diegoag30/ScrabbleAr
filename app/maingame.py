@@ -202,15 +202,15 @@ def main_game(num_tablero, configuracion):
 			return atril
 
 
-	def modificarBoton(): 
+	def modificarBoton(valores): 
 		''' modificartBoton () cambia el estado del boton , cambia la imagen de una pieza del tablero y consta que esta ocupado'''
 		#if boardConfig[button[0]][button[1]].get_estado() == True:
 			#print('')
-	
+
 		if boardConfig[button[0]][button[1]].get_estado() == False:
 			img=''
 			window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
-			
+			valores.append(boardConfig[button[0]][button[1]].get_valor())
 			
 			piece_image = images[initial_atril[i]]
 			img=piece_image['imagen']
@@ -222,6 +222,7 @@ def main_game(num_tablero, configuracion):
 			initial_atril[i]='' ## relacionar con la bolsa
 			listadoPosicionLetrasAtril.append(i)
 			boardConfig[button[0]][button[1]].set_estado(True)
+		print('los valores de las letras son: ', valores)
 
 			
 		
@@ -414,6 +415,7 @@ def main_game(num_tablero, configuracion):
 ####################
 	#inteligencia1.saludo()
 	nombre = get_name()
+	word_values = []
 	print(nombre)
 	atr1=atril1(True).crearAtril()
 	atr2=atril1(False).crearAtril()
@@ -612,12 +614,11 @@ def main_game(num_tablero, configuracion):
 								listadoPosicionLetrasAtril=[]
 								listadoPosicionLetrasTablero=[]
 								### se agrega el puntaje a la lista
-								listado.append(p + " " + str(bolsa.calcular_puntos(p)) + " Puntos")
+								listado.append(p + " " + str(bolsa.calcular_puntos(p,word_values)) + " Puntos")
 								actualizar_listado(window.FindElement('datosj'))
-								puntaje_jugador = puntaje_jugador + bolsa.calcular_puntos(p) 
+								puntaje_jugador = puntaje_jugador + bolsa.calcular_puntos(p,word_values) 
 								print(puntaje_jugador)
 								#####
-								break
 							else:
 								sg.Popup('PALABRA INVALIDA')
 								
@@ -634,6 +635,8 @@ def main_game(num_tablero, configuracion):
 						elif len(palabra[0])<2:
 							sg.Popup('la palabra es menor de 2')
 							#break
+						del word_values[:]
+						
 													
 										
 					if button in (None , 'EXIT'):
@@ -692,7 +695,7 @@ def main_game(num_tablero, configuracion):
 								
 									if (button[0]==7 and button[1]==7)and T3 :
 										print(button)
-										modificarBoton()
+										modificarBoton(word_values)
 										T3=False
 										F=button[0]
 										C=button[1]
@@ -702,13 +705,13 @@ def main_game(num_tablero, configuracion):
 										if(button[0]==F)and T1:
 											if C<button[1]and(button[1]==C+1):
 												T2=False
-												modificarBoton()
+												modificarBoton(word_values)
 												C=button[1]
 										if(button[1]==C)and T2:
 											if F<button[0]and(button[0]==F+1):
 												print(button)
 												T1=False
-												modificarBoton()
+												modificarBoton(word_values)
 												F=button[0]
 									#cant=4
 									
@@ -722,7 +725,7 @@ def main_game(num_tablero, configuracion):
 										
 																
 										
-										modificarBoton()
+										modificarBoton(word_values)
 										F=button[0]
 										C=button[1]
 										T4=False
@@ -730,12 +733,12 @@ def main_game(num_tablero, configuracion):
 										if(button[0]==F)and T1 :
 											if C<button[1]and(button[1]==C+1):
 												T2=False
-												modificarBoton()
+												modificarBoton(word_values)
 												C=button[1]
 										if(button[1]==C)and T2:
 											if F<button[0]and(button[0]==F+1):
 												T1=False
-												modificarBoton()
+												modificarBoton(word_values)
 												F=button[0]				
 											
 							
