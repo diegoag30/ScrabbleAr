@@ -73,7 +73,7 @@ def main_game(num_tablero, configuracion):
 	initial_atril2=[]
 	PC.atrilPalabrasValidas(images_keys,initial_atril2, conf)
 	initial_atril=initial_atril2[:]
-	
+
 
 	## SE Restan las fichas cuando se crea el atril del jugador, ademas se quitan las fichas que quedaron en 0
 	for ficha in initial_atril:
@@ -85,6 +85,19 @@ def main_game(num_tablero, configuracion):
 	def actualizar_layout_bolsa():
 		for ficha in bolsa.get_fichas().keys():
 			window.FindElement(ficha).update(bolsa.cant_letras(ficha))
+
+
+	def get_name():
+		'''Pop up inicial, que obtiene el nombre del jugador, para poder agregarlo al ranking en caso de ser necesario '''
+		layout = [[sg.Text('Bienvenido a ScrabbleAR. Por favor introduce tu nombre:',background_color='#00796B'),],      
+					[sg.InputText(key='-IN-')],      
+					[sg.Submit(), sg.Cancel()]]      
+
+		window = sg.Window('Window Title', layout)    
+		event, values = window.read()    
+		window.close()
+		text_input = values['-IN-']
+		return text_input  
 
 	"""
 	 clase padre que hereda un metodo para generar botones 
@@ -398,6 +411,10 @@ def main_game(num_tablero, configuracion):
 		listbox.Update(listado)	## accedo a la tupla			
 	"""se crea el atril del jugador y la Pc."""	
 
+####################
+	#inteligencia1.saludo()
+	nombre = get_name()
+	print(nombre)
 	atr1=atril1(True).crearAtril()
 	atr2=atril1(False).crearAtril()
 	""" en base a una opcion ingresada por la configuracion se instancia un objeto tablero y se elige una configuracion para crear el tablero."""		
@@ -618,15 +635,11 @@ def main_game(num_tablero, configuracion):
 							sg.Popup('la palabra es menor de 2')
 							#break
 													
-
-
 										
 					if button in (None , 'EXIT'):
 						exit()
 			
-						
-						
-						
+												
 					if button =='PASAR':
 						cantPasadas=cantPasadas+1
 						controlAt=[7,7,0,0]
@@ -636,8 +649,6 @@ def main_game(num_tablero, configuracion):
 						if cantPasadas<4:
 							
 							initial_atril=PasarTurno(initial_atril)
-		
-							
 							listadoPosicionLetrasAtril=[]
 							listadoPosicionLetrasTablero=[]
 							palabra=['']
