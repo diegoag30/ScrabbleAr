@@ -107,8 +107,10 @@ class Puntaje():
             col_puntaje.append([sg.Text(str(p["puntaje"]),background_color= self._color_ventana)])
             col_nivel.append([sg.Text(p["nivel"],background_color= self._color_ventana)])
             col_fecha.append([sg.Text(p["fecha"],background_color= self._color_ventana)])
-        layout = [[sg.Column(col_nombre, element_justification='center'),sg.Column(col_puntaje, element_justification='center')
-        ,sg.Column(col_nivel, element_justification='center'),sg.Column(col_fecha, element_justification='center')]]
+        layout = [ 
+            [sg.Image(r'app/images/ranking.png', size=(256, 256), pad=((25,0),(0,50)), background_color='#00796B')],
+            [sg.Column(col_nombre, element_justification='center'),sg.Column(col_puntaje, element_justification='center')
+            ,sg.Column(col_nivel, element_justification='center'),sg.Column(col_fecha, element_justification='center')]]
 
         ## Configuracion de la ventana, y eventos
         window = sg.Window('Top 10 mejores puntajes', layout)
