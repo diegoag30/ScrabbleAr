@@ -17,6 +17,9 @@ class Bolsa():
     def bolsa_vacia(self):
         return self._bolsa_vacia
 
+    def get_letras(self):
+        return list(self.letras_validas().keys())
+
     def quitar_fichas(self,ficha,cantidad):
         cant_fichas = self._fichas[ficha]["cant"] - cantidad 
         if cant_fichas >=0:
@@ -32,6 +35,7 @@ class Bolsa():
                 hay_fichas = True
                 break
         self._bolsa_vacia = not hay_fichas
+        return self._bolsa_vacia
         #print(self._bolsa_vacia)
 
     def crear_ui(self):

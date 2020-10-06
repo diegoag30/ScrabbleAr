@@ -13,9 +13,11 @@ clasificar=clasificarPalabra
 '''
  genera un conjunto de palabras validas para que el jugador pueda ingresarlas en el tablero 
 '''
-def atrilPalabrasValidas(images_keys,initial_atril2,configuracion):
+def atrilPalabrasValidas(bolsa,initial_atril2,configuracion):
 	'''A partir de una lista de palabras, crea un lista con todas las combinaciones posibles,
-	 luego comprueba cuales de estas son validas.y regresa un atril con palabras validas '''	
+	 luego comprueba cuales de estas son validas.y regresa un atril con palabras validas '''
+	images_keys = bolsa.get_letras()
+	random.shuffle(images_keys,random.random)
 	atril2=''
 	listaPalabras=[]
 	cont3=3
@@ -53,11 +55,17 @@ def atrilPalabrasValidas(images_keys,initial_atril2,configuracion):
 
 	if len(atril2)<7:
 		while True:
-			atril2=atril2+(random.choice(images_keys))
-			if len(atril2)==7:
+			try:
+				atril2=atril2+(random.choice(images_keys))
+				if len(atril2)==7:
+					break
+			except IndexError:
+				print('Bolsa es vacia: ')
 				break
 
 	for i in atril2:
+		bolsa.quitar_fichas(i,1)
+		#print(bolsa.get_fichas())
 		initial_atril2.append(i)		
 	print('PALABRA PARA EL JUGADOR',initial_atril2)
 	
@@ -95,7 +103,7 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images
 		.""" 		
 		
 		def horizontal():
-			T=True;
+			T=True
 			while T and controlAt[0]<15 :
 				if controlAt[1]+len(initial_atril2)-1<=14: ## 
 					L=True
@@ -471,8 +479,19 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images
 	
 	initial_atril=[]
 	for i in range(0,7):
-		initial_atril.append(random.choice(images_keys))	
-	
+		try:
+			print(images_keys.check_bolsa_vacia())
+			letra = random.choice(images_keys.get_letras())
+			images_keys.quitar_fichas(letra,1)
+			initial_atril.append(letra)
+			print('atril de la IA: ',initial_atril)
+		except IndexError:
+			print('Estado de la bolsa: ',images_keys.check_bolsa_vacia())
+			sg.Popup('No quedan mas fichas')
+			break
+			
+
+
 	"""
 	  se generan todas las combinaciones posibles entre 7 y 2 letras 
 	   se chequean todas las combinaciones posibles y se detiene al generar  una palabra valida 
@@ -481,7 +500,7 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images
 	cont3=7
 	nivel=3 ## pasar como parametro
 	T=True
-	while T and 2<=cont3:
+	while T and 2<=cont3 and not images_keys.check_bolsa_vacia():
 		listaPalabras=[]
 		#print('*'*30)
 		for c in combinations(initial_atril,cont3):

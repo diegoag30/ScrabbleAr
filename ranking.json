@@ -12,51 +12,15 @@
         "nivel": "dificil"
     },
     {
-        "jugador": "diego",
-        "fecha": "08/05/2020",
-        "puntaje": 10000,
-        "nivel": "dificil"
-    },
-    {
-        "jugador": "diego",
-        "fecha": "08/05/2020",
-        "puntaje": 10000,
-        "nivel": "dificil"
-    },
-    {
-        "jugador": "diego",
-        "fecha": "08/05/2020",
-        "puntaje": 10000,
-        "nivel": "dificil"
-    },
-    {
-        "jugador": "diego",
-        "fecha": "08/05/2020",
-        "puntaje": 10000,
-        "nivel": "dificil"
-    },
-    {
-        "jugador": "diego",
-        "fecha": "08/05/2020",
-        "puntaje": 10000,
-        "nivel": "dificil"
-    },
-    {
-        "jugador": "diego",
-        "fecha": "08/05/2020",
-        "puntaje": 10000,
-        "nivel": "dificil"
-    },
-    {
-        "jugador": "diego",
-        "fecha": "08/05/2020",
-        "puntaje": 10000,
-        "nivel": "dificil"
-    },
-    {
-        "jugador": "cristian",
+        "jugador": "diegol",
         "fecha": "10/05/2020",
-        "puntaje": 158,
+        "puntaje": 47,
+        "nivel": "normal"
+    },
+    {
+        "jugador": "brian",
+        "fecha": "10/05/2020",
+        "puntaje": 18,
         "nivel": "normal"
     }
 ]

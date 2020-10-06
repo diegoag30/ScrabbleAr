@@ -66,10 +66,10 @@ def main_game(num_tablero, configuracion):
 	images = {'BLANK':blank,'A': a, 'B': b, 'C': c, 'D': d, 'E': e, 'F': f, 'G': g, 'H': h, 'I': i, 'J': j, 'K': k, 'L': l, 'M': m, 'N': n, 'O': o, 'P': p, 'Q': q, 'R': r, 'S': s, 'T': t, 'U': u, 'V': v, 'W': w, 'X': x, 'Y': y, 'Z': z}
 
 
-	images_keys= list(bolsa.letras_validas().keys()) ### Se recibe las letras configuradas por el usuario, y se eliminan las que estan en 0
+	images_keys= bolsa ### Se recibe las letras configuradas por el usuario, y se eliminan las que estan en 0
 	
-
-	random.shuffle(images_keys,random.random)
+	print(images_keys)
+	random.shuffle(images_keys.get_letras(),random.random)
 	initial_atril=[]
 	initial_atril2=[]
 	PC.atrilPalabrasValidas(images_keys,initial_atril2, conf)
@@ -77,12 +77,13 @@ def main_game(num_tablero, configuracion):
 
 
 	## SE Restan las fichas cuando se crea el atril del jugador, ademas se quitan las fichas que quedaron en 0
+	'''
 	for ficha in initial_atril:
 		if ficha in bolsa.get_fichas():
 			bolsa.quitar_fichas(ficha,1)
 	images_keys = list(bolsa.letras_validas().keys())
 	#print(bolsa.letras_validas().keys())
-
+'''
 	def actualizar_layout_bolsa():
 		for ficha in bolsa.get_fichas().keys():
 			window.FindElement(ficha).update(bolsa.cant_letras(ficha))
@@ -281,7 +282,6 @@ def main_game(num_tablero, configuracion):
 	"""actualiza el atril del jugador despues de comprobar que la palabra ingresada es correcta con el boton Check."""
 	def actualizarAtrilJugador():
 		initial_atril2=[]
-		random.shuffle(images_keys,random.random)
 		PC.atrilPalabrasValidas(images_keys,initial_atril2, conf)
 			
 		for i in range(0,7):
@@ -333,7 +333,6 @@ def main_game(num_tablero, configuracion):
 							
 		print(initial_atril,'xxx inicio')
 		initial_atril2=[]
-		random.shuffle(images_keys,random.random)
 
 		PC.atrilPalabrasValidas(images_keys,initial_atril2, conf)
 		initial_atril=[]
@@ -490,7 +489,7 @@ def main_game(num_tablero, configuracion):
 	puntaje_jugador = 0
 	
 
-	while ((True and iniciar)and (not bolsa.bolsa_vacia())):
+	while ((True and iniciar)and (not bolsa.check_bolsa_vacia())):
 	
 	
 		while True:
@@ -538,6 +537,10 @@ def main_game(num_tablero, configuracion):
 					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys,conf,fichasIA)
 					print('IA INICIAL')
 					wait2=False
+				### Depues del turno de la IA, si ya no quedan fichas se termina el juego.
+				if(bolsa.check_bolsa_vacia()):
+					print('la bolsa esta vacia:')
+					break
 				while True:
 					current_time = int(round(time.time() * 100)) - start_time
 					# minu = current_time // 100 // 60
@@ -619,6 +622,7 @@ def main_game(num_tablero, configuracion):
 								actualizar_listado(window.FindElement('datosj'))
 								puntaje_jugador = puntaje_jugador + bolsa.calcular_puntos(p,word_values) 
 								print(puntaje_jugador)
+								actualizar_layout_bolsa()
 								del word_values[:]
 								break
 								#####
@@ -779,6 +783,7 @@ def main_game(num_tablero, configuracion):
 			except:
 				sg.Popup('Por favor aprete el boton comenzar',background_color='#00796B')
 		sg.Popup('FIN Juego')
+		print(bolsa.check_bolsa_vacia())
 		break
 		wait=True
 		window.FindElement('PASAR').update(disabled=True)
