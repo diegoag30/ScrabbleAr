@@ -3,6 +3,8 @@ from Configuracion import Configuracion
 
 
 class Bolsa():
+    '''En esta clase se creara la bolsa de fichas, se recibe como parametro las fichas. Luego tiene metods para verificar si la bolsa esta vacia,
+     para obetener las fichas(con sus respectivos puntajes y valores), o solo las letras, entre otros.'''
     def __init__(self,fichas):
         self._fichas = fichas
         self._bolsa_vacia = False
@@ -18,6 +20,7 @@ class Bolsa():
         return self._bolsa_vacia
 
     def get_letras(self):
+        '''Devuelve una lista con las letras de la bolsa cuya cantidad no sea 0'''
         return list(self.letras_validas().keys())
 
     def quitar_fichas(self,ficha,cantidad):

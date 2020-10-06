@@ -12,9 +12,21 @@
         "nivel": "dificil"
     },
     {
+        "jugador": "pepito",
+        "fecha": "10/05/2020",
+        "puntaje": 60,
+        "nivel": "normal"
+    },
+    {
         "jugador": "diegol",
         "fecha": "10/05/2020",
         "puntaje": 47,
+        "nivel": "normal"
+    },
+    {
+        "jugador": "cristian",
+        "fecha": "10/05/2020",
+        "puntaje": 39,
         "nivel": "normal"
     },
     {

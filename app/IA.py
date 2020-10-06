@@ -59,7 +59,7 @@ def atrilPalabrasValidas(bolsa,initial_atril2,configuracion):
 				atril2=atril2+(random.choice(images_keys))
 				if len(atril2)==7:
 					break
-			except IndexError:
+			except IndexError: #Ocurre cuando la bolsa es vacia
 				print('Bolsa es vacia: ')
 				break
 
@@ -485,9 +485,8 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images
 			images_keys.quitar_fichas(letra,1)
 			initial_atril.append(letra)
 			print('atril de la IA: ',initial_atril)
-		except IndexError:
+		except IndexError: #Ocurre cuando la bolsa es vacia
 			print('Estado de la bolsa: ',images_keys.check_bolsa_vacia())
-			sg.Popup('No quedan mas fichas')
 			break
 			
 

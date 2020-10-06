@@ -535,10 +535,12 @@ def main_game(num_tablero, configuracion):
 	
 				if (opc2==0)and wait2:
 					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys,conf,fichasIA)
+					actualizar_layout_bolsa()
 					print('IA INICIAL')
 					wait2=False
 				### Depues del turno de la IA, si ya no quedan fichas se termina el juego.
 				if(bolsa.check_bolsa_vacia()):
+					sg.Popup('No quedan mas fichas')
 					print('la bolsa esta vacia:')
 					break
 				while True:
@@ -675,6 +677,7 @@ def main_game(num_tablero, configuracion):
 							
 						
 							PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys,conf,fichasIA)
+							actualizar_layout_bolsa()
 														
 						else:
 							sg.Popup('se supero la cantidad de pasadas')
@@ -768,6 +771,7 @@ def main_game(num_tablero, configuracion):
 			
 				if (opc2==1)and wait2:
 					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys, conf,fichasIA)
+					actualizar_layout_bolsa()
 					print('IA FINAL')
 					controlAt=[8,7,0,0]
 			"""control del fin del tiempo de juego."""						
