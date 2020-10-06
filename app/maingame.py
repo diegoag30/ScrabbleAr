@@ -557,7 +557,10 @@ def main_game(num_tablero, configuracion):
 							print('=============================================5 MINUTOS====================================')
 							print('=============================================5 MINUTOS====================================')
 							print('=============================================5 MINUTOS====================================')
-							sg.Popup('SE ACABO EL TIEMPO!!!')
+							sg.Popup('SE ACABO EL TIEMPO!!! PUNTAJE GUARDADO')
+							##Una vez que el tiempo termino, se guardan los puntajes		
+							puntaje_final_jugador = Puntaje()	
+							puntaje_final_jugador.agregar_nuevo_puntaje(nombre,puntaje_jugador,configuracion.getConfiguracionesSeleccionadas()['dificultad'])
 							window.close()
 					
 					if conf.getConfiguracionesSeleccionadas()['tiempo'] == 'medio':
@@ -566,7 +569,10 @@ def main_game(num_tablero, configuracion):
 							print('=============================================15 MINUTOS====================================')
 							print('=============================================15 MINUTOS====================================')
 							print('=============================================15 MINUTOS====================================')
-							sg.Popup('SE ACABO EL TIEMPO!!!')
+							sg.Popup('SE ACABO EL TIEMPO!!! PUNTAJE GUARDADO')
+							##Una vez que el tiempo termino, se guardan los puntajes		
+							puntaje_final_jugador = Puntaje()	
+							puntaje_final_jugador.agregar_nuevo_puntaje(nombre,puntaje_jugador,configuracion.getConfiguracionesSeleccionadas()['dificultad'])
 							window.close()
 
 					if conf.getConfiguracionesSeleccionadas()['tiempo'] == 'maximo':
@@ -575,7 +581,10 @@ def main_game(num_tablero, configuracion):
 							print('=============================================30 MINUTOS====================================')
 							print('=============================================30 MINUTOS====================================')
 							print('=============================================30 MINUTOS====================================')
-							sg.Popup('SE ACABO EL TIEMPO!!!')
+							sg.Popup('SE ACABO EL TIEMPO!!! PUNTAJE GUARDADO')
+							##Una vez que el tiempo termino, se guardan los puntajes		
+							puntaje_final_jugador = Puntaje()	
+							puntaje_final_jugador.agregar_nuevo_puntaje(nombre,puntaje_jugador,configuracion.getConfiguracionesSeleccionadas()['dificultad'])
 							window.close()
 
 					puntosP=0
