@@ -3,6 +3,8 @@ from Configuracion import Configuracion
 
 
 class Bolsa():
+    '''En esta clase se creara la bolsa de fichas, se recibe como parametro las fichas. Luego tiene metods para verificar si la bolsa esta vacia,
+     para obetener las fichas(con sus respectivos puntajes y valores), o solo las letras, entre otros.'''
     def __init__(self,fichas):
         self._fichas = fichas
         self._bolsa_vacia = False
@@ -16,6 +18,10 @@ class Bolsa():
 
     def bolsa_vacia(self):
         return self._bolsa_vacia
+
+    def get_letras(self):
+        '''Devuelve una lista con las letras de la bolsa cuya cantidad no sea 0'''
+        return list(self.letras_validas().keys())
 
     def quitar_fichas(self,ficha,cantidad):
         cant_fichas = self._fichas[ficha]["cant"] - cantidad 
@@ -32,6 +38,7 @@ class Bolsa():
                 hay_fichas = True
                 break
         self._bolsa_vacia = not hay_fichas
+        return self._bolsa_vacia
         #print(self._bolsa_vacia)
 
     def crear_ui(self):
@@ -49,7 +56,7 @@ class Bolsa():
         return layout
 
     def letras_validas(self):
-        """Elimina las fichas que tengan como cantidad 0 """
+        """Devuelve un diccionario, que saca las fichas que tengan como cantidad 0 """
         nuevas_fichas = dict(self._fichas)
         for key,value in self._fichas.items():
             if value["cant"] == 0:
@@ -63,16 +70,17 @@ class Bolsa():
         if letra in self._fichas.keys():
             return self._fichas[letra]["cant"]
 
-    def calcular_puntos(self,palabra):
-        puntaje = 0
-        for letra in palabra:
-            puntaje = puntaje + self.get_fichas()[letra]["val"]
-        return puntaje
+    def calcular_puntos(self,palabra,puntajes_casillas):
+        '''Se calculan los puntajes, basados en los valores de las letras que forman una palabra por el puntaje de cada casilla'''
+        puntuacion = 0
+        for letra,puntaje in zip(palabra,puntajes_casillas):
+            puntuacion= puntuacion + (self.get_fichas()[letra]["val"] * puntaje)
+        return puntuacion
             
 
 
 
 conf = Configuracion()
 bolsa = Bolsa(conf.getConfiguracionLetras())
-print(bolsa.calcular_puntos("HOLA"))
+#print(bolsa.calcular_puntos("HOLA"))
 

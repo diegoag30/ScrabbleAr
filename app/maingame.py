@@ -8,6 +8,7 @@ import os.path
 import config_tablero
 from Bolsa import Bolsa
 from Configuracion import Configuracion
+from puntajes import Puntaje
 
 base_path=os.path.dirname(os.path.abspath(__file__))
 """
@@ -15,7 +16,7 @@ base_path=os.path.dirname(os.path.abspath(__file__))
 ."""
 def main_game(num_tablero, configuracion):
 	
-	#Bolsa y configuracion instanciada,
+	#Inicializacion de variables e imagenes
 	conf = configuracion
 	bolsa = Bolsa(conf.getConfiguracionLetras())
 	PC=IA
@@ -63,27 +64,42 @@ def main_game(num_tablero, configuracion):
 	fichasIA=[]
 	color_button=('white','white')
 	images = {'BLANK':blank,'A': a, 'B': b, 'C': c, 'D': d, 'E': e, 'F': f, 'G': g, 'H': h, 'I': i, 'J': j, 'K': k, 'L': l, 'M': m, 'N': n, 'O': o, 'P': p, 'Q': q, 'R': r, 'S': s, 'T': t, 'U': u, 'V': v, 'W': w, 'X': x, 'Y': y, 'Z': z}
-	initial_atril=[]
-	#print(bolsa.letras_validas().keys())
-	images_keys= list(bolsa.letras_validas().keys()) ### seria la lista de palabras
 
 
-	random.shuffle(images_keys,random.random)
+	images_keys= bolsa ### Se recibe las letras configuradas por el usuario, y se eliminan las que estan en 0
+	
+	print(images_keys)
+	random.shuffle(images_keys.get_letras(),random.random)
 	initial_atril=[]
 	initial_atril2=[]
 	PC.atrilPalabrasValidas(images_keys,initial_atril2, conf)
 	initial_atril=initial_atril2[:]
 
+
 	## SE Restan las fichas cuando se crea el atril del jugador, ademas se quitan las fichas que quedaron en 0
+	'''
 	for ficha in initial_atril:
 		if ficha in bolsa.get_fichas():
 			bolsa.quitar_fichas(ficha,1)
 	images_keys = list(bolsa.letras_validas().keys())
 	#print(bolsa.letras_validas().keys())
-
+'''
 	def actualizar_layout_bolsa():
 		for ficha in bolsa.get_fichas().keys():
 			window.FindElement(ficha).update(bolsa.cant_letras(ficha))
+
+
+	def get_name():
+		'''Pop up inicial, que obtiene el nombre del jugador, para poder agregarlo al ranking en caso de ser necesario '''
+		layout = [[sg.Text('Bienvenido a ScrabbleAR. Por favor introduce tu nombre:',background_color='#00796B'),],      
+					[sg.InputText(key='-IN-')],      
+					[sg.Submit(), sg.Cancel()]]      
+
+		window = sg.Window('Window Title', layout)    
+		event, values = window.read()    
+		window.close()
+		text_input = values['-IN-']
+		return text_input  
 
 	"""
 	 clase padre que hereda un metodo para generar botones 
@@ -112,11 +128,6 @@ def main_game(num_tablero, configuracion):
 	
 	
 			tamaño=(50,50)
-		
-	
-		
-				
-				
 			tablero1=[]
 			for i in range(15):
 				row=[]
@@ -161,34 +172,28 @@ def main_game(num_tablero, configuracion):
 				tablero1.append(row)
 		
 			return (tablero1,tamaño)
-			
-			
-			
-			
-			
-	
-			
-			
+		
 	""" genera dos atriles que contienen las palabras del jugador y de simbolos que representan las palabras de la  pc  ."""			
-	
+
 			
 	class atril1():
+		'''Clase que controla la UI del atril'''
 		def __init__(self,T=True):
 			self._T= T
 		def crearAtril(self):
 			def render1(image, key, texto='',color_button=('white','white')):
 				return sg.RButton(texto,image_filename=image,image_size=(50, 50), pad=(2,2),key=key,button_color=color_button)
 			atril=[]
-			
-			if self._T:
+			#Si se pasa true como parametro, los botones del atril se rellenan con letras
+			if self._T: 
 				
 				for i in  range(7):
 					row=[]
 					piece_image = images[initial_atril[i]]
 					row.append(render1(piece_image['imagen'],key =(i),texto='', color_button=('white','white')))
 					atril.append(row)
-				
-			else:
+			#En caso de que se pase false, se mostraran signos de interrogacion en el atril(atril de la computadora)	
+			else: 
 				img=os.path.join(base_path,'images/interrogacion.png')
 				for i in  range(7):
 					row=[]
@@ -197,15 +202,17 @@ def main_game(num_tablero, configuracion):
 					row.append(render1(img,key =(i),texto='', color_button=('white','white')))
 					atril.append(row)
 			return atril
-			''' modificartBoton () cambia el estado del boton , cambia la imagen de una pieza del tablero y consta que esta ocupado'''
-	def modificarBoton(): 
+
+
+	def modificarBoton(valores): 
+		''' modificartBoton () cambia el estado del boton , cambia la imagen de una pieza del tablero y consta que esta ocupado'''
 		#if boardConfig[button[0]][button[1]].get_estado() == True:
 			#print('')
-	
+
 		if boardConfig[button[0]][button[1]].get_estado() == False:
 			img=''
 			window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))
-			
+			valores.append(boardConfig[button[0]][button[1]].get_valor())
 			
 			piece_image = images[initial_atril[i]]
 			img=piece_image['imagen']
@@ -217,6 +224,7 @@ def main_game(num_tablero, configuracion):
 			initial_atril[i]='' ## relacionar con la bolsa
 			listadoPosicionLetrasAtril.append(i)
 			boardConfig[button[0]][button[1]].set_estado(True)
+		print('los valores de las letras son: ', valores)
 
 			
 		
@@ -274,7 +282,6 @@ def main_game(num_tablero, configuracion):
 	"""actualiza el atril del jugador despues de comprobar que la palabra ingresada es correcta con el boton Check."""
 	def actualizarAtrilJugador():
 		initial_atril2=[]
-		random.shuffle(images_keys,random.random)
 		PC.atrilPalabrasValidas(images_keys,initial_atril2, conf)
 			
 		for i in range(0,7):
@@ -326,7 +333,6 @@ def main_game(num_tablero, configuracion):
 							
 		print(initial_atril,'xxx inicio')
 		initial_atril2=[]
-		random.shuffle(images_keys,random.random)
 
 		PC.atrilPalabrasValidas(images_keys,initial_atril2, conf)
 		initial_atril=[]
@@ -403,11 +409,14 @@ def main_game(num_tablero, configuracion):
 	""" actualizad el listado que contiene el historial de casillas con premios del jugador y la PC."""	
 			
 	def actualizar_listado(listbox):
-		
-
 		listbox.Update(listado)	## accedo a la tupla			
 	"""se crea el atril del jugador y la Pc."""	
 
+####################
+	#inteligencia1.saludo()
+	nombre = get_name()
+	word_values = []
+	print(nombre)
 	atr1=atril1(True).crearAtril()
 	atr2=atril1(False).crearAtril()
 	""" en base a una opcion ingresada por la configuracion se instancia un objeto tablero y se elige una configuracion para crear el tablero."""		
@@ -480,7 +489,7 @@ def main_game(num_tablero, configuracion):
 	puntaje_jugador = 0
 	
 
-	while ((True and iniciar)and (not bolsa.bolsa_vacia())):
+	while ((True and iniciar)and (not bolsa.check_bolsa_vacia())):
 	
 	
 		while True:
@@ -526,8 +535,14 @@ def main_game(num_tablero, configuracion):
 	
 				if (opc2==0)and wait2:
 					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys,conf,fichasIA)
+					actualizar_layout_bolsa()
 					print('IA INICIAL')
 					wait2=False
+				### Depues del turno de la IA, si ya no quedan fichas se termina el juego.
+				if(bolsa.check_bolsa_vacia()):
+					sg.Popup('No quedan mas fichas')
+					print('la bolsa esta vacia:')
+					break
 				while True:
 					current_time = int(round(time.time() * 100)) - start_time
 					# minu = current_time // 100 // 60
@@ -605,13 +620,16 @@ def main_game(num_tablero, configuracion):
 								listadoPosicionLetrasAtril=[]
 								listadoPosicionLetrasTablero=[]
 								### se agrega el puntaje a la lista
-								listado.append(p + " " + str(bolsa.calcular_puntos(p)) + " Puntos")
+								listado.append(p + " " + str(bolsa.calcular_puntos(p,word_values)) + " Puntos")
 								actualizar_listado(window.FindElement('datosj'))
-								puntaje_jugador = puntaje_jugador + bolsa.calcular_puntos(p) 
+								puntaje_jugador = puntaje_jugador + bolsa.calcular_puntos(p,word_values) 
 								print(puntaje_jugador)
 								window['puntaje'].update(puntaje_jugador)
 								#####
+								actualizar_layout_bolsa()
+								del word_values[:]
 								break
+								#####
 							else:
 								sg.Popup('PALABRA INVALIDA')
 								
@@ -622,22 +640,22 @@ def main_game(num_tablero, configuracion):
 								T4=True
 								palabra[0]=''
 								listadoPosicionLetrasAtril=[]
-								listadoPosicionLetrasTablero=[]								
+								listadoPosicionLetrasTablero=[]
+								del word_values[:]								
 							##window[]
 						# if len(word)>= 2 and len(word) <=7:
 						elif len(palabra[0])<2:
 							sg.Popup('la palabra es menor de 2')
 							#break
+						
+
+						
 													
-
-
 										
 					if button in (None , 'EXIT'):
 						exit()
 			
-						
-						
-						
+												
 					if button =='PASAR':
 						cantPasadas=cantPasadas+1
 						controlAt=[7,7,0,0]
@@ -647,8 +665,6 @@ def main_game(num_tablero, configuracion):
 						if cantPasadas<4:
 							
 							initial_atril=PasarTurno(initial_atril)
-		
-							
 							listadoPosicionLetrasAtril=[]
 							listadoPosicionLetrasTablero=[]
 							palabra=['']
@@ -663,6 +679,7 @@ def main_game(num_tablero, configuracion):
 							
 						
 							PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys,conf,fichasIA)
+							actualizar_layout_bolsa()
 														
 						else:
 							sg.Popup('se supero la cantidad de pasadas')
@@ -692,7 +709,7 @@ def main_game(num_tablero, configuracion):
 								
 									if (button[0]==7 and button[1]==7)and T3 :
 										print(button)
-										modificarBoton()
+										modificarBoton(word_values)
 										T3=False
 										F=button[0]
 										C=button[1]
@@ -702,13 +719,13 @@ def main_game(num_tablero, configuracion):
 										if(button[0]==F)and T1:
 											if C<button[1]and(button[1]==C+1):
 												T2=False
-												modificarBoton()
+												modificarBoton(word_values)
 												C=button[1]
 										if(button[1]==C)and T2:
 											if F<button[0]and(button[0]==F+1):
 												print(button)
 												T1=False
-												modificarBoton()
+												modificarBoton(word_values)
 												F=button[0]
 									#cant=4
 									
@@ -722,7 +739,7 @@ def main_game(num_tablero, configuracion):
 										
 																
 										
-										modificarBoton()
+										modificarBoton(word_values)
 										F=button[0]
 										C=button[1]
 										T4=False
@@ -730,20 +747,20 @@ def main_game(num_tablero, configuracion):
 										if(button[0]==F)and T1 :
 											if C<button[1]and(button[1]==C+1):
 												T2=False
-												modificarBoton()
+												modificarBoton(word_values)
 												C=button[1]
 										if(button[1]==C)and T2:
 											if F<button[0]and(button[0]==F+1):
 												T1=False
-												modificarBoton()
+												modificarBoton(word_values)
 												F=button[0]				
 											
 							
 								
 								actualizar_listado(window.FindElement('datosj')) ## habria que multiplicar el valor de cada letra o palabra
-			
-							
-							
+								print("ESTE ES EL PUNTAJE DEL JUGADOR: -------------" + str(puntaje_jugador))
+								## modifiquenlo para que muestres los puntos que se van acumulando por casillas 
+								##
 																			
 																			
 								l=0
@@ -756,19 +773,24 @@ def main_game(num_tablero, configuracion):
 			
 				if (opc2==1)and wait2:
 					PC.inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images_keys, conf,fichasIA)
+					actualizar_layout_bolsa()
 					print('IA FINAL')
 					controlAt=[8,7,0,0]
 			"""control del fin del tiempo de juego."""						
 			final=time.time()
-			if final-inicio>120:
-			
+			if final-inicio>120:			
 				break
-			if (current_time // 100) % 60 == 10:
-				print('=============================================10 SEGUNDOS====================================')
-				print('=============================================10 SEGUNDOS====================================')
-				print('=============================================10 SEGUNDOS====================================')
-				print('=============================================10 SEGUNDOS====================================')
+			try:
+				if (current_time // 100) % 60 == 10:
+					print('=============================================10 SEGUNDOS====================================')
+					print('=============================================10 SEGUNDOS====================================')
+					print('=============================================10 SEGUNDOS====================================')
+					print('=============================================10 SEGUNDOS====================================')
+			except:
+				sg.Popup('Por favor aprete el boton comenzar',background_color='#00796B')
 		sg.Popup('FIN Juego')
+		print(bolsa.check_bolsa_vacia())
+		break
 		wait=True
 		window.FindElement('PASAR').update(disabled=True)
 		window.FindElement('GUARDAR').update(disabled=True)
@@ -820,6 +842,11 @@ def main_game(num_tablero, configuracion):
 			controlAt=[7,7,0,0]	
 			#window['COMENZAR'].update( button_color=('white','green'))		
 			bolsa = Bolsa(conf.getConfiguracionLetras())
+
+	##Una vez que el juego termino, se guardan los puntajes		
+	puntaje_final_jugador = Puntaje()	
+	puntaje_final_jugador.agregar_nuevo_puntaje(nombre,puntaje_jugador,configuracion.getConfiguracionesSeleccionadas()['dificultad'])	
+
 			
 						
 					

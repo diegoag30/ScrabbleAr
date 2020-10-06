@@ -8,7 +8,6 @@ def clasificarPalabraPattern(palabra):
     (sustantivo(NN), adjetivo(JJ) o verbo(VB)).
     '''
     s = parse(palabra.lower()).split()
-    print(s)
     try:
         for cada in s:
             for i in cada:
@@ -64,7 +63,7 @@ def comprobarPalabraEnBaseAlNivel(palabra, conf):
         devuelve True o False en base a la dificulad elegida en el menu de configuracion
     """
     nivel = conf.getConfiguracionesSeleccionadas()['dificultad']
-    print(nivel, 'desde modulo clasificar')
+    #print(nivel, 'desde modulo clasificar')
     # nivel='dificil'  ## lo defini aca para usarlo directamente desde el maingame , hay que sacar esta linea 
     
     if nivel == 'facil':

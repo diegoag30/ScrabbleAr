@@ -13,10 +13,11 @@ clasificar=clasificarPalabra
 '''
  genera un conjunto de palabras validas para que el jugador pueda ingresarlas en el tablero 
 '''
-def atrilPalabrasValidas(images_keys,initial_atril2,configuracion):
-	
-
-
+def atrilPalabrasValidas(bolsa,initial_atril2,configuracion):
+	'''A partir de una lista de palabras, crea un lista con todas las combinaciones posibles,
+	 luego comprueba cuales de estas son validas.y regresa un atril con palabras validas '''
+	images_keys = bolsa.get_letras()
+	random.shuffle(images_keys,random.random)
 	atril2=''
 	listaPalabras=[]
 	cont3=3
@@ -29,41 +30,42 @@ def atrilPalabrasValidas(images_keys,initial_atril2,configuracion):
 	
 	cont=len(listaPalabras)
 	cont2=0
-	while (cont!=cont2) and True:
+	while (cont!=cont2) and True: #Se recorre la lista de combinaciones
 		
-		if clasificar.comprobarPalabraEnBaseAlNivel(listaPalabras[cont2], conf):
+		if clasificar.comprobarPalabraEnBaseAlNivel(listaPalabras[cont2], conf): #Si la palabra es valida, para el nivel seleccionado.
 			
 			print('*'*30)
 			print('PALABRA VALIDA PARA JUGADOR',listaPalabras[cont2])
+			#Se agrega la palabra a atril2
 			atril2=atril2+listaPalabras[cont2][0]
 			atril2=atril2+listaPalabras[cont2][1]
 			atril2=atril2+listaPalabras[cont2][2]
-		
-		
-	
-			#T=False
-			#IA(listaPalabras[cont2])
+
 			if len(atril2)==6:
+				print(atril2)
 				atril2=atril2+(random.choice(images_keys))
 				
 				break
-		
-				
-				
-			#T=False
+
 		cont2=cont2+1
 		
 		
-		if cont==cont2:
-			
+		if cont==cont2:			
 			break
+
 	if len(atril2)<7:
 		while True:
-			atril2=atril2+(random.choice(images_keys))
-			if len(atril2)==7:
+			try:
+				atril2=atril2+(random.choice(images_keys))
+				if len(atril2)==7:
+					break
+			except IndexError: #Ocurre cuando la bolsa es vacia
+				print('Bolsa es vacia: ')
 				break
 
 	for i in atril2:
+		bolsa.quitar_fichas(i,1)
+		#print(bolsa.get_fichas())
 		initial_atril2.append(i)		
 	print('PALABRA PARA EL JUGADOR',initial_atril2)
 	
@@ -101,7 +103,7 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images
 		.""" 		
 		
 		def horizontal():
-			T=True;
+			T=True
 			while T and controlAt[0]<15 :
 				if controlAt[1]+len(initial_atril2)-1<=14: ## 
 					L=True
@@ -477,8 +479,18 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images
 	
 	initial_atril=[]
 	for i in range(0,7):
-		initial_atril.append(random.choice(images_keys))	
-	
+		try:
+			print(images_keys.check_bolsa_vacia())
+			letra = random.choice(images_keys.get_letras())
+			images_keys.quitar_fichas(letra,1)
+			initial_atril.append(letra)
+			print('atril de la IA: ',initial_atril)
+		except IndexError: #Ocurre cuando la bolsa es vacia
+			print('Estado de la bolsa: ',images_keys.check_bolsa_vacia())
+			break
+			
+
+
 	"""
 	  se generan todas las combinaciones posibles entre 7 y 2 letras 
 	   se chequean todas las combinaciones posibles y se detiene al generar  una palabra valida 
@@ -487,7 +499,7 @@ def inteligencia(controlAt,window,boardConfig,images,listadoPc,clasificar,images
 	cont3=7
 	nivel=3 ## pasar como parametro
 	T=True
-	while T and 2<=cont3:
+	while T and 2<=cont3 and not images_keys.check_bolsa_vacia():
 		listaPalabras=[]
 		#print('*'*30)
 		for c in combinations(initial_atril,cont3):
