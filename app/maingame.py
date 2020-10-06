@@ -436,10 +436,10 @@ def main_game(num_tablero, configuracion):
 	elementos=obj.Tab(images) ##### estaria para conectarlo con una opcion para elegir el tablero
 	tablero= elementos[0] 
 	tamaño_img = elementos[1]
-	columna_2 = [ [sg.Text('PUNTOS MAQUINA')],[sg.Listbox(values =[], key='datosm', font='Courier 18' ,size=(20,10))],[sg.Text('TOTAL PUNTOS')],[sg.Column(bolsa.get_layout(),key="BOLSA")]]
-	columna_1 = [ [sg.Text('PUNTOS JUGADOR')],[sg.Listbox(values =[], key='datosj', font='Courier 18',size=(20,10))],[sg.Text('TOTAL PUNTOS')],[sg.Text('00:00:00', background_color=('#01a9b4'),key='reloj')]]
+	columna_2 = [ [sg.Text('PUNTOS MAQUINA', background_color='#00796B')],[sg.Listbox(values =[], key='datosm', font='Courier 18' ,size=(20,10))],[sg.Text('TOTAL PUNTOS', background_color='#00796B')],[sg.Column(bolsa.get_layout(),key="BOLSA")]]
+	columna_1 = [ [sg.Text('PUNTOS JUGADOR', background_color='#00796B')],[sg.Listbox(values =[], key='datosj', font='Courier 18',size=(20,10))],[sg.Text('TOTAL PUNTOS', background_color='#00796B'), sg.Text(background_color='#00796B', size=(5,1), key='puntaje')],[sg.Text('00:00:00', background_color=('#01a9b4'),key='reloj')]]
 
-	columna_3 = [ [sg.Text('Total Puntos')]]
+	columna_3 = [ [sg.Text('Total Puntos: '), sg.Text(size=(12,1), key='puntaje')]]
 
 					
 		
@@ -609,6 +609,7 @@ def main_game(num_tablero, configuracion):
 								actualizar_listado(window.FindElement('datosj'))
 								puntaje_jugador = puntaje_jugador + bolsa.calcular_puntos(p) 
 								print(puntaje_jugador)
+								window['puntaje'].update(puntaje_jugador)
 								#####
 								break
 							else:
