@@ -279,7 +279,7 @@ def main_game(num_tablero, configuracion):
 			cont=cont+1
 
 		print(initial_atril)											
-	"""actualiza el atril del jugador despues de comprobar que la palabra ingresada es correcta con el boton Check."""
+	"""actualiza el atril del jugador despues de comprobar que la palabra ingresada es correcta con el boton FINALIZAR TURNO."""
 	def actualizarAtrilJugador():
 		initial_atril2=[]
 		PC.atrilPalabrasValidas(images_keys,initial_atril2, conf)
@@ -454,7 +454,7 @@ def main_game(num_tablero, configuracion):
 		
 	"""se agregar las  columnas a una estructura que esta contenida dentro del layout."""
 
-	board_tab=[[sg.Button('CHECK',disabled=True)],[sg.Column(columna_1), sg.Column(atr1),sg.Column(tablero),sg.Column(atr2),sg.Column(columna_2)],[sg.Button('COMENZAR',button_color=('white','green')),sg.Button('PASAR',disabled=True),sg.Button('GUARDAR',disabled=True),sg.Button('EXIT')]]
+	board_tab=[[sg.Button('FINALIZAR TURNO', size=(10,0), disabled=True)],[sg.Column(columna_1), sg.Column(atr1),sg.Column(tablero),sg.Column(atr2),sg.Column(columna_2)],[sg.Button('COMENZAR',button_color=('white','green')),sg.Button('PASAR',disabled=True),sg.Button('GUARDAR',disabled=True),sg.Button('EXIT')]]
 	window = sg.Window('ScrabbleAr',default_button_element_size=(12,1), auto_size_buttons=False).Layout(board_tab)
 	cantPasadas=0
 	#palabra=''	
@@ -519,7 +519,7 @@ def main_game(num_tablero, configuracion):
 
 				window.FindElement('PASAR').update(disabled=False)
 				window.FindElement('GUARDAR').update(disabled=False)
-				window.FindElement('CHECK').update(disabled=False)
+				window.FindElement('FINALIZAR TURNO').update(disabled=False)
 				#window.FindElement('PASAR TURNO').update(disabled=False)
 				window.FindElement('COMENZAR').update(disabled=True)
 				window['COMENZAR'].update( button_color=('white','red'))
@@ -597,7 +597,7 @@ def main_game(num_tablero, configuracion):
 					# if button == 'PASAR TURNO':
 						# wait2=True
 						# break
-					if button == 'CHECK':
+					if button == 'FINALIZAR TURNO':
 						p = ""
 						p = p.join(palabra)
 						j
@@ -803,7 +803,7 @@ def main_game(num_tablero, configuracion):
 		wait=True
 		window.FindElement('PASAR').update(disabled=True)
 		window.FindElement('GUARDAR').update(disabled=True)
-		window.FindElement('CHECK').update(disabled=True)
+		window.FindElement('FINALIZAR TURNO').update(disabled=True)
 		#window.FindElement('PASAR TURNO').update(disabled=True)		
 		
 		window.FindElement('COMENZAR').update(disabled=False)
