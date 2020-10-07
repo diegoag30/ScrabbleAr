@@ -23,7 +23,7 @@ def main_game(num_tablero, configuracion):
 	clasificar=clasificarPalabra
 
 	"""
-	  ruta absaluta para utilizar recursos
+	  ruta absoluta para utilizar recursos
 	."""
 
 	blank = {'letra':'', 'imagen': os.path.join(base_path,'images/fondo.png')}
@@ -331,15 +331,11 @@ def main_game(num_tablero, configuracion):
 				
 									
 							
-		print(initial_atril,'xxx inicio')
 		initial_atril2=[]
 
 		PC.atrilPalabrasValidas(images_keys,initial_atril2, conf)
 		initial_atril=[]
-		print(initial_atril2,'xxxx2')
-		print(initial_atril,'xxxx1')
-		#initial_atril2=[]
-		print(initial_atril2,'xxxx2')
+
 		
 		initial_atril=initial_atril2[:]
 		print(initial_atril,'Final')
@@ -348,7 +344,7 @@ def main_game(num_tablero, configuracion):
 			#window[i].update(initial_atril[i])
 			piece_image = images[initial_atril[i]]
 							
-##### blanquear tablero
+
 			img=piece_image['imagen']
 
 			window[i].update(image_filename=img,image_size=(50, 50), button_color=('',''))				
@@ -440,7 +436,7 @@ def main_game(num_tablero, configuracion):
 	#bolsa.sacar_fichas(14)		
 
 
-	""""""""""""""""""""""" interfaz grafica del tablero    ."""""""""""""""""""""
+	""""""""""""""""""""""" interfaz grafica del panel del juego    ."""""""""""""""""""""
 
 	elementos=obj.Tab(images) ##### estaria para conectarlo con una opcion para elegir el tablero
 	tablero= elementos[0] 
@@ -493,7 +489,7 @@ def main_game(num_tablero, configuracion):
 	
 	
 		while True:
-			########################
+			
 	
 
 			if wait:
