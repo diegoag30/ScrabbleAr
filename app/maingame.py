@@ -454,7 +454,7 @@ def main_game(num_tablero, configuracion):
 		
 	"""se agregar las  columnas a una estructura que esta contenida dentro del layout."""
 
-	board_tab=[[sg.Button('FINALIZAR TURNO', size=(10,0), disabled=True)],[sg.Column(columna_1), sg.Column(atr1),sg.Column(tablero),sg.Column(atr2),sg.Column(columna_2)],[sg.Button('COMENZAR',button_color=('white','green')),sg.Button('PASAR',disabled=True),sg.Button('GUARDAR',disabled=True),sg.Button('EXIT')]]
+	board_tab=[[sg.Button('FINALIZAR TURNO', size=(10,0), button_color=('#FFFFFF', '#004A79'), disabled=True)],[sg.Column(columna_1), sg.Column(atr1),sg.Column(tablero),sg.Column(atr2),sg.Column(columna_2)],[sg.Button('COMENZAR',button_color=('white','green')),sg.Button('PASAR',disabled=True),sg.Button('GUARDAR',disabled=True),sg.Button('FINALIZAR PARTIDA', size=(10,0), button_color=('#FFFFFF', '#F74343'))]]
 	window = sg.Window('ScrabbleAr',default_button_element_size=(12,1), auto_size_buttons=False).Layout(board_tab)
 	cantPasadas=0
 	#palabra=''	
@@ -499,7 +499,7 @@ def main_game(num_tablero, configuracion):
 			if wait:
 				button , value = window.Read()	
 		
-			if button in (None , 'EXIT'):
+			if button in (None , 'FINALIZAR PARTIDA'):
 				exit()		
 			
 			if button=='COMENZAR' and wait:
@@ -661,7 +661,7 @@ def main_game(num_tablero, configuracion):
 						
 													
 										
-					if button in (None , 'EXIT'):
+					if button in (None , 'FINALIZAR PARTIDA'):
 						exit()
 			
 												
